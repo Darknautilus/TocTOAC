@@ -1,10 +1,19 @@
 <?php
+//$id = $_GET['idEvent'];
 $datas = new BDD();
 $error = "";
 
-$events = $datas->select("SELECT * FROM events");
+$events = $datas->select("SELECT * FROM events where eventId= '".$_GET["idEvent"]."'");
 
-if (!events)
+if (!$events)
 	$error .= $datas->getLastError();
 
-echo $twig->render("events_afficher.html", array());
+
+
+
+if (!$events)
+	$error .= $datas->getLastError();
+
+
+
+echo $twig->render("event_detail.html", array("events" => $events));
