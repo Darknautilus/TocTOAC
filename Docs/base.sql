@@ -1,4 +1,4 @@
--- Création de la base de données TocTOAC
+﻿-- Création de la base de données TocTOAC
 -- Par Aurélien Bertron
 
 -- Schéma relationnel :
