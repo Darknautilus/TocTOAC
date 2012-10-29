@@ -15,12 +15,12 @@
     <![endif]-->
 	
 	<style type="text/css">
-      body {
+      .main {
         padding-top: 60px;
         padding-bottom: 40px;
       }
     </style>
-	
+	 
 	<title>{% block title %}{% endblock %} - PersoFramework</title>
 </head>
 
@@ -29,23 +29,37 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="{{ root() }}/templates/js/bootstrap.min.js"></script>
 
+<header>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
   	<div class="container">
+  		<a class="brand" href="#">TocTOAC</a>
     	<ul class="nav">
-      		<li class="active"><a href="#">Home</a></li>
-      		<li><a href="#">Link</a></li>
-      		<li><a href="#">Link</a></li>
+      		<li class="active"><a href="#">Accueil</a></li>
     	</ul>
     </div>
   </div>
 </div>
+</header>
 
-<div class="container">
+<div class="main container">
 
 {% block content %}
 {% endblock %}
 </div>
+
+<footer>
+<div class="navbar navbar-fixed-bottom">
+  <div class="navbar-inner">
+  	<div class="container">
+    	<ul class="nav">
+      		<li class="active"><a href="#">Accueil</a></li>
+      		<li><a href="#">About</a></li>
+    	</ul>
+    </div>
+  </div>
+</div>
+</footer>
 
 </body>
 </html>
