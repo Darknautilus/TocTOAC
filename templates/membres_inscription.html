@@ -4,10 +4,12 @@
 
 {% block content %}
 <form method="post">
-<p><label for="pseudo">Entrez votre nom d'utilisateur : </label><input type="text" name="pseudo" /></p>
-<p><label for="motDePasse">Entrez votre mot de passe : </label><input type="password" name="motDePasse"/></p>
-<p><label for="verifMotDePasse">Entrez de nouveau votre mot de passe : </label><input type="password" name="verifMotDePasse" /></p>
+<p><label for="nom">Entrez votre nom : </label><input type="text" name="nom" /></p>
+<p><label for="prenom">Entrez votre prenom : </label><input type="text" name="prenom" /></p>
+<p><label for="motDePasse">Entrez votre mot de passe : </label><input type="password" name="motDePasse" /></p>
+<p><label for="verifMotDePasse">Entrez de nouveau votre mot de passe : </label><input type="password" /></p>
 <p><label for="adrMail">Adresse Mail</label><input type="text" name="adresseMail" /></p>
+<p><label for="dateNaiss">Votre date de naissance : </label><input type="text" name"dateNaiss" placeholder="JJ/MM/AAAA" /></p>
 
 </form>
 {% endblock %}
