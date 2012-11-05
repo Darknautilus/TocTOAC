@@ -3,14 +3,15 @@
 /*
 	Module affiché par défaut
 */
-define("DEFAULT_MODULE", "index");
+define("DEFAULT_MODULE", "membres");
 
 /*
 	Action par défaut pour chaque module
 	array(module => action)
 */
 $DEFAULT_ACTION = array(
-	"index" => "show"
+	"index" => "show",
+	"membres" => "inscription"
 );
 
 $GLOBALS["DEFAULT_ACTION"] = $DEFAULT_ACTION;
@@ -22,6 +23,11 @@ $GLOBALS["DEFAULT_ACTION"] = $DEFAULT_ACTION;
 $MODULES = array(
 	"index" => array(
 		"show"
+		),
+	"membres" => array(
+		"connexion",
+		"desinscription",
+		"inscription"
 		)
 	);
 
