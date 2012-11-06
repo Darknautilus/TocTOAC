@@ -4,6 +4,100 @@
 
 {% block content %}
 
+<div class="row">
+<h1 class="page-header">Mes événements</h1>
 
+<div class="span8">
+<table class="table table-hover table-bordered">
+	<thead>
+	<tr>
+		<th></th>
+		<th>Lundi</th>
+		<th>Mardi</th>
+		<th>Mercredi</th>
+		<th>Jeudi</th>
+		<th>Vendredi</th>
+		<th>Samedi</th>
+		<th>Dimanche</th>		
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td><strong>Groupe1</strong></td>
+		<td>Event1</td>
+		<td></td>
+		<td></td>
+		<td>Event2</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td><strong>Groupe2</strong></td>
+		<td></td>
+		<td></td>
+		<td>Event3</td>
+		<td></td>
+		<td></td>
+		<td>Event4</td>
+		<td></td>
+	</tr>
+	</tbody>
+</table>
+
+<button class="btn pull-left">
+		Semaine précédente
+</button>
+
+<button class="btn pull-right">
+		Semaine suivante
+</button>
+
+</div>
+
+</div>
+
+<div class="row">
+<h1 class="page-header">Mes groupes</h1>
+
+<div class="span4">
+<form>
+	<table class="table table-condensed">
+	<thead>
+	<tr>
+		<th>Nom</th>
+		<th>Afficher</th>
+		<th></th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td><strong>Groupe 1</strong></td>
+		<td>
+			<label class="checkbox">
+				<input type="checkbox" value="" checked="checked" />
+			</label>
+		</td>
+		<td>
+			<button class="btn">Détails</button>
+		</td>
+	</tr>
+	<tr>
+		<td><strong>Groupe 2</strong></td>
+		<td>
+			<label class="checkbox">
+				<input type="checkbox" value="" checked="checked" />
+			</label>
+		</td>
+		<td>
+			<button class="btn">Détails</button>
+		</td>
+	</tr>
+	</tbody>
+	</table>
+</form>
+</div>
+
+</div>
 
 {% endblock %}
