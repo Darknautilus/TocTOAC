@@ -3,11 +3,17 @@
 {% block title %}Connexion{% endblock %}
 
 {% block content %}
-<form method="post">
-<p><label for="pseudo">Entrez votre nom d'utilisateur : </label><input type="text" name="pseudo" /></p>
-<p><label for="motDePasse">Entrez votre mot de passe : </label><input type="password" name="motDePasse"/></p>
-<p><label for="verifMotDePasse">Entrez de nouveau votre mot de passe : </label><input type="password" name="verifMotDePasse" /></p>
-<p><label for="adrMail">Adresse Mail</label><input type="text" name="adresseMail" /></p>
 
-</form>
+<div class="span3">
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input type="text" class="input-block-level" placeholder="Email address">
+        <input type="password" class="input-block-level" placeholder="Password">
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+      </form>
+</div>
+
 {% endblock %}
