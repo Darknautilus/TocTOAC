@@ -3,7 +3,7 @@
 /*
 	Module affiché par défaut
 */
-define("DEFAULT_MODULE", "membres");
+define("DEFAULT_MODULE", "index");
 
 /*
 	Action par défaut pour chaque module
