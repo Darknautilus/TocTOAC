@@ -11,7 +11,7 @@ define("DEFAULT_MODULE", "index");
 */
 $DEFAULT_ACTION = array(
 	"index" => "show",
-	"membres" => "inscription"
+	"membres" => "auth"
 );
 
 $GLOBALS["DEFAULT_ACTION"] = $DEFAULT_ACTION;
@@ -27,7 +27,8 @@ $MODULES = array(
 	"membres" => array(
 		"connexion",
 		"desinscription",
-		"inscription"
+		"inscription",
+		"auth"
 		)
 	);
 
