@@ -8,14 +8,11 @@
 	<div class="span3">
 		<h2 class="page-header">Connexion</h2>
 		{% include 'membres_form_connexion.html' %}
+		
+		<p><small>Pas encore inscrit ?</small></p>
+		<a class="btn btn-small" href="{{ root() }}/index.php?module=membres&action=inscription">Inscription</a>
 	</div>
-	<div class="span1">
-		<h3><em>Ou</em></h3>
-	</div>
-	<div class="span3">
-		<h2 class="page-header">Inscription</h2>
-		{% include 'membres_form_inscription.html' %}
-	</div>
+	
 
 </div>
 
