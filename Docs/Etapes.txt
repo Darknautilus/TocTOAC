@@ -1,0 +1,12 @@
+-Attendre les autres.  ? Fait !
+-Gantt :
+
+
+Inscription/désinscription
+Création de groupe
+	Adhésion groupe 
+	Création/Suppression d’évènements
+	Gestion groupe (droits/caractéristiques…)
+		
+ 
+
