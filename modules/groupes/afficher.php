@@ -1,3 +1,7 @@
 <?php
+/*
+$gp = mysql_query(' Select * from groupes where idgroupe = ' + $idgroupe + ' ;');
 
-echo $twig->render("groupes_afficher.html", array( 'test'=>"salut"));
+$donnees= mysqli_fetch_assoc($gp);
+*/
+echo $twig->render("groupes_afficher.html", array());
