@@ -70,6 +70,9 @@
     	<ul class="nav">
       		<li><a href="#">Accueil</a></li>
       		<li><a href="#">About</a></li>
+      		{% if PROD_MODE() == false %}
+      		<li><a href="{{ root() }}/index.php?module=test">Tests de développment</a></li>
+      		{% endif %}
     	</ul>
     </div>
   </div>

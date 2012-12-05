@@ -26,6 +26,11 @@ include_once("./config.php");
 include_once("./queries.php");
 
 /*
+	Inclusion des modèles cruciaux
+*/
+include_once (PATH_MODELES."/bdd.class.php");
+
+/*
 	Initialisation du moteur de templates
 */
 include_once("./loadTwig.php");
@@ -52,7 +57,7 @@ $_COOKIE = array_map("htmlspecialchars", $_COOKIE);
 */
 ob_start();
 
-if(!isset($_GET["module"]) || !is_module($_GET["module"]))
+if(!isset($_GET["module"]) || !is_module($_GET["module"]) || (APP_MODE_PROD && $_GET["module"] == "test"))
 	$module = default_module();
 else
 	$module = $_GET["module"];

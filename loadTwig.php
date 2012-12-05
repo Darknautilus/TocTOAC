@@ -29,6 +29,11 @@
 		return "http://".$_SERVER['SERVER_NAME'];
 	}
 	
+	// Retourne vrai si l'on est en production et false sinon
+	function PROD_MODE() {
+		return APP_MODE_PROD;
+	}
+	
 	Twig_Autoloader::register();
 
 	$loader = new Twig_Loader_Filesystem(dirname(__FILE__).'/templates');
@@ -39,3 +44,5 @@
 	$twig->addFunction("redirectURL", new Twig_Function_Function("redirectURL"));
 
 	$twig->addFunction("root", new Twig_Function_Function("root"));
+	
+	$twig->addFunction("PROD_MODE", new Twig_Function_Function("PROD_MODE"));

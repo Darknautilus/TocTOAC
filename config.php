@@ -1,13 +1,22 @@
 <?php
 
 /*
+	Mode de l'application
+	true : mode de développement
+	false : mode de production
+*/
+define("APP_MODE_PROD", false);
+
+/*
 	Base de donnees
 */
 
-define("DBSERVER", "");
-define("DBNAME", "");
-define("DBUSER", "");
-define("DBPASSWD", "");
+define("DBSERVER", "localhost");
+define("DBNAME", "testTocTOAC");
+define("DBUSER", "root");
+define("DBPASSWD", "root");
+
+define("DBHEADER", 'mysql:host='.DBSERVER.';dbname='.DBNAME);
 
 /*
 	Chemins des repertoires
