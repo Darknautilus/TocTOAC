@@ -4,7 +4,9 @@
 
 {% block content %}
 
-<h1>Nom groupe</h1>
+<h1 class="page-header">Nom groupe</h1>
+<div class="row">
+<div class="span9">
 
 <h2>Description</h2>
 <p align="justify"> 
@@ -22,6 +24,7 @@ Unde Rufinus ea tempestate praefectus praetorio ad discrimen trusus est ultimum.
 			<th>Lieu</th>
 			<th>Date</th>
 			<th>Heure</th>
+			<th></th>
 		</tr>
 	<tbody>
 		<tr>
@@ -31,8 +34,82 @@ Unde Rufinus ea tempestate praefectus praetorio ad discrimen trusus est ultimum.
 			<td>Brax</td>
 			<td>16/08/2105</td>
 			<td>20:00-21:00</td>
+			<td>
+			    <div class="btn-group">
+    				<button class="btn">Participer</button>
+    			</div>
+		</td>
+		</tr>
+		<tr>
+			<td><a>Cuisine</a></td>
+			<td>Faire du paté</td>
+			<td>Le bouffeur</td>
+			<td>Patétor</td>
+			<td>15/01/2013</td>
+			<td>15:00-19:00</td>
+			<td>Déjà inscrit</td>
 		</tr>
 	</tbody>
-			
 </table>
+
+    <div class="btn-group">
+    	<button class="btn">Créer évenement</button>
+    </div>
+    <br />
+</div>
+
+<div class="span3">
+<table class="table table-hover table-bordered">
+	<thead>
+	<tr>
+		<th>Membres</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<div class="span2">
+			Lemoine Pierre-A..
+			</div>
+			<div class="span2">
+				<div class="span1">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+			    				<button class="btn-mini"><img src="/templates/profil.png" /></button>
+			    				<button class="btn-mini"><img src="/templates/plus.png" /></button>
+			    				<button class="btn-mini"><img src="/templates/delete.png" /></button>
+			    		</div>
+		    		</div>
+	    		</div>
+	    	</div>
+	    	</td>
+		</tr>
+		<tr>
+			<td>
+			
+			<div class="span2">
+			Bille Thomas 
+			</div>
+		   		
+    		</td>
+		</tr>	
+		<tr>
+			<td>Betron Aurélien</td>
+		</tr>	
+		<tr>
+			<td>Navech Sebastien</td>
+		</tr>	
+		<tr>
+			<td>Iungmann Victor</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="btn-group">
+    				<button class="btn">Afficher tous les membres(54)</button>
+    			</div>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
 {% endblock %}
