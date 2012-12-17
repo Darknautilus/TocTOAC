@@ -36,13 +36,13 @@ CREATE TABLE Members (
 	membLastName	varchar(30),
 	membPasswd	varchar(30),
 	CONSTRAINT pk_memb PRIMARY KEY (membId)
-)ENGINE=InnoDB;
+)ENGINE=InnoDB CHARSET=UTF8;
 
 CREATE TABLE Grants (
 	grantId 	int AUTO_INCREMENT,
 	grantLabel	varchar(30),
 	CONSTRAINT pk_grants PRIMARY KEY (grantId)
-)ENGINE=InnoDB;
+)ENGINE=InnoDB CHARSET=UTF8;
 
 CREATE TABLE Groups (
 	grpId	int AUTO_INCREMENT,
@@ -50,7 +50,7 @@ CREATE TABLE Groups (
 	visibility	int,
 	CONSTRAINT pk_grp PRIMARY KEY (grpId),
 	CONSTRAINT fk_grp_visib FOREIGN KEY (visibility) REFERENCES Visibilities(visibId)
-)ENGINE=InnoDB;
+)ENGINE=InnoDB CHARSET=UTF8;
 
 CREATE TABLE Categories (
 	catId	int AUTO_INCREMENT,
@@ -58,18 +58,19 @@ CREATE TABLE Categories (
 	grp	int,
 	CONSTRAINT pk_cat PRIMARY KEY (catId),
 	CONSTRAINT fk_cat_grp FOREIGN KEY (grp) REFERENCES Groups(grpId)
-)ENGINE=InnoDB;
+)ENGINE=InnoDB CHARSET=UTF8;
 
 CREATE TABLE Events (
 	eventId	int AUTO_INCREMENT,
 	grp	int,
 	creator	int,
 	category	int,
+	date	datetime,
 	CONSTRAINT pk_event PRIMARY KEY (eventId),
 	CONSTRAINT fk_event_grp FOREIGN KEY (grp) REFERENCES Groups(grpId),
 	CONSTRAINT fk_event_memb FOREIGN KEY (creator) REFERENCES Members(membId),
 	CONSTRAINT fk_event_cat FOREIGN KEY (category) REFERENCES Categories(catId)
-)ENGINE=InnoDB;
+)ENGINE=InnoDB CHARSET=UTF8;
 
 CREATE TABLE Participate (
 	event	int AUTO_INCREMENT,
@@ -77,7 +78,7 @@ CREATE TABLE Participate (
 	CONSTRAINT pk_particip PRIMARY KEY (event,member),
 	CONSTRAINT fk_particip_event FOREIGN KEY (event) REFERENCES Events(eventId),
 	CONSTRAINT fk_particip_memb FOREIGN KEY (member) REFERENCES Members(membId)
-)ENGINE=InnoDB;
+)ENGINE=InnoDB CHARSET=UTF8;
 
 CREATE TABLE Own (
 	grp	int AUTO_INCREMENT,
@@ -87,5 +88,27 @@ CREATE TABLE Own (
 	CONSTRAINT fk_own_grp FOREIGN KEY (grp) REFERENCES Groups(grpId),
 	CONSTRAINT fk_own_memb FOREIGN KEY (member) REFERENCES Members(membId),
 	CONSTRAINT fk_own_grant FOREIGN KEY (grnt) REFERENCES Grants(grantId)
-)ENGINE=InnoDB;
+)ENGINE=InnoDB CHARSET=UTF8;
+
+-- Insertions dans les tables
+
+INSERT INTO Visibilities VALUES (1, 'public');
+INSERT INTO Visibilities VALUES (2, 'private');
+
+INSERT INTO Members VALUES (1, 'aurelienbertron@gmail.com', 'Aurélien', 'Bertron', 'root');
+INSERT INTO Members VALUES (2, 'pandre.lemoine@gmail.com', 'Pierre-André', 'Lemoine', 'root');
+
+INSERT INTO Grants VALUES (1, 'membre');
+INSERT INTO Grants VALUES (2, 'membreplus');
+
+INSERT INTO Groups VALUES (1, 'groupe3B', 1);
+
+INSERT INTO Categories VALUES (1, 'Marche à pied', 1);
+
+INSERT INTO Events VALUES (1, 1, 1, 1, NOW());
+
+INSERT INTO Participate VALUES (1, 1);
+
+INSERT INTO Own VALUES (1,1,2);
+INSERT INTO Own VALUES (1,2,1);
 
