@@ -43,6 +43,10 @@
 		}
 		return $query;
 	}
+	function PROD_MODE() {
+		return APP_MODE_PROD;
+	}
+	
 	
 	Twig_Autoloader::register();
 
@@ -59,3 +63,4 @@
 	$twig->addFunction("css", new Twig_Function_Function("css"));
 	$twig->addFunction("images", new Twig_Function_Function("images"));
 	$twig->addFunction("queries", new Twig_Function_Function("queries"));
+	$twig->addFunction("PROD_MODE", new Twig_Function_Function("PROD_MODE"));

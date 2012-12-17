@@ -27,11 +27,13 @@ CREATE TABLE Visibilities (
 	visibId 	int AUTO_INCREMENT,
 	visibLabel	varchar(30),
 	CONSTRAINT pk_visib PRIMARY KEY (visibId)
-)ENGINE=InnoDB;
+)ENGINE=InnoDB CHARSET=UTF8;
 
 CREATE TABLE Members (
 	membId 	int AUTO_INCREMENT,
 	membMail	varchar(30),
+	membFirstName	varchar(30),
+	membLastName	varchar(30),
 	membPasswd	varchar(30),
 	CONSTRAINT pk_memb PRIMARY KEY (membId)
 )ENGINE=InnoDB;
