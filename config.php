@@ -11,8 +11,8 @@ define("APP_MODE_PROD", false);
 	Base de donnees
 */
 
-define("DBSERVER", "localhost");
-define("DBNAME", "testTocTOAC");
+define("DBSERVER", "");
+define("DBNAME", "");
 define("DBUSER", "root");
 define("DBPASSWD", "root");
 
