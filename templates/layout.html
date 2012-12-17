@@ -7,7 +7,7 @@
 	
 	<!-- Ajoute la compatibilité avec les téléphones -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="{{ root() }}/templates/style/bootstrap-responsive.css" rel="stylesheet">
+	<link href="{{ css() }}/bootstrap-responsive.css" rel="stylesheet">
 	
 	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -27,8 +27,7 @@
 <body>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="{{ root() }}/templates/js/bootstrap.min.js"></script>
-<script type="{{ root() }}/templates/js/bootstrap.js"></script>
+<script src="{{ templates() }}/js/bootstrap.min.js"></script>
 
 <header>
 <div class="navbar navbar-fixed-top">
@@ -45,9 +44,11 @@
   		
   		<div class="nav-collapse collapse">
     		<ul class="nav">
-      			<li><a href="{{ root() }}/index.php">Accueil</a></li>
-      			<li><a  href="#">Se connecter</a></li>
-      			<li><a  href="{{ root() }}/index.php?module=groupes&action=afficher">Mes groupes</a></li>
+    			{% set tab = {} %}
+      			<li><a href="{{ queries('','',tab) }}">Accueil</a></li>
+      			{% set tab = {} %}
+      			<li><a  href="{{ queries('membres','',tab) }}">Se connecter</a></li>
+      			<li><a  href="{{ queries('groupes','afficher',tab) }}">Mes groupes</a></li>
     		</ul>
     		<form class="navbar-form">
   				<input type="text" class="span2">
@@ -73,7 +74,8 @@
       		<li><a href="#">Accueil</a></li>
       		<li><a href="#">About</a></li>
       		{% if PROD_MODE() == false %}
-      		<li><a href="{{ root() }}/index.php?module=test">Tests de développment</a></li>
+      		{% set tab = {} %}
+      		<li><a href="{{ queries('','',tab) }}">Tests de développment</a></li>
       		{% endif %}
     	</ul>
     </div>

@@ -23,15 +23,25 @@
 		}
 	}
 
-	// Renvoit la racine du site (pour la construction d'URL)
-	function root()
-	{
+	// Fonctions de construction d'URL
+	function root() {
 		return "http://".$_SERVER['SERVER_NAME'];
 	}
-	
-	// Retourne vrai si l'on est en production et false sinon
-	function PROD_MODE() {
-		return APP_MODE_PROD;
+	function templates() {
+		return root()."/templates";
+	}
+	function css() {
+		return templates()."/style";
+	}
+	function images() {
+		return css()."/images";
+	}
+	function queries($module, $action, $param) {
+		$query = root()."/index.php?module=".$module."&action=".$action;
+		foreach($param as $key => $value) {
+			$query .= "&".$key."=".$value;
+		}
+		return $query;
 	}
 	
 	Twig_Autoloader::register();
@@ -42,7 +52,10 @@
 
 	// Fonction de redirection d'URL : renvoit l'URL sauvegardée précédemment (avec &redirect=true)
 	$twig->addFunction("redirectURL", new Twig_Function_Function("redirectURL"));
-
-	$twig->addFunction("root", new Twig_Function_Function("root"));
 	
-	$twig->addFunction("PROD_MODE", new Twig_Function_Function("PROD_MODE"));
+	// Fonctions de construction d'URL
+	$twig->addFunction("root", new Twig_Function_Function("root"));
+	$twig->addFunction("templates", new Twig_Function_Function("templates"));
+	$twig->addFunction("css", new Twig_Function_Function("css"));
+	$twig->addFunction("images", new Twig_Function_Function("images"));
+	$twig->addFunction("queries", new Twig_Function_Function("queries"));
