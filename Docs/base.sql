@@ -61,11 +61,12 @@ CREATE TABLE Categories (
 )ENGINE=InnoDB CHARSET=UTF8;
 
 CREATE TABLE Events (
-	eventId	int AUTO_INCREMENT,
-	grp	int,
-	creator	int,
+	eventId		int AUTO_INCREMENT,
+	eventName	varchar(30),
+	grp 	int,
+	creator 	int,
 	category	int,
-	date	datetime,
+	date 	datetime,
 	CONSTRAINT pk_event PRIMARY KEY (eventId),
 	CONSTRAINT fk_event_grp FOREIGN KEY (grp) REFERENCES Groups(grpId),
 	CONSTRAINT fk_event_memb FOREIGN KEY (creator) REFERENCES Members(membId),
@@ -117,7 +118,7 @@ INSERT INTO Groups VALUES (1, 'groupe3B', 1);
 
 INSERT INTO Categories VALUES (1, 'Marche à pied', 1);
 
-INSERT INTO Events VALUES (1, 1, 1, 1, NOW());
+INSERT INTO Events VALUES (1, 'Rando en montagne', 1, 1, 1, NOW());
 
 INSERT INTO Participate VALUES (1, 1);
 
