@@ -92,6 +92,18 @@ CREATE TABLE Own (
 
 -- Insertions dans les tables
 
+-- Table Test
+
+CREATE TABLE `Test` (
+  `idEvent` int(11) NOT NULL AUTO_INCREMENT,
+  `labelEvent` varchar(30) DEFAULT NULL,
+  `dateEvent` datetime NOT NULL,
+  PRIMARY KEY (`idEvent`)
+) ENGINE=InnoDB  CHARSET=UTF8;
+INSERT INTO `Test` VALUES(1, 'Test', '2012-12-05 14:37:24');
+
+-- Autres tables
+
 INSERT INTO Visibilities VALUES (1, 'public');
 INSERT INTO Visibilities VALUES (2, 'private');
 
