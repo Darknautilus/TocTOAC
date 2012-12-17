@@ -1,8 +1,8 @@
 <?php
 
 /*
- * Classe de connexion à la base de données
- * Utilise PDO (veillez à bien l'activer sur le serveur !)
+ * Classe de connexion Ã  la base de donnÃ©es
+ * Utilise PDO (veillez Ã  bien l'activer sur le serveur !)
  */
 
 class BDD {
@@ -13,7 +13,7 @@ private $lastError;
 
 /*
  * Constructeur de la classe :
- * crée l'objet de connexion à la base
+ * crÃ©e l'objet de connexion Ã  la base
  */
 function __construct() {
 	try {
@@ -30,7 +30,7 @@ function getLastError() {
 }
 
 /*
- * Ferme la connexion et retourne les éventuelles erreurs survenues
+ * Ferme la connexion et retourne les Ã©ventuelles erreurs survenues
  */
 function close() {
 	$this->bdd = NULL;
@@ -39,10 +39,10 @@ function close() {
 	
 /*
  * Pour faire un SELECT sur la table.
- * Paramètres :
- * 		$requete : une requête SQL classique
+ * ParamÃ¨tres :
+ * 		$requete : une requÃªte SQL classique
  * 
- * Retourne le tableau des résultats. Chaque enregistrement est un élément du tableau et est présenté sous la forme d'un tableau associatif de la forme champ => valeur. 
+ * Retourne le tableau des rÃ©sultats. Chaque enregistrement est un Ã©lÃ©ment du tableau et est prÃ©sentÃ© sous la forme d'un tableau associatif de la forme champ => valeur. 
  */
 function select ($requete) {
 	try {
@@ -62,10 +62,10 @@ function select ($requete) {
 
 /*
  * Effectue un update sur une table.
- * Paramètres :
- * 		$table : la table où effectuer l'update
+ * ParamÃ¨tres :
+ * 		$table : la table oÃ¹ effectuer l'update
  * 		$colonnes : tableau associatif de la forme champ => valeur
- * 		$conditions : idem, conditions après le WHERE
+ * 		$conditions : idem, conditions aprÃ¨s le WHERE
  * 
  * Retourne true si l'update s'est fait correctement, et false sinon
  */
@@ -106,9 +106,9 @@ function update ($table, $colonnes, $conditions) {
 
 /*
  * Supprime un enregistrement de la table
- * Paramètres :
- * 		$table : la table où supprimer l'enregistrement
- * 		$conditions : tableau associatif des conditions après le WHERE
+ * ParamÃ¨tres :
+ * 		$table : la table oÃ¹ supprimer l'enregistrement
+ * 		$conditions : tableau associatif des conditions aprÃ¨s le WHERE
  * 
  * Retourne true si la suppression s'est faite correctement, et false sinon
  */
@@ -137,9 +137,9 @@ function delete ($table, $conditions) {
 }
  
 /*
- * Insère un élément dans la base
- * Paramètres :
- * 		$table : la table où insérer l'enregistrement
+ * InsÃ¨re un Ã©lÃ©ment dans la base
+ * ParamÃ¨tres :
+ * 		$table : la table oÃ¹ insÃ©rer l'enregistrement
  * 		$valeurs : tableau associatif de la forme champ => valeur
  * 
  * Retourne true si la suppression s'est faite correctement, et false sinon
