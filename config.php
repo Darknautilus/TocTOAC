@@ -12,7 +12,7 @@ define("APP_MODE_PROD", false);
 */
 
 define("DBSERVER", "localhost");
-define("DBNAME", "testTocTOAC");
+define("DBNAME", "toctoac");
 define("DBUSER", "root");
 define("DBPASSWD", "root");
 
