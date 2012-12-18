@@ -12,14 +12,14 @@
 	
 	<table class="table table-striped table-hover">
 		<tr>
-			{% set tab = {} %}
-			<th><a href = "{{ queries('groupes','afficher',tab) }}">Nom</a></th>
+			<th>Nom</th>
 			<th>Nombre de membres</th>
 		</tr>
-	{% for groupe in groupes %}
-	{% set tab = {'id':bien.idbien, 'checked':checked} %}
-		<td>{{ groupe.grpName }}</td>
-		<td></td>
+	{% for groupe in listGrps %}
+	{% set tab = {'idGroupe': groupe.grpid} %}
+		<tr>
+			<td><a href = "{{ queries('groupes','afficher',tab) }}">{{ groupe.grpname }}</a></td>
+			<td></td>
 		</tr>
 	{% endfor %}
 	</table>

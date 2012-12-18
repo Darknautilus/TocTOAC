@@ -95,10 +95,11 @@ CREATE TABLE Own (
 
 -- Table Test
 
-CREATE TABLE `Test` (
-  `idEvent` int(11) NOT NULL AUTO_INCREMENT,
-  `labelEvent` varchar(30) DEFAULT NULL,
-  `dateEvent` datetime NOT NULL,
+DROP TABLE IF EXISTS Test;
+CREATE TABLE Test (
+  idEvent int(11) AUTO_INCREMENT,
+  labelEvent varchar(30),
+  dateEvent datetime,
   PRIMARY KEY (`idEvent`)
 ) ENGINE=InnoDB  CHARSET=UTF8;
 INSERT INTO `Test` VALUES(1, 'Test', '2012-12-05 14:37:24');

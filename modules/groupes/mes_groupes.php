@@ -2,11 +2,23 @@
 
 $bdd = new BDD();
 
-$groupes = $bdd -> select("Select grpId, grpName, membId From groups");
+$error = "";
+
+$groupes = $bdd->select("select grpid, grpname from groups;");
+if(!$groupes)
+	$error .= $bdd->getLastError();
 
 /*$groupes = $bdd -> select("Select g.grpId, g.grpName, m.membId From groups as g, members as m, own as o
 						   Where o.grp = g.grpId
 						   And o.member = $_SESSION['memId']
 						   And m.memId = $_SESSION['memId']"); */
 
-echo $twig->render("mes_groupes.html", array("listGrps" => $groupes));
+// Nombre de membres
+//$nbMembres = $bdd -> select(""); , "nbMembres" =>
+
+$nbGroupes = count($groupes);
+
+$bdd->close();
+
+
+echo $twig->render("mes_groupes.html", array("listGrps" => $groupes, "nbG" => $nbGroupes));
