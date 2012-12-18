@@ -1,4 +1,4 @@
--- Création de la base de données TocTOAC
+﻿-- Création de la base de données TocTOAC
 -- Par Aurélien Bertron
 
 -- Schéma relationnel :
@@ -32,6 +32,7 @@ CREATE TABLE Visibilities (
 CREATE TABLE Members (
 	membId 	int AUTO_INCREMENT,
 	membMail	varchar(30),
+	membName	varchar(30),
 	membPasswd	varchar(30),
 	CONSTRAINT pk_memb PRIMARY KEY (membId)
 )ENGINE=InnoDB;
