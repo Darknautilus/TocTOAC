@@ -39,7 +39,7 @@ $MODULES = array(
 		"bdd"
 		),
 	"events" => array(
-			"afficher"
+			"event_detail"
 		)
 	);
 
