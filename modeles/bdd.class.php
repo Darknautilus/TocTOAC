@@ -13,7 +13,7 @@ private $lastError;
 
 /*
  * Constructeur de la classe :
- * crÃ©e l'objet de connexion Ã  la base
+ * crée l'objet de connexion Ã  la base
  */
 function __construct() {
 	try {
