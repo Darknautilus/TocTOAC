@@ -4,13 +4,13 @@
 
 {% block content %}
 
-<h1 class="page-header">Nom groupe</h1>
+<h1 class="page-header">{{ groupe[0].grpName }}</h1>
 <div class="row">
 <div class="span9">
 
 <h2>Description</h2>
 <p align="justify"> 
-Unde Rufinus ea tempestate praefectus praetorio ad discrimen trusus est ultimum. ire enim ipse compellebatur ad militem, quem exagitabat inopia simul et feritas, et alioqui coalito more in ordinarias dignitates asperum semper et saevum, ut satisfaceret atque monstraret, quam ob causam annonae convectio sit impedita.
+{{ groupe[0].description }}
 </p>
 
 <br />
@@ -19,36 +19,25 @@ Unde Rufinus ea tempestate praefectus praetorio ad discrimen trusus est ultimum.
 	<thead>
 		<tr>
 			<th>Nom</th>	
-			<th>Dercription</th>
 			<th>Organisateur</th>
-			<th>Lieu</th>
 			<th>Date</th>
 			<th>Heure</th>
 			<th></th>
 		</tr>
 	<tbody>
+	{% for event in events %}
 		<tr>
-			<td><a>Echecs</a></td>
-			<td>Super soirée echec</td>
-			<td>Thomas</td>
-			<td>Brax</td>
-			<td>16/08/2105</td>
-			<td>20:00-21:00</td>
+			<td><a>{{ event.eventName }}</a></td>
+			<td>{{ event.membFirstName }} {{ event.membLastName }}</td>
+			<td>{{ event.date }}</td>
+			<td>{{ event.time }}</td>
 			<td>
 			    <div class="btn-group">
     				<button class="btn">Participer</button>
     			</div>
 		</td>
 		</tr>
-		<tr>
-			<td><a>Cuisine</a></td>
-			<td>Faire du paté</td>
-			<td>Le bouffeur</td>
-			<td>Patétor</td>
-			<td>15/01/2013</td>
-			<td>15:00-19:00</td>
-			<td>Déjà inscrit</td>
-		</tr>
+	{% endfor %}
 	</tbody>
 </table>
 
@@ -71,7 +60,7 @@ Unde Rufinus ea tempestate praefectus praetorio ad discrimen trusus est ultimum.
 		<tr>
 			<td>
 			<div class="span2">
-			{{ membre.membName }}
+			{{ membre.membFirstName }} {{ membre.membLastName }}
 			</div>
 			<div class="span2">
 				<div class="span1">
@@ -86,11 +75,11 @@ Unde Rufinus ea tempestate praefectus praetorio ad discrimen trusus est ultimum.
 	    	</div>
 	    	</td>
 		</tr>
-	{% enfor %}
+	{% endfor %}
 		<tr>
 			<td>
 				<div class="btn-group">
-    				<button class="btn">Afficher tous les membres(54)</button>
+    				<button class="btn">Afficher tous les membres( {{ nbMembres }} )</button>
     			</div>
 		</tr>
 	</tbody>

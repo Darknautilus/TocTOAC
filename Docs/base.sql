@@ -22,6 +22,7 @@ DROP TABLE IF EXISTS Groups;
 DROP TABLE IF EXISTS Grants;
 DROP TABLE IF EXISTS Members;
 DROP TABLE IF EXISTS Visibilities;
+DROP TABLE IF EXISTS test;
 
 CREATE TABLE Visibilities (
 	visibId 	int AUTO_INCREMENT,
@@ -48,6 +49,7 @@ CREATE TABLE Groups (
 	grpId	int AUTO_INCREMENT,
 	grpName	varchar(30),
 	visibility	int,
+	description	text,
 	CONSTRAINT pk_grp PRIMARY KEY (grpId),
 	CONSTRAINT fk_grp_visib FOREIGN KEY (visibility) REFERENCES Visibilities(visibId)
 )ENGINE=InnoDB CHARSET=UTF8;
@@ -66,7 +68,8 @@ CREATE TABLE Events (
 	grp 	int,
 	creator 	int,
 	category	int,
-	date 	datetime,
+	date 	date,
+	time	time,
 	CONSTRAINT pk_event PRIMARY KEY (eventId),
 	CONSTRAINT fk_event_grp FOREIGN KEY (grp) REFERENCES Groups(grpId),
 	CONSTRAINT fk_event_memb FOREIGN KEY (creator) REFERENCES Members(membId),
@@ -114,11 +117,13 @@ INSERT INTO Members VALUES (2, 'pandre.lemoine@gmail.com', 'Pierre-André', 'Lem
 INSERT INTO Grants VALUES (1, 'membre');
 INSERT INTO Grants VALUES (2, 'membreplus');
 
-INSERT INTO Groups VALUES (1, 'groupe3B', 1);
+INSERT INTO Groups VALUES (1, 'groupe3B', 1,
+"Groupe dans lequelle se trouvent les grands créateurs de ce merveilleux site !!"
+);
 
 INSERT INTO Categories VALUES (1, 'Marche à pied', 1);
 
-INSERT INTO Events VALUES (1, 'Rando en montagne', 1, 1, 1, NOW());
+INSERT INTO Events VALUES (1, 'Rando en montagne', 1, 1, 1, NOW(), now());
 
 INSERT INTO Participate VALUES (1, 1);
 
