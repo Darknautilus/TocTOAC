@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block title %}Tests{% endblock %}
+
+{% block content %}
+<h1>Pages de test</h1>
+
+<ul>
+	{% set tab = {} %}
+	<li><a href="{{ queries('test','bdd.test',tab) }}">Test de la classe BDD</a></li>
+</ul>
+{% endblock %} 

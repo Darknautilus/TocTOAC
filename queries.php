@@ -12,8 +12,8 @@ define("DEFAULT_MODULE", "index");
 $DEFAULT_ACTION = array(
 	"index" => "show",
 	"membres" => "auth",
-	"groupes" => "afficher_groupes",
-	"test" => "bdd.test"
+	"test" => "home",
+	"groupes" => "afficher_groupes"
 );
 
 $GLOBALS["DEFAULT_ACTION"] = $DEFAULT_ACTION;
@@ -34,12 +34,16 @@ $MODULES = array(
 		),
 	"groupes" => array(
 		"afficher",
-		"afficher_groupes"
+		"afficher_groupes",
+		"creer"
 		),
 	"test" => array(
-		"bdd"
+		"home",
+		"bdd.test"
 		),
 	"events" => array(
+
+		"afficher",
 		"event_detail"
 		)
 	);
