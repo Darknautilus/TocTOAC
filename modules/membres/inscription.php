@@ -1,6 +1,6 @@
 <?php
 
-echo $twig->render("membres_inscription.html", array("message" => "It works" ));
+$bdd = new BDD();
 
 # On regarde si tous les champs ont été renseignés
 if(isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['motDePasse']) && isset($_POST['verifMotDePasse']) && isset($_POST['adresseMail']))
@@ -9,7 +9,7 @@ if(isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['motDePasse']
 	if($_POST['motDePasse'] == $_POST['verifMotDePasse'])
 	{
 		//Insertion du nouveau membre dans la table membre
-		insert(Members, "membMail => ".$_POST['adresseMail'], "membFirstName => ".$_POST['prenom'], "membLastName => ".$_POST['nom'], "membPasswd => ".$_POST['motDePasse']);
+		$bdd->insert("members", array("membmail" => $_POST["adresseMail"], "membfirstname" => $_POST["prenom"], "memblastname" => $_POST["nom"], "membpasswd" => $_POST["motDePasse"]));
 	}
 	else
 	{
@@ -17,8 +17,11 @@ if(isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['motDePasse']
 	}
 }
 # Sinon on affiche un message d'erreur
-	else
-	{
-		die("Tous les champs doivent etre remplis pour valider votre inscription");
-	}
-?>
+else
+{
+	//die("Tous les champs doivent etre remplis pour valider votre inscription");
+}
+
+$bdd->close();
+
+echo $twig->render("membres_inscription.html", array("message" => "It works" ));
