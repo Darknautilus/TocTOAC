@@ -27,7 +27,8 @@
 	<tbody>
 	{% for event in events %}
 		<tr>
-			<td><a>{{ event.eventName }}</a></td>
+			{% set tab = { 'idEvent' : event.eventId} %}
+			<td><a href="{{ queries('event','event_detail',tab) }}">{{ event.eventName }}</a></td>
 			<td>{{ event.membFirstName }} {{ event.membLastName }}</td>
 			<td>{{ event.date }}</td>
 			<td>{{ event.time }}</td>
