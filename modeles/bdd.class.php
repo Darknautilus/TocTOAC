@@ -161,6 +161,7 @@ function delete ($table, $conditions) {
 function insert ($table, $valeurs) {
 	$colonnes_ = array_keys($valeurs) ;
 	$valeurs_ = array_values($valeurs) ;
+	
 	foreach($valeurs_ as $clef => $valeur) {
 		if (!is_numeric($valeur)) {
 			$valeur = $this->bdd->quote($valeur) ;
@@ -173,8 +174,6 @@ function insert ($table, $valeurs) {
 	$sql .= ') VALUES (' ;
 	$sql .= join(', ', $valeurs_) ;
 	$sql .= ');' ;
-	
-	var_dump($sql);
  
 	try {
 		$resultat = $this->bdd->exec($sql);

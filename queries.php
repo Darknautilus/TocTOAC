@@ -32,6 +32,9 @@ $MODULES = array(
 		"inscription",
 		"auth"
 		),
+	"mes_groupes" => array(
+		"mes_groupes"
+	),
 	"groupes" => array(
 		"afficher",
 		"mes_groupes"
@@ -40,7 +43,7 @@ $MODULES = array(
 		"bdd"
 		),
 	"events" => array(
-			"afficher"
+			"event_detail"
 		)
 	);
 
