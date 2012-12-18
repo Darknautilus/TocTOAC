@@ -1,12 +1,41 @@
-{% set tab= {} %}
 
-<form method="post" action="{{ queries('membres', 'inscription', tab) }}">
- 
-<p><label for="prenom">Votre prenom :</label><input type="text" name="prenom" /></p>
-<p><label for="nom">Votre nom :</label><input type="text" name="nom" /></p>
-<p><label for="motDePasse">Mot de passe :</label><input type="password" name="motDePasse"/></p>
-<p><label for="verifMotDePasse">Confirmation mot de passe : </label><input type="password" name="verifMotDePasse" /></p>
-<p><label for="adrMail">Adresse email :</label><input type="text" name="adresseMail" /></p>
-<p><input type="submit" value="S'inscrire" /></p>
+{% set tab= {} %}
+<form class="form-horizontal" method="post" action="{{ queries('membres', 'inscription', tab) }}">
+	<div class="control-group">
+		<label class="control-label" for="prenom">Votre prenom</label>
+		<div class="controls">
+			<input type="text" id="prenom" name="prenom" placeholder="Prénom" value="{{ values.prenom }}" required/>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="nom">Votre nom</label>
+		<div class="controls">
+			<input type="text" id="nom" name="nom" placeholder="Nom" value="{{ values.nom }}" required/>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="motDePasse">Mot de passe</label>
+		<div class="controls">
+			<input type="password" id="motDePasse" name="motDePasse" placeholder="Mot de passe" required/>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="verifMotDePasse">Confirmation</label>
+		<div class="controls">
+			<input type="password" id="verifMotDePasse" name="verifMotDePasse" placeholder="Mot de passe" required/>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="email">Adresse email</label>
+		<div class="controls">
+			<input type="email" id="email" name="email" placeholder="Email" value="{{ values.email }}" required/>
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="controls">
+			<button class="btn" type="submit">S'inscrire</button>
+			<input type="hidden" name="filled" value="true" />
+		</div>
+	</div>
 
 </form>

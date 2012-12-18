@@ -151,9 +151,9 @@ function delete ($table, $conditions) {
 }
  
 /*
- * InsÃ¨re un Ã©lÃ©ment dans la base
- * ParamÃ¨tres :
- * 		$table : la table oÃ¹ insÃ©rer l'enregistrement
+ * Insère un élément dans la base
+ * Paramètres :
+ * 		$table : la table à insérer l'enregistrement
  * 		$valeurs : tableau associatif de la forme champ => valeur
  * 
  * Retourne true si la suppression s'est faite correctement, et false sinon
