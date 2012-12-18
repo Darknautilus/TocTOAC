@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block title %}Groupes{% endblock %}
+
+{% block content %}
+
+<h1 class="page-header">Création groupe</h1>
+<div class="row">
+	
+	<form class="form-horizontal" method="post" action="index.php?module=groupes&action=creer" >
+	    <div class="control-group">
+		    <label class="control-label" for="inputEmail">Nom Groupe</label>
+		    <div class="controls">
+			    <input type="text" class="input-large" placeholder="Nom Groupe" name="nomGroupe" >
+			</div>
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="inputPassword">Déscription</label>
+			<div class="controls">
+					<textarea class="input-xxlarge" name="description" placeholder="Déscription"></textarea>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+				    <button type="submit" class="btn">Créer</button>
+			    </div>
+	    </div>
+	    
+    </form>
+	
+</div>
+
+{% endblock %}
