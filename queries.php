@@ -37,7 +37,8 @@ $MODULES = array(
 	),
 	"groupes" => array(
 		"afficher",
-		"mes_groupes"
+		"mes_groupes",
+		"creer"
 		),
 	"test" => array(
 		"bdd"

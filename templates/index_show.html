@@ -59,8 +59,12 @@
 
 <div class="row">
 <h1 class="page-header">Mes groupes</h1>
-
 <div class="span4">
+{% set tab = {} %}
+<button class="btn" onclick="window.location.href='{{ queries('groupes','creer', tab) }}'">Créer un groupe</button>
+
+<br />
+
 <form>
 	<table class="table table-condensed">
 	<thead>
