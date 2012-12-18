@@ -37,6 +37,9 @@ $MODULES = array(
 		),
 	"test" => array(
 		"bdd"
+		),
+	"events" => array(
+			"afficher"
 		)
 	);
 

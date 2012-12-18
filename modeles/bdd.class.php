@@ -18,6 +18,7 @@ private $lastError;
 function __construct() {
 	try {
 		$this->bdd = new PDO(DBHEADER, DBUSER, DBPASSWD);
+		$this->bdd->exec("SET NAMES UTF8");
 	}
 	catch (PDOException $e) {
 		$this->errors[] = $e->getMessage();
@@ -47,9 +48,22 @@ function close() {
 function select ($requete) {
 	try {
 		$result = $this->bdd->query($requete);
+		if(!$result) {
+			$err = "Empty SELECT";
+			$this->lastError = $err;
+			$this->errors[] = $this->lastError;
+			return false;
+		}
+		
 		$lines = array();
 		while($line = $result->fetch(PDO::FETCH_ASSOC)) {
 			$lines[] = $line;
+		}
+		if(empty($lines)) {
+			$err = "Empty SELECT";
+			$this->lastError = $err;
+			$this->errors[] = $this->lastError;
+			return false;
 		}
 		return $lines;
 	}
