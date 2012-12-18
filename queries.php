@@ -12,7 +12,7 @@ define("DEFAULT_MODULE", "index");
 $DEFAULT_ACTION = array(
 	"index" => "show",
 	"membres" => "auth",
-	"groupes" => "afficher",
+	"groupes" => "mes_groupes",
 	"test" => "bdd.test"
 );
 
@@ -32,6 +32,9 @@ $MODULES = array(
 		"inscription",
 		"auth"
 		),
+	"mes_groupes" => array(
+		"mes_groupes"
+	),
 	"groupes" => array(
 		"afficher"
 		),
