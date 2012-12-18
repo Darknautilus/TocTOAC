@@ -21,4 +21,4 @@ $nbGroupes = count($groupes);
 $bdd->close();
 
 
-echo $twig->render("mes_groupes.html", array("listGrps" => $groupes, "nbG" => $nbGroupes));
+echo $twig->render("groupes_afficher_groupes.html", array("listGrps" => $groupes, "nbG" => $nbGroupes));
