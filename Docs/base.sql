@@ -119,7 +119,7 @@ INSERT INTO Grants VALUES (1, 'membre');
 INSERT INTO Grants VALUES (2, 'membreplus');
 
 INSERT INTO Groups VALUES (1, 'groupe3B', 1,
-"Groupe dans lequelle se trouvent les grands créateurs de ce merveilleux site !!"
+"Groupe dans lequel se trouvent les grands créateurs de ce merveilleux site !!"
 );
 
 INSERT INTO Categories VALUES (1, 'Marche à pied', 1);
