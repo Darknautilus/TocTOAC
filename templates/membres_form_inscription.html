@@ -1,6 +1,9 @@
+{% set tab= {} %}
 
-<form method="post">
-<p><label for="pseudo">Nom d'utilisateur :</label><input type="text" name="pseudo" /></p>
+<form method="post" action="{{ queries('membres', 'inscription', tab)">
+ 
+<p><label for="prenom">Votre prenom :</label><input type="text" name="prenom" /></p>
+<p><label for="nom">Votre nom :</label><input type="text" name="nom" /></p>
 <p><label for="motDePasse">Mot de passe :</label><input type="password" name="motDePasse"/></p>
 <p><label for="verifMotDePasse">Confirmation mot de passe : </label><input type="password" name="verifMotDePasse" /></p>
 <p><label for="adrMail">Adresse email :</label><input type="text" name="adresseMail" /></p>
