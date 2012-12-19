@@ -42,7 +42,6 @@ $MODULES = array(
 		"bdd.test"
 		),
 	"events" => array(
-
 		"afficher",
 		"event_detail"
 		)
