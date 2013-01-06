@@ -4,7 +4,7 @@ $bdd = new BDD();
 
 $error = "";
 
-$groupes = $bdd->select("select grpid, grpname from groups;");
+$groupes = $bdd->select("select grpid, grpname from Groups;");
 if(!$groupes)
 	$error .= $bdd->getLastError();
 

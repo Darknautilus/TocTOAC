@@ -25,63 +25,63 @@ DROP TABLE IF EXISTS Visibilities;
 DROP TABLE IF EXISTS test;
 
 CREATE TABLE Visibilities (
-	visibId 	int AUTO_INCREMENT,
-	visibLabel	varchar(30),
-	CONSTRAINT pk_visib PRIMARY KEY (visibId)
+	visibid 	int AUTO_INCREMENT,
+	visiblabel	varchar(30),
+	CONSTRAINT pk_visib PRIMARY KEY (visibid)
 )ENGINE=InnoDB CHARSET=UTF8;
 
 CREATE TABLE Members (
-	membId 	int AUTO_INCREMENT,
-	membMail	varchar(30),
-	membFirstName	varchar(30),
-	membLastName	varchar(30),
-	membPasswd	varchar(30),
-	CONSTRAINT pk_memb PRIMARY KEY (membId)
+	membid 	int AUTO_INCREMENT,
+	membmail	varchar(30),
+	membfirstname	varchar(30),
+	memblastname	varchar(30),
+	membpasswd	varchar(30),
+	CONSTRAINT pk_memb PRIMARY KEY (membid)
 )ENGINE=InnoDB CHARSET=UTF8;
 
 CREATE TABLE Grants (
-	grantId 	int AUTO_INCREMENT,
-	grantLabel	varchar(30),
-	CONSTRAINT pk_grants PRIMARY KEY (grantId)
+	grantid 	int AUTO_INCREMENT,
+	grantlabel	varchar(30),
+	CONSTRAINT pk_grants PRIMARY KEY (grantid)
 )ENGINE=InnoDB CHARSET=UTF8;
 
 CREATE TABLE Groups (
-	grpId	int AUTO_INCREMENT,
-	grpName	varchar(30),
+	grpid	int AUTO_INCREMENT,
+	grpname	varchar(30),
 	visibility	int,
 	description	text,
-	CONSTRAINT pk_grp PRIMARY KEY (grpId),
-	CONSTRAINT fk_grp_visib FOREIGN KEY (visibility) REFERENCES Visibilities(visibId)
+	CONSTRAINT pk_grp PRIMARY KEY (grpid),
+	CONSTRAINT fk_grp_visib FOREIGN KEY (visibility) REFERENCES Visibilities(visibid)
 )ENGINE=InnoDB CHARSET=UTF8;
 
 CREATE TABLE Categories (
-	catId	int AUTO_INCREMENT,
-	catLabel	varchar(30),
+	catid	int AUTO_INCREMENT,
+	catlabel	varchar(30),
 	grp	int,
-	CONSTRAINT pk_cat PRIMARY KEY (catId),
-	CONSTRAINT fk_cat_grp FOREIGN KEY (grp) REFERENCES Groups(grpId)
+	CONSTRAINT pk_cat PRIMARY KEY (catid),
+	CONSTRAINT fk_cat_grp FOREIGN KEY (grp) REFERENCES Groups(grpid)
 )ENGINE=InnoDB CHARSET=UTF8;
 
 CREATE TABLE Events (
-	eventId		int AUTO_INCREMENT,
-	eventName	varchar(30),
+	eventid		int AUTO_INCREMENT,
+	eventname	varchar(30),
 	grp 	int,
 	creator 	int,
 	category	int,
 	date 	date,
 	time	time,
-	CONSTRAINT pk_event PRIMARY KEY (eventId),
-	CONSTRAINT fk_event_grp FOREIGN KEY (grp) REFERENCES Groups(grpId),
-	CONSTRAINT fk_event_memb FOREIGN KEY (creator) REFERENCES Members(membId),
-	CONSTRAINT fk_event_cat FOREIGN KEY (category) REFERENCES Categories(catId)
+	CONSTRAINT pk_event PRIMARY KEY (eventid),
+	CONSTRAINT fk_event_grp FOREIGN KEY (grp) REFERENCES Groups(grpid),
+	CONSTRAINT fk_event_memb FOREIGN KEY (creator) REFERENCES Members(membid),
+	CONSTRAINT fk_event_cat FOREIGN KEY (category) REFERENCES Categories(catid)
 )ENGINE=InnoDB CHARSET=UTF8;
 
 CREATE TABLE Participate (
 	event	int AUTO_INCREMENT,
 	member	int,
 	CONSTRAINT pk_particip PRIMARY KEY (event,member),
-	CONSTRAINT fk_particip_event FOREIGN KEY (event) REFERENCES Events(eventId),
-	CONSTRAINT fk_particip_memb FOREIGN KEY (member) REFERENCES Members(membId)
+	CONSTRAINT fk_particip_event FOREIGN KEY (event) REFERENCES Events(eventid),
+	CONSTRAINT fk_particip_memb FOREIGN KEY (member) REFERENCES Members(membid)
 )ENGINE=InnoDB CHARSET=UTF8;
 
 CREATE TABLE Own (
@@ -89,9 +89,9 @@ CREATE TABLE Own (
 	member	int,
 	grnt	int,
 	CONSTRAINT pk_own PRIMARY KEY (grp,member),
-	CONSTRAINT fk_own_grp FOREIGN KEY (grp) REFERENCES Groups(grpId),
-	CONSTRAINT fk_own_memb FOREIGN KEY (member) REFERENCES Members(membId),
-	CONSTRAINT fk_own_grant FOREIGN KEY (grnt) REFERENCES Grants(grantId)
+	CONSTRAINT fk_own_grp FOREIGN KEY (grp) REFERENCES Groups(grpid),
+	CONSTRAINT fk_own_memb FOREIGN KEY (member) REFERENCES Members(membid),
+	CONSTRAINT fk_own_grant FOREIGN KEY (grnt) REFERENCES Grants(grantid)
 )ENGINE=InnoDB CHARSET=UTF8;
 
 -- Insertions dans les tables
@@ -100,10 +100,10 @@ CREATE TABLE Own (
 
 DROP TABLE IF EXISTS Test;
 CREATE TABLE Test (
-  idEvent int(11) AUTO_INCREMENT,
-  labelEvent varchar(30),
-  dateEvent datetime,
-  PRIMARY KEY (`idEvent`)
+  idevent int(11) AUTO_INCREMENT,
+  labelevent varchar(30),
+  dateevent datetime,
+  PRIMARY KEY (`idevent`)
 ) ENGINE=InnoDB  CHARSET=UTF8;
 INSERT INTO `Test` VALUES(1, 'Test', '2012-12-05 14:37:24');
 

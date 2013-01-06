@@ -5,15 +5,15 @@ $id= $_GET['idGroupe'];
 $bdd=new BDD();
 
 // Informations groupe
-$groupe = $bdd->select("Select * from groups
-						where grpId = $id ;");	
+$groupe = $bdd->select("Select * from Groups
+						where grpid = $id ;");	
 
 // on récupère tous les membres appartenants a un groupe
-$mem = $bdd->select("SELECT m.membId, m.membFirstName, m.membLastName
-						FROM members AS m, groups AS g, own AS o
-						WHERE g.grpId =$id
-						AND o.grp = g.grpId
-						AND o.member = m.membId");
+$mem = $bdd->select("SELECT m.membid, m.membfirstname, m.memblastname
+						FROM Members AS m, Groups AS g, Own AS o
+						WHERE g.grpid =$id
+						AND o.grp = g.grpid
+						AND o.member = m.membid");
 
 if( !$mem )
 {
@@ -24,9 +24,9 @@ if( !$mem )
 $nbMemb = count($mem);
 
 // On récupère tous les events liés au groupe
-$event = $bdd->select("Select e.eventId, e.eventName, e.date, e.time,  m.membFirstName, m.membLastName
-						From Events as e, members as m
+$event = $bdd->select("Select e.eventid, e.eventname, e.date, e.time,  m.membfirstname, m.memblastname
+						From Events as e, Members as m
 						Where grp= $id
-						And e.creator = m.membId;");
+						And e.creator = m.membid;");
 
 echo $twig->render("groupes_afficher.html", array("groupe" => $groupe,  "membres" => $mem, "nbMembres" => $nbMemb  , "events" => $event));

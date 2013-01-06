@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1 class="page-header">{{ groupe[0].grpName }}</h1>
+<h1 class="page-header">{{ groupe[0].grpname }}</h1>
 <div class="row">
 <div class="span9">
 
@@ -27,9 +27,9 @@
 	<tbody>
 	{% for event in events %}
 		<tr>
-			{% set tab = { 'idEvent' : event.eventId} %}
-			<td><a href="{{ queries('events','event_detail',tab) }}">{{ event.eventName }}</a></td>
-			<td>{{ event.membFirstName }} {{ event.membLastName }}</td>
+			{% set tab = { 'idEvent' : event.eventid} %}
+			<td><a href="{{ queries('events','event_detail',tab) }}">{{ event.eventname }}</a></td>
+			<td>{{ event.membfirstname }} {{ event.memblastname }}</td>
 			<td>{{ event.date }}</td>
 			<td>{{ event.time }}</td>
 			<td>
@@ -61,7 +61,7 @@
 		<tr>
 			<td>
 			<div class="span2">
-			{{ membre.membFirstName }} {{ membre.membLastName }}
+			{{ membre.membfirstname }} {{ membre.memblastname }}
 			</div>
 			<div class="span2">
 				<div class="span1">

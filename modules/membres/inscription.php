@@ -32,7 +32,7 @@ if(isset($_POST["filled"]) && $_POST["filled"] == "true") {
 
 	if(empty($error)) {
 		//Insertion du nouveau membre dans la table membre
-		$result = $bdd->insert("members", array("membmail" => $_POST["email"], "membfirstname" => $_POST["prenom"], "memblastname" => $_POST["nom"], "membpasswd" => $_POST["motDePasse"]));
+		$result = $bdd->insert("Members", array("membmail" => $_POST["email"], "membfirstname" => $_POST["prenom"], "memblastname" => $_POST["nom"], "membpasswd" => $_POST["motDePasse"]));
 		if(!$result)
 			$error[] = "Erreur insertion : ".$bdd->getLastError();
 	}

@@ -3,7 +3,7 @@
 $datas = new BDD();
 $error = "";
 
-$events = $datas->select("SELECT * FROM events where eventId= '".$_GET["idEvent"]."'");
+$events = $datas->select("SELECT * FROM Events where eventid= '".$_GET["idEvent"]."'");
 
 if (!$events)
 	$error .= $datas->getLastError();
