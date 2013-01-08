@@ -1,0 +1,20 @@
+{% set tab= {} %}
+
+<form class="form-horizontal" method="post" action="{{ queries('groupes', 'creerCat', tab) }}">
+	<div class="control-group">
+		<label class="control-label" for="libelle">Nom de la catégorie</label>
+		<div class="controls">
+			<input type="text" id="libelle" name="libelle" placeholder="libelle" value="{{ values.libelle }}" required/>
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<div class="controls">
+			<button class="btn" type="submit">Creer</button>
+			<input type="hidden" name="filled" value="true" />
+		</div>
+	</div>
+	
+</form>
+
+<!-- {% include 'groupe_categorie.html' %} -->
