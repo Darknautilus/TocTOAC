@@ -18,10 +18,13 @@ $mem = $bdd->select("SELECT m.membid, m.membfirstname, m.memblastname
 if( !$mem )
 {
 	$error = $bdd->getLastError();
+	$nbMemb=0;
 }
-
+else{
 // Nombre de membres
 $nbMemb = count($mem);
+}
+
 
 // On récupère tous les events liés au groupe
 $event = $bdd->select("Select e.eventid, e.eventname, e.date, e.time,  m.membfirstname, m.memblastname
