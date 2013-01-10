@@ -3,7 +3,7 @@
 
 -- Schéma relationnel :
 -- Visibilities(_visibId_, visibLabel)
--- Groups(_grpIp_, grpName, #visibility)
+-- Groups(_grpIp_, grpName, nbmemb, nbcat, #visibility)
 -- Events(_eventId_, #group, #creator, #category)
 -- Categories(_catId_, catLabel, #group)
 -- Members(_membId_, membMail, membPasswd)
@@ -11,10 +11,26 @@
 -- Own(_#group, #member_, #grant)
 -- Grants(_grantId_, grantLabel)
 
-
 -- Séquences : AUTO_INCREMENT
 
-DROP TRIGGER IF EXISTS t_update_groups_nbmemb;
+
+-- Automatisation de la base de données TocTOAC
+-- Par Pierre-André Lemoine
+
+-- Triggers :
+-- Table Own : 
+-- 		Trigger after insert (membre)
+--		Triger after delete (membre)
+
+-- Table Categories : 
+-- 		Trigger after insert (catégorie)
+--		Triger after delete (catégorie)
+
+
+DROP TRIGGER IF EXISTS t_a_insert_groups_nbmemb;
+DROP TRIGGER IF EXISTS t_a_delete_groups_nbmemb;
+DROP TRIGGER IF EXISTS t_a_insert_groups_nbcat;
+DROP TRIGGER IF EXISTS t_a_delete_groups_nbcat;
 
 DROP TABLE IF EXISTS Own;
 DROP TABLE IF EXISTS Participate;
@@ -53,6 +69,7 @@ CREATE TABLE Groups (
 	visibility	int,
 	description	text,
 	nbmemb	int,
+	nbcat	int,
 	CONSTRAINT pk_grp PRIMARY KEY (grpid),
 	CONSTRAINT fk_grp_visib FOREIGN KEY (visibility) REFERENCES Visibilities(visibid)
 )ENGINE=InnoDB CHARSET=UTF8;
@@ -64,6 +81,22 @@ CREATE TABLE Categories (
 	CONSTRAINT pk_cat PRIMARY KEY (catid),
 	CONSTRAINT fk_cat_grp FOREIGN KEY (grp) REFERENCES Groups(grpid)
 )ENGINE=InnoDB CHARSET=UTF8;
+
+delimiter //
+CREATE TRIGGER t_a_insert_groups_nbcat AFTER INSERT ON Categories
+FOR EACH ROW
+BEGIN
+	UPDATE Groups SET nbcat=nbcat+1 WHERE grpid=NEW.grp;
+END//
+delimiter ;
+
+delimiter //
+CREATE TRIGGER t_a_delete_groups_nbcat AFTER DELETE ON Categories
+FOR EACH ROW
+BEGIN
+	UPDATE Groups SET nbcat=nbcat-1 WHERE grpid=OLD.grp;
+END//
+delimiter ;
 
 CREATE TABLE Events (
 	eventid		int AUTO_INCREMENT,
@@ -98,12 +131,21 @@ CREATE TABLE Own (
 )ENGINE=InnoDB CHARSET=UTF8;
 
 delimiter //
-CREATE TRIGGER t_update_groups_nbmemb AFTER INSERT ON Own
+CREATE TRIGGER t_a_insert_groups_nbmemb AFTER INSERT ON Own
 FOR EACH ROW
 BEGIN
-  UPDATE Groups SET nbmemb=nbmemb+1 WHERE grpid=NEW.grp;
+	UPDATE Groups SET nbmemb=nbmemb+1 WHERE grpid=NEW.grp;
 END//
 delimiter ;
+
+delimiter //
+CREATE TRIGGER t_a_delete_groups_nbmemb AFTER DELETE ON Own
+FOR EACH ROW
+BEGIN
+	UPDATE Groups SET nbmemb=nbmemb-1 WHERE grpid=OLD.grp;
+END//
+delimiter ;
+
 
 -- Insertions dans les tables
 
@@ -130,7 +172,7 @@ INSERT INTO Grants VALUES (1, 'membre');
 INSERT INTO Grants VALUES (2, 'membreplus');
 
 INSERT INTO Groups VALUES (1, 'groupe3B', 1,
-"Groupe dans lequel se trouvent les grands créateurs de ce merveilleux site !!", 0
+"Groupe dans lequel se trouvent les grands créateurs de ce merveilleux site !!", 0, 0
 );
 
 INSERT INTO Categories VALUES (1, 'Marche à pied', 1);
