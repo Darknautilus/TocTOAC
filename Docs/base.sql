@@ -14,6 +14,8 @@
 
 -- Séquences : AUTO_INCREMENT
 
+DROP TRIGGER IF EXISTS t_update_groups_nbmemb;
+
 DROP TABLE IF EXISTS Own;
 DROP TABLE IF EXISTS Participate;
 DROP TABLE IF EXISTS Events;
@@ -50,6 +52,7 @@ CREATE TABLE Groups (
 	grpname	varchar(30),
 	visibility	int,
 	description	text,
+	nbmemb	int,
 	CONSTRAINT pk_grp PRIMARY KEY (grpid),
 	CONSTRAINT fk_grp_visib FOREIGN KEY (visibility) REFERENCES Visibilities(visibid)
 )ENGINE=InnoDB CHARSET=UTF8;
@@ -94,6 +97,14 @@ CREATE TABLE Own (
 	CONSTRAINT fk_own_grant FOREIGN KEY (grnt) REFERENCES Grants(grantid)
 )ENGINE=InnoDB CHARSET=UTF8;
 
+delimiter //
+CREATE TRIGGER t_update_groups_nbmemb AFTER INSERT ON Own
+FOR EACH ROW
+BEGIN
+  UPDATE Groups SET nbmemb=nbmemb+1 WHERE grpid=NEW.grp;
+END//
+delimiter ;
+
 -- Insertions dans les tables
 
 -- Table Test
@@ -119,7 +130,7 @@ INSERT INTO Grants VALUES (1, 'membre');
 INSERT INTO Grants VALUES (2, 'membreplus');
 
 INSERT INTO Groups VALUES (1, 'groupe3B', 1,
-"Groupe dans lequel se trouvent les grands créateurs de ce merveilleux site !!"
+"Groupe dans lequel se trouvent les grands créateurs de ce merveilleux site !!", 0
 );
 
 INSERT INTO Categories VALUES (1, 'Marche à pied', 1);
