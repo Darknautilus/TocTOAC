@@ -4,17 +4,17 @@ $bdd = new BDD();
 
 $error = "";
 
-$groupes = $bdd->select("select grpid, grpname, nbmemb from Groups;");
+$memberId = 1;/*$_SESSION['membid'];*/
+
+$groupes = $bdd->select("select grpid, grpname, nbmemb from Groups as g, Members as m, Own as o
+						 where o.grp = g.grpId
+						 and o.member = $memberId
+						 and m.membid = $memberId;");
 if(!$groupes)
 	$error .= $bdd->getLastError();
 
-/*$groupes = $bdd -> select("Select g.grpId, g.grpName, m.membId From groups as g, members as m, own as o
-						   Where o.grp = g.grpId
-						   And o.member = $_SESSION['memId']
-						   And m.memId = $_SESSION['memId']"); */
+/* logged = true si loggé */
 
-// Nombre de membres
-//$nbMembres = $bdd -> select(""); , "nbMembres" =>
 
 $nbGroupes = count($groupes);
 
