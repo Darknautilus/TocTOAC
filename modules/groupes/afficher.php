@@ -5,7 +5,7 @@ $id= $_GET['idGroupe'];
 $bdd=new BDD();
 
 // Informations groupe
-$groupe = $bdd->select("Select * from Groups
+$groupe = $bdd->select("Select grpid, grpname, visibility, description from Groups
 						where grpid = $id ;");	
 
 // on récupère tous les membres appartenants a un groupe

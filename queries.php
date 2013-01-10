@@ -35,7 +35,8 @@ $MODULES = array(
 	"groupes" => array(
 		"afficher",
 		"afficher_groupes",
-		"creer"
+		"creer",
+		"supprimer_membre"
 		),
 	"test" => array(
 		"home",

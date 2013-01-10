@@ -61,7 +61,7 @@
 <h1 class="page-header">Mes groupes</h1>
 <div class="span4">
 {% set tab = {} %}
-<button class="btn" onclick="window.location.href='{{ queries('groupes','creer', tab) }}'">Créer un groupe</button>
+<a class="btn" href="{{ queries('groupes','creer', tab) }}">Créer un groupe</a>
 
 <br />
 
