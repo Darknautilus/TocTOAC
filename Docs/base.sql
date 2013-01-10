@@ -36,6 +36,7 @@ CREATE TABLE Members (
 	membfirstname	varchar(30),
 	memblastname	varchar(30),
 	membpasswd	varchar(30),
+	admin		boolean,
 	CONSTRAINT pk_memb PRIMARY KEY (membid)
 )ENGINE=InnoDB CHARSET=UTF8;
 
@@ -112,8 +113,9 @@ INSERT INTO `Test` VALUES(1, 'Test', '2012-12-05 14:37:24');
 INSERT INTO Visibilities VALUES (1, 'public');
 INSERT INTO Visibilities VALUES (2, 'private');
 
-INSERT INTO Members VALUES (1, 'aurelienbertron@gmail.com', 'Aurélien', 'Bertron', 'root');
-INSERT INTO Members VALUES (2, 'pandre.lemoine@gmail.com', 'Pierre-André', 'Lemoine', 'root');
+INSERT INTO Members VALUES (1, 'root', 'Admin', 'TocTOAC', 'root', TRUE);
+INSERT INTO Members VALUES (2, 'aurelienbertron@gmail.com', 'Aurélien', 'Bertron', 'root', FALSE);
+INSERT INTO Members VALUES (3, 'pandre.lemoine@gmail.com', 'Pierre-André', 'Lemoine', 'root', FALSE);
 
 INSERT INTO Grants VALUES (1, 'membre');
 INSERT INTO Grants VALUES (2, 'membreplus');
@@ -126,8 +128,8 @@ INSERT INTO Categories VALUES (1, 'Marche à pied', 1);
 
 INSERT INTO Events VALUES (1, 'Rando en montagne', 1, 1, 1, NOW(), now());
 
-INSERT INTO Participate VALUES (1, 1);
+INSERT INTO Participate VALUES (1, 2);
 
-INSERT INTO Own VALUES (1,1,2);
-INSERT INTO Own VALUES (1,2,1);
+INSERT INTO Own VALUES (1,2,2);
+INSERT INTO Own VALUES (1,3,1);
 

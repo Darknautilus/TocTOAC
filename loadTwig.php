@@ -46,6 +46,12 @@
 	function PROD_MODE() {
 		return APP_MODE_PROD;
 	}
+	function isLogged() {
+		return isset($_SESSION["logged"]);
+	}
+	function isAdmin() {
+		return (isset($_SESSION["logged"]) && $_SESSION["admin"]);
+	}
 	
 	
 	Twig_Autoloader::register();
@@ -64,3 +70,5 @@
 	$twig->addFunction("images", new Twig_Function_Function("images"));
 	$twig->addFunction("queries", new Twig_Function_Function("queries"));
 	$twig->addFunction("PROD_MODE", new Twig_Function_Function("PROD_MODE"));
+	$twig->addFunction("isLogged", new Twig_Function_Function("isLogged"));
+	$twig->addFunction("isAdmin", new Twig_Function_Function("isAdmin"));
