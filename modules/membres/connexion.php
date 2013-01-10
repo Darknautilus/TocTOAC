@@ -20,7 +20,8 @@ if(isset($_POST["filled"]) && !isLogged()) {
 	if(empty($errors)) {
 		// On teste la présence de l'email dans la base
 		$bdd = new BDD();
-		$membre = $bdd->select("SELECT membid, membmail, membfirstname, memblastname,membpasswd,admin FROM Members WHERE membmail=".$_POST["email"].";");
+		$membre = $bdd->select("SELECT membid, membmail, membfirstname, memblastname,membpasswd,admin FROM Members WHERE membmail='".$_POST["email"]."';");
+		$bdd->close();
 		if(!$membre) {
 				$errors[] = "Le mail spécifié n'existe pas";
 		}
@@ -39,7 +40,7 @@ if(isset($_POST["filled"]) && !isLogged()) {
 		$_SESSION["logged"] = true;
 		
 		// On redirige
-		header("Location:index.php");
+		header("Location:".queries("", "", array()));
 	}
 }
 

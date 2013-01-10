@@ -1,3 +1,8 @@
+{% if isLogged() %}
+	{% set LOGGED_MEMBER = loggedMember() %}
+{% endif %}
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -38,7 +43,7 @@
         	<span class="icon-bar"></span>
       	</a>
       
-  		<a class="brand" href="{{ queries('','',{}) }}"">TocTOAC</a>
+  		<a class="brand" href="{{ queries('','',{}) }}">TocTOAC</a>
   		
   		<div class="nav-collapse collapse">
     		<ul class="nav">
@@ -46,9 +51,13 @@
       			<li><a  href="{{ queries('groupes','afficher_groupes',{}) }}">Mes groupes</a></li>
     		</ul>
     		<ul class="nav pull-right">
+    		{% if isLogged() %}
+    			<li><a href="{{ queries('membres','deconnexion',{}) }}">Se déconnecter</a></li>
+    		{% else %}
     			{% include "membres_form_connexion_inPopover.html" %}
     			<li><a href="#" class="html-popover-trigger" html-popover-content="#formConnect" data-placement="bottom" title="Connecter">Se connecter</a></li></span>
       			<li><a  href="{{ queries('membres','inscription',{}) }}">S'inscrire</a></li>
+    		{% endif %}
     		</ul>
 		</div>
     </div>

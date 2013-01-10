@@ -6,6 +6,7 @@
 
 {% if isLogged() %}
 
+<h3 class="header-page">Bienvenue {{ LOGGED_MEMBER.membfirstname }} {{ LOGGED_MEMBER.memblastname }} !</h3>
 <a href="{{ queries('groupes','afficher_groupes',{}) }}" class="btn">Mes groupes</a>
 
 {% endif %}

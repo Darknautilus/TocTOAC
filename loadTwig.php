@@ -52,6 +52,15 @@
 	function isAdmin() {
 		return (isset($_SESSION["logged"]) && $_SESSION["admin"]);
 	}
+	function loggedMember() {
+		return array(
+				"id" => $_SESSION["membid"],
+				"mail" => $_SESSION["membmail"],
+				"membfirstname" => $_SESSION["membfirstname"],
+				"memblastname" => $_SESSION["memblastname"],
+				"membpasswd" => $_SESSION["membpasswd"]
+				);
+	}
 	
 	
 	Twig_Autoloader::register();
@@ -72,3 +81,4 @@
 	$twig->addFunction("PROD_MODE", new Twig_Function_Function("PROD_MODE"));
 	$twig->addFunction("isLogged", new Twig_Function_Function("isLogged"));
 	$twig->addFunction("isAdmin", new Twig_Function_Function("isAdmin"));
+	$twig->addFunction("loggedMember", new Twig_Function_Function("loggedMember"));
