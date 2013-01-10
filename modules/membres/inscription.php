@@ -29,14 +29,25 @@ if(isset($_POST["filled"]) && $_POST["filled"] == "true") {
 	else {
 		$error[] = "Vous devez définir un mot de passe";
 	}
+	
+	if(empty($error)){
+		$email=$_POST['email'];
+		$exist=$bdd->select("Select membid From Members where membmail=\"$email\";");
 
+		if($exist)
+			$error[] = "Ce mail est déjà utilisé";
+	}
+	
 	if(empty($error)) {
 		//Insertion du nouveau membre dans la table membre
 		$result = $bdd->insert("Members", array("membmail" => $_POST["email"], "membfirstname" => $_POST["prenom"], "memblastname" => $_POST["nom"], "membpasswd" => $_POST["motDePasse"]));
+		
 		if(!$result)
 			$error[] = "Erreur insertion : ".$bdd->getLastError();
+		else
+			header("Location:index.php");
 	}
-	
+
 	$bdd->close();
 }
 
