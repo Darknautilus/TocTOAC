@@ -42,8 +42,10 @@
 	</tbody>
 </table>
 
-    <div class="btn-group">
+    <div >
     	<button class="btn">Créer évenement</button>
+    	{% set tabCat = {"nom" : groupe[0].grpname} %}
+		<a class="btn" href="{{ queries('groupes','creerCat', tabCat) }}">Creer catégorie</a>
     </div>
     <br />
 </div>
