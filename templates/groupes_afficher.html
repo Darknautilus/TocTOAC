@@ -82,7 +82,7 @@
 		<tr>
 			<td>
 				<div class="btn-group">
-    				<button class="btn">Afficher tous les membres( {{ nbMembres }} )</button>
+    				<a class="btn" href = "{{ queries('groupes','afficher_membre',{'idGroupe': groupe[0].grpid}) }}">Afficher tous les membres( {{ nbMembres }} )</a>
     			</div>
 		</tr>
 	</tbody>
