@@ -5,103 +5,69 @@
 {% block content %}
 
 <div class="row">
-<h1 class="page-header">Mes événements</h1>
 
-<div class="span8">
-<table class="table table-hover table-bordered">
-	<thead>
-	<tr>
-		<th></th>
-		<th>Lundi</th>
-		<th>Mardi</th>
-		<th>Mercredi</th>
-		<th>Jeudi</th>
-		<th>Vendredi</th>
-		<th>Samedi</th>
-		<th>Dimanche</th>		
-	</tr>
-	</thead>
-	<tbody>
-	<tr>
-		<td><strong>Groupe1</strong></td>
-		<td>Event1</td>
-		<td></td>
-		<td></td>
-		<td>Event2</td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td><strong>Groupe2</strong></td>
-		<td></td>
-		<td></td>
-		<td>Event3</td>
-		<td></td>
-		<td></td>
-		<td>Event4</td>
-		<td></td>
-	</tr>
-	</tbody>
-</table>
+<br />
+<br />
+<br />
 
-<button class="btn pull-left">
-		Semaine précédente
-</button>
+<div class="row span5">
 
-<button class="btn pull-right">
-		Semaine suivante
-</button>
+<div id="myCarousel" class="carousel slide">
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+	    <div class="active item">
+	    	<img alt="" src="/templates/aurelien.png" />            
+	    	<div class="carousel-caption">
+                <h4>Mr le patron</h4>
+            </div>
+        </div>
+
+	    <div class="item">
+	    	<img alt="" src="/templates/pa.png" />            
+	    	<div class="carousel-caption">
+                <h4>SQL guy</h4>
+            </div>
+        </div>
+	    
+	    <div class="item">
+	    	<img alt="" src="/templates/totor.png" />            
+	    	<div class="carousel-caption">
+                <h4>Le programmeur de la nuit</h4>
+            </div>
+	    </div>
+	    
+	    <div class="item">
+	    	<img alt="" src="/templates/seb.png" />            
+	    	<div class="carousel-caption">
+                <h4>xXx-~=~-Le beau gosse du 31-~=~-xXx</h4>
+            </div>
+	    </div>
+	            
+	    <div class="item">
+	    	<img alt="" src="/templates/thomas.png" />            
+	    	<div class="carousel-caption">
+                <h4>Secteur communication</h4>
+            </div>
+        </div>
+	    
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+
+
 
 </div>
 
-</div>
 
+</div>
 <div class="row">
-<h1 class="page-header">Mes groupes</h1>
-<div class="span4">
 {% set tab = {} %}
 <a class="btn" href="{{ queries('groupes','creer', tab) }}">Créer un groupe</a>
 
-<br />
-
-<form>
-	<table class="table table-condensed">
-	<thead>
-	<tr>
-		<th>Nom</th>
-		<th>Afficher</th>
-		<th></th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr>
-		<td><strong>Groupe 1</strong></td>
-		<td>
-			<label class="checkbox">
-				<input type="checkbox" value="" checked="checked" />
-			</label>
-		</td>
-		<td>
-			<button class="btn">Détails</button>
-		</td>
-	</tr>
-	<tr>
-		<td><strong>Groupe 2</strong></td>
-		<td>
-			<label class="checkbox">
-				<input type="checkbox" value="" checked="checked" />
-			</label>
-		</td>
-		<td>
-			<button class="btn">Détails</button>
-		</td>
-	</tr>
-	</tbody>
-	</table>
-</form>
 </div>
 
-</div>
+
 
 {% endblock %}
