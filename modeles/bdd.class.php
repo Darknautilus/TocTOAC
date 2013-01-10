@@ -105,7 +105,7 @@ function update ($table, $colonnes, $conditions) {
 	$sql .= join(', ', $colonnes_) ;
 	$sql .= ' WHERE ' . join(' AND ', $conditions_) ;
 	
-	var_dump($sql);
+	//var_dump($sql);
  
 	try {
 		$resultat = $this->bdd->exec($sql);
@@ -137,7 +137,7 @@ function delete ($table, $conditions) {
  
 	$sql = "DELETE FROM $table WHERE " . join(' AND ', $conditions_) ;
 	
-	var_dump($sql);
+	//var_dump($sql);
 	
 	try {
 		$resultat = $this->bdd->exec($sql) ;
