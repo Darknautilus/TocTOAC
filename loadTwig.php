@@ -62,6 +62,24 @@
 				);
 	}
 	
+	function modal( $id, $titre, $question, $rep, $action){
+		return "
+	<div class=\"modal hide fade\" id=\"$id\">
+	    <div class=\"modal-header\">
+	    	<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
+	    	<h3>$titre</h3>
+	    </div>
+		    <div class=\"modal-body\">
+		    <p>$question</p>
+	    </div>
+	    <div class=\"modal-footer\">
+		    <a href=\"#\" aria-hidden=\"true\" data-dismiss=\"modal\" class=\"btn\">Fermer</a>
+		    <a href=\"$action\" class=\"btn btn-primary\">$rep</a>
+		    
+	    </div>
+    </div>";
+	}
+	
 	
 	Twig_Autoloader::register();
 
@@ -82,3 +100,4 @@
 	$twig->addFunction("isLogged", new Twig_Function_Function("isLogged"));
 	$twig->addFunction("isAdmin", new Twig_Function_Function("isAdmin"));
 	$twig->addFunction("loggedMember", new Twig_Function_Function("loggedMember"));
+	$twig->addFunction("modal", new Twig_Function_Function("modal"));

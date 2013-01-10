@@ -1,13 +1,22 @@
-{% set tab= {} %}
+{% extends 'layout.html' %}
+
+{% block title %}Creer categorie{% endblock %}
+
+{% block content %}
+
+<h1 class="page-header">{{ values.nom }}</h1>
 
 <form class="form-horizontal" method="post" action="{{ queries('groupes', 'creerCat', tab) }}">
 	<div class="control-group">
 		<label class="control-label" for="libelle">Nom de la catégorie</label>
-		<div class="controls">
-			<input type="text" id="libelle" name="libelle" placeholder="libelle" value="{{ values.libelle }}" required/>
-		</div>
+		<div class="controls" id="cadre" style="width:200px">
+		<form id="frm" action="">
+		<input type="text" id="libelle" name="libelle" placeholder="libelle" value="{{ values.libelle }}" required/>
+		<input type="button" value="+" onclick="plus()" />
+		<input type="button" style="display:none" id="sup" value="-" onclick="moins()" /> 
+		</form>
 	</div>
-	
+
 	<div class="control-group">
 		<div class="controls">
 			<button class="btn" type="submit">Creer</button>
@@ -17,4 +26,5 @@
 	
 </form>
 
-<!-- {% include 'groupe_categorie.html' %} -->
+
+{% endblock %}

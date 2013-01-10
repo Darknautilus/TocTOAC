@@ -1,6 +1,9 @@
 <?php
 $error = array();
-$values = array("Libelle"=>"");
+$nom = $_GET["nom"];
+$values = array("Libelle"=>"", "nom" => $nom);
+
+
 
 if(isset($_POST["filled"]) && $_POST["filled"] == "true") {
 
@@ -23,3 +26,4 @@ if(isset($_POST["filled"]) && $_POST["filled"] == "true") {
 
 
 echo $twig->render("groupe_categorie.html", array("errors" => $error, "values" => $values));
+

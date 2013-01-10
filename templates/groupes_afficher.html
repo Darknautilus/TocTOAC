@@ -42,8 +42,10 @@
 	</tbody>
 </table>
 
-    <div class="btn-group">
+    <div >
     	<button class="btn">Créer évenement</button>
+    	{% set tabCat = {"nom" : groupe[0].grpname} %}
+		<a class="btn" href="{{ queries('groupes','creerCat', tabCat) }}">Creer catégorie</a>
     </div>
     <br />
 </div>
@@ -69,7 +71,9 @@
 						<div class="btn-group">
 			    				<button class="btn-mini"><img src="/templates/profil.png" /></button>
 			    				<button class="btn-mini"><img src="/templates/plus.png" /></button>
-			    				<button class="btn-mini"><img src="/templates/delete.png" /></button>
+			    				<button class="btn-mini" href="#delete_confirm" data-toggle="modal"><img src="/templates/delete.png" /></button>
+			    				{% import 'modal.html' as showModal %}
+			    				{{ showModal.modal('delete_confirm', 'Supprimer membre ?', 'Voulez vous vraiment supprimer ce membre?', 'Oui', queries('groupes','supprimer_membre', { 'id' : membre.membid , 'idG' : groupe[0].grpid}), "Non") }}
 			    		</div>
 		    		</div>
 	    		</div>
@@ -80,7 +84,7 @@
 		<tr>
 			<td>
 				<div class="btn-group">
-    				<button class="btn">Afficher tous les membres( {{ nbMembres }} )</button>
+    				<a class="btn" href = "{{ queries('groupes','afficher_membre',{'idGroupe': groupe[0].grpid}) }}">Afficher tous les membres( {{ nbMembres }} )</a>
     			</div>
 		</tr>
 	</tbody>

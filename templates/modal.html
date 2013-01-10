@@ -1,0 +1,18 @@
+{% macro modal( id, titre, question, rep1, action, rep2) %}
+
+	<div class="modal hide fade" id="{{ id }}">
+	    <div class="modal-header">
+	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	    	<h3>{{ titre }}</h3>
+	    </div>
+		<div class="modal-body">
+		    <h6>{{ question }}</h6>
+	    </div>
+	    <div class="modal-footer">
+		    <a href="#" aria-hidden="true" data-dismiss="modal" class="btn">{{ rep2 }}</a>
+		    <a href="{{ action }}" class="btn btn-primary">{{ rep1 }}</a>
+		    
+	    </div>
+    </div>
+    
+{% endmacro %}

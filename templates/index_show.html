@@ -9,6 +9,71 @@
 <h3 class="header-page">Bienvenue {{ LOGGED_MEMBER.membfirstname }} {{ LOGGED_MEMBER.memblastname }} !</h3>
 <a href="{{ queries('groupes','afficher_groupes',{}) }}" class="btn">Mes groupes</a>
 
+{% else %}
+
+<div class="row">
+
+<br />
+<br />
+<br />
+
+<div class="row span5">
+
+<div id="myCarousel" class="carousel slide">
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+	    <div class="active item">
+	    	<img alt="" src="/templates/aurelien.png" />            
+	    	<div class="carousel-caption">
+                <h4>Mr le patron</h4>
+            </div>
+        </div>
+
+	    <div class="item">
+	    	<img alt="" src="/templates/pa.png" />            
+	    	<div class="carousel-caption">
+                <h4>SQL guy</h4>
+            </div>
+        </div>
+	    
+	    <div class="item">
+	    	<img alt="" src="/templates/totor.png" />            
+	    	<div class="carousel-caption">
+                <h4>Le programmeur de la nuit</h4>
+            </div>
+	    </div>
+	    
+	    <div class="item">
+	    	<img alt="" src="/templates/seb.png" />            
+	    	<div class="carousel-caption">
+                <h4>xXx-~=~-Le beau gosse du 31-~=~-xXx</h4>
+            </div>
+	    </div>
+	            
+	    <div class="item">
+	    	<img alt="" src="/templates/thomas.png" />            
+	    	<div class="carousel-caption">
+                <h4>Secteur communication</h4>
+            </div>
+        </div>
+	    
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+
+
+
+</div>
+
 {% endif %}
+
+</div>
+<div class="row">
+{% set tab = {} %}
+<a class="btn" href="{{ queries('groupes','creer', tab) }}">Créer un groupe</a>
+
+</div>
 
 {% endblock %}
