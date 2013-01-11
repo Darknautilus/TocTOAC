@@ -46,6 +46,21 @@
 	function PROD_MODE() {
 		return APP_MODE_PROD;
 	}
+	function isLogged() {
+		return isset($_SESSION["logged"]);
+	}
+	function isAdmin() {
+		return (isset($_SESSION["logged"]) && $_SESSION["admin"]);
+	}
+	function loggedMember() {
+		return array(
+				"id" => $_SESSION["membid"],
+				"mail" => $_SESSION["membmail"],
+				"membfirstname" => $_SESSION["membfirstname"],
+				"memblastname" => $_SESSION["memblastname"],
+				"membpasswd" => $_SESSION["membpasswd"]
+				);
+	}
 	
 	function modal( $id, $titre, $question, $rep, $action){
 		return "
@@ -82,4 +97,7 @@
 	$twig->addFunction("images", new Twig_Function_Function("images"));
 	$twig->addFunction("queries", new Twig_Function_Function("queries"));
 	$twig->addFunction("PROD_MODE", new Twig_Function_Function("PROD_MODE"));
+	$twig->addFunction("isLogged", new Twig_Function_Function("isLogged"));
+	$twig->addFunction("isAdmin", new Twig_Function_Function("isAdmin"));
+	$twig->addFunction("loggedMember", new Twig_Function_Function("loggedMember"));
 	$twig->addFunction("modal", new Twig_Function_Function("modal"));

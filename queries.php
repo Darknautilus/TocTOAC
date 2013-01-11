@@ -28,6 +28,7 @@ $MODULES = array(
 		),
 	"membres" => array(
 		"connexion",
+		"deconnexion",
 		"desinscription",
 		"inscription",
 		"auth"
