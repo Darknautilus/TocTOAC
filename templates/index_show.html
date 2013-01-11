@@ -7,11 +7,16 @@
 {% if isLogged() %}
 
 <h3 class="header-page">Bienvenue {{ LOGGED_MEMBER.membfirstname }} {{ LOGGED_MEMBER.memblastname }} !</h3>
+<div class="span">
 <a href="{{ queries('groupes','afficher_groupes',{}) }}" class="btn">Mes groupes</a>
+{% set tab = {} %}
+<a class="btn" href="{{ queries('groupes','creer', tab) }}">Créer un groupe</a>
 
+</div>
+<div class="row">
 {% else %}
 
-<div class="row">
+
 
 <br />
 <br />
@@ -70,10 +75,6 @@
 {% endif %}
 
 </div>
-<div class="row">
-{% set tab = {} %}
-<a class="btn" href="{{ queries('groupes','creer', tab) }}">Créer un groupe</a>
 
-</div>
 
 {% endblock %}
