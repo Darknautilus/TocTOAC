@@ -4,7 +4,7 @@ $bdd = new BDD();
 
 $error = "";
 
-$memberId = 1;/*$_SESSION['membid'];*/
+$memberId = $_SESSION['membid'];
 
 $groupes = $bdd->select("select grpid, grpname, nbmemb from Groups as g, Members as m, Own as o
 						 where o.grp = g.grpId
