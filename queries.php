@@ -44,7 +44,8 @@ $MODULES = array(
 		),
 	"test" => array(
 		"home",
-		"bdd.test"
+		"bdd.test",
+		"security"
 		),
 	"events" => array(
 		"afficher",
