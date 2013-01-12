@@ -27,7 +27,7 @@ if(isset($_POST["filled"]) && !isLogged()) {
 		}
 		else {
 			// On controle le mot de passe
-			if($membre[0]["membpasswd"] != $_POST["mdp"]) {
+			if(!check_password($_POST["mdp"], $membre[0]["membpasswd"])) {
 				$errors[] = "Le mot de passe est incorrect";
 			}
 		}

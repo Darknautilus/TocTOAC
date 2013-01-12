@@ -40,12 +40,15 @@ if(isset($_POST["filled"]) && $_POST["filled"] == "true") {
 	
 	if(empty($error)) {
 		//Insertion du nouveau membre dans la table membre
-		$result = $bdd->insert("Members", array("membmail" => $_POST["email"], "membfirstname" => $_POST["prenom"], "memblastname" => $_POST["nom"], "membpasswd" => $_POST["motDePasse"]));
+		$hash = hash_password($_POST["motDePasse"]);
+		$result = $bdd->insert("Members", array("membmail" => $_POST["email"], "membfirstname" => $_POST["prenom"], "memblastname" => $_POST["nom"], "membpasswd" => $hash, "admin" => false));
 		
-		if(!$result)
+		if(!$result) {
 			$error[] = "Erreur insertion : ".$bdd->getLastError();
-		else
+		}
+		else {
 			header("Location:index.php");
+		}
 	}
 
 	$bdd->close();

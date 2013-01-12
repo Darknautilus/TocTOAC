@@ -63,7 +63,8 @@ $GLOBALS["MODULES"] = $MODULES;
 	array(module => nom_fichier)
 */
 $MODULES_CONFIG = array(
-	"base" => "config"
+	"base" => "config",
+	"membres" => "config"
 );
 
 $GLOBALS["MODULES_CONFIG"] = $MODULES_CONFIG;

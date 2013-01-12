@@ -53,7 +53,7 @@ CREATE TABLE Members (
 	membmail	varchar(30),
 	membfirstname	varchar(30),
 	memblastname	varchar(30),
-	membpasswd	varchar(65),
+	membpasswd	varchar(128),
 	admin		boolean,
 	CONSTRAINT pk_memb PRIMARY KEY (membid)
 )ENGINE=InnoDB CHARSET=UTF8;
@@ -167,7 +167,7 @@ INSERT INTO Visibilities VALUES (1, 'public');
 INSERT INTO Visibilities VALUES (2, 'private');
 
 INSERT INTO Members VALUES (1, 'root', 'Admin', 'TocTOAC', 'root', TRUE);
-INSERT INTO Members VALUES (2, 'aurelienbertron@gmail.com', 'Aurélien', 'Bertron', 'root', FALSE);
+INSERT INTO Members VALUES (2, 'aurelienbertron@gmail.com', 'Aurélien', 'Bertron', '4505ee828371383ed2b43fc023ddcbe44bb249f047ce3ba2ca350f5c58d1bb99c0ef8727843dc785221dc3e5e1b74534acf2a054a067e485fa4a79093f0cb290', FALSE);
 INSERT INTO Members VALUES (3, 'pandre.lemoine@gmail.com', 'Pierre-André', 'Lemoine', 'root', FALSE);
 
 INSERT INTO Grants VALUES (1, 'membre');
