@@ -2,6 +2,6 @@
 /.buildpath
 /.settings
 .DS_Store
-config.php
+global_config.php
 *~
 
