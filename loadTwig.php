@@ -34,7 +34,7 @@
 		return templates()."/style";
 	}
 	function images() {
-		return css()."/images";
+		return templates()."/images";
 	}
 	function queries($module, $action, $param) {
 		$query = root()."/index.php?module=".$module."&action=".$action;

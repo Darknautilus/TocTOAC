@@ -69,9 +69,9 @@
 				<div class="span1">
 					<div class="btn-toolbar">
 						<div class="btn-group">
-			    				<button class="btn-mini"><img src="/templates/profil.png" /></button>
-			    				<button class="btn-mini"><img src="/templates/plus.png" /></button>
-			    				<button class="btn-mini" href="#delete_confirm" data-toggle="modal"><img src="/templates/delete.png" /></button>
+			    				<button class="btn-mini"><img src="{{ images() }}/profil.png" /></button>
+			    				<button class="btn-mini"><img src="{{ images() }}/plus.png" /></button>
+			    				<button class="btn-mini" href="#delete_confirm" data-toggle="modal"><img src="{{ images() }}/delete.png" /></button>
 			    				{% import 'modal.html' as showModal %}
 			    				{{ showModal.modal('delete_confirm', 'Supprimer membre ?', 'Voulez vous vraiment supprimer ce membre?', 'Oui', queries('groupes','supprimer_membre', { 'id' : membre.membid , 'idG' : groupe[0].grpid}), "Non") }}
 			    		</div>
