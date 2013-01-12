@@ -54,7 +54,7 @@
     			<li><a href="{{ queries('membres','deconnexion',{}) }}">Se déconnecter</a></li>
     		{% else %}
     			{% include "membres_form_connexion_inPopover.html" %}
-    			<li><a href="#" class="html-popover-trigger" html-popover-content="#formConnect" data-placement="bottom" title="Connecter">Se connecter</a></li></span>
+    			<li><a href="#" class="html-popover-trigger" html-popover-content="#formConnect" data-placement="bottom" title="Connecter">Se connecter</a></li>
       			<li><a  href="{{ queries('membres','inscription',{}) }}">S'inscrire</a></li>
     		{% endif %}
     		</ul>
@@ -80,6 +80,7 @@
       		{% if PROD_MODE() == false %}
       		{% set tab = {} %}
       		<li><a href="{{ queries('test','',tab) }}">Tests de développment</a></li>
+      		<li><a href="{{ queries('base', 'afficher', {})">Afficher base</a></li>
       		{% endif %}
     	</ul>
     </div>

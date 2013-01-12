@@ -2,14 +2,14 @@
 -- Par Aurélien Bertron
 
 -- Schéma relationnel :
--- Visibilities(_visibId_, visibLabel)
--- Groups(_grpIp_, grpName, nbmemb, nbcat, #visibility)
--- Events(_eventId_, #group, #creator, #category)
--- Categories(_catId_, catLabel, #group)
--- Members(_membId_, membMail, membPasswd)
+-- Visibilities(_visibid_, visiblabel)
+-- Members(_membid_, membmail, membfirstname, memblastname, membpasswd, admin)
+-- Grants(_grantid_, grantlabel)
+-- Groups(_grpid_, grpname, nbmemb, nbcat, #visibility, description, nbmemb, nbcat)
+-- Categories(_catid_, catlabel, #grp)
+-- Events(_eventid_, eventname, #grp, #creator, #category, date, time)
 -- Participate(_#event, #member_)
--- Own(_#group, #member_, #grant)
--- Grants(_grantId_, grantLabel)
+-- Own(_#group, #member_, #grnt)
 
 -- Séquences : AUTO_INCREMENT
 
@@ -53,7 +53,7 @@ CREATE TABLE Members (
 	membmail	varchar(30),
 	membfirstname	varchar(30),
 	memblastname	varchar(30),
-	membpasswd	varchar(30),
+	membpasswd	varchar(65),
 	admin		boolean,
 	CONSTRAINT pk_memb PRIMARY KEY (membid)
 )ENGINE=InnoDB CHARSET=UTF8;

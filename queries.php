@@ -13,7 +13,8 @@ $DEFAULT_ACTION = array(
 	"index" => "show",
 	"membres" => "auth",
 	"test" => "home",
-	"groupes" => "afficher_groupes"
+	"groupes" => "afficher_groupes",
+	"base" => "afficher"
 );
 
 $GLOBALS["DEFAULT_ACTION"] = $DEFAULT_ACTION;
@@ -48,6 +49,10 @@ $MODULES = array(
 	"events" => array(
 		"afficher",
 		"event_detail"
+		),
+	"base" => array(
+		"afficher",
+		"raz",
 		)
 	);
 
@@ -58,6 +63,7 @@ $GLOBALS["MODULES"] = $MODULES;
 	array(module => nom_fichier)
 */
 $MODULES_CONFIG = array(
+	"base" => "config"
 );
 
 $GLOBALS["MODULES_CONFIG"] = $MODULES_CONFIG;

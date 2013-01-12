@@ -1,8 +1,8 @@
 <?php
 
 /*
- * Classe de connexion Ã  la base de donnÃ©es
- * Utilise PDO (veillez Ã  bien l'activer sur le serveur !)
+ * Classe de connexion à la base de données
+ * Utilise PDO (veillez à bien l'activer sur le serveur !)
  */
 
 class BDD {
@@ -13,7 +13,7 @@ private $lastError;
 
 /*
  * Constructeur de la classe :
- * crée l'objet de connexion Ã  la base
+ * crée l'objet de connexion à la base
  */
 function __construct() {
 	try {
@@ -26,12 +26,16 @@ function __construct() {
 	}
 }
 
+function getBDD() {
+	return $this->bdd;
+}
+
 function getLastError() {
 	return $this->lastError;
 }
 
 /*
- * Ferme la connexion et retourne les Ã©ventuelles erreurs survenues
+ * Ferme la connexion et retourne les éventuelles erreurs survenues
  */
 function close() {
 	$this->bdd = NULL;
@@ -40,10 +44,10 @@ function close() {
 	
 /*
  * Pour faire un SELECT sur la table.
- * ParamÃ¨tres :
- * 		$requete : une requÃªte SQL classique
+ * Paramètres :
+ * 		$requete : une requête SQL classique
  * 
- * Retourne le tableau des rÃ©sultats. Chaque enregistrement est un Ã©lÃ©ment du tableau et est prÃ©sentÃ© sous la forme d'un tableau associatif de la forme champ => valeur. 
+ * Retourne le tableau des résultats. Chaque enregistrement est un élément du tableau et est présenté sous la forme d'un tableau associatif de la forme champ => valeur. 
  */
 function select ($requete) {
 	try {
@@ -76,10 +80,10 @@ function select ($requete) {
 
 /*
  * Effectue un update sur une table.
- * ParamÃ¨tres :
- * 		$table : la table oÃ¹ effectuer l'update
+ * Paramètres :
+ * 		$table : la table où effectuer l'update
  * 		$colonnes : tableau associatif de la forme champ => valeur
- * 		$conditions : idem, conditions aprÃ¨s le WHERE
+ * 		$conditions : idem, conditions après le WHERE
  * 
  * Retourne true si l'update s'est fait correctement, et false sinon
  */
@@ -120,9 +124,9 @@ function update ($table, $colonnes, $conditions) {
 
 /*
  * Supprime un enregistrement de la table
- * ParamÃ¨tres :
- * 		$table : la table oÃ¹ supprimer l'enregistrement
- * 		$conditions : tableau associatif des conditions aprÃ¨s le WHERE
+ * Paramètres :
+ * 		$table : la table où supprimer l'enregistrement
+ * 		$conditions : tableau associatif des conditions après le WHERE
  * 
  * Retourne true si la suppression s'est faite correctement, et false sinon
  */
@@ -153,15 +157,14 @@ function delete ($table, $conditions) {
 /*
  * Insère un élément dans la base
  * Paramètres :
- * 		$table : la table à insérer l'enregistrement
+ * 		$table : la table où insérer l'enregistrement
  * 		$valeurs : tableau associatif de la forme champ => valeur
  * 
- * Retourne true si la suppression s'est faite correctement, et false sinon
+ * Retourne l'id de l'élément inséré si l'insertion s'est faite correctement. Si l'insertion s'est faite correctement mais qu'on ne peut récupérer d'id, retourne 1. Sinon, retourne false.
  */
 function insert ($table, $valeurs) {
 	$colonnes_ = array_keys($valeurs) ;
 	$valeurs_ = array_values($valeurs) ;
-	
 	foreach($valeurs_ as $clef => $valeur) {
 		if (!is_numeric($valeur)) {
 			$valeur = $this->bdd->quote($valeur) ;
@@ -176,8 +179,17 @@ function insert ($table, $valeurs) {
 	$sql .= ');' ;
  
 	try {
-		$resultat = $this->bdd->exec($sql);
-		return $resultat;
+		$lines = $this->bdd->exec($sql);
+		if($lines > 0) {
+			$lastId = $this->bdd->lastInsertId();
+			if(!$lastId)
+				return $lines;
+			else
+				return $lastId;
+		}
+		else {
+			return false;
+		}
 	}
 	catch (PDOException $e) {
 		$this->lastError = $e->getMessage();
