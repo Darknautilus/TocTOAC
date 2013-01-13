@@ -25,7 +25,8 @@ $GLOBALS["DEFAULT_ACTION"] = $DEFAULT_ACTION;
 */
 $MODULES = array(
 	"index" => array(
-		"show"
+		"show",
+		"about"
 		),
 	"membres" => array(
 		"connexion",
