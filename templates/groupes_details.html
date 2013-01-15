@@ -41,13 +41,23 @@
 	{% endfor %}
 	</tbody>
 </table>
-
+	{% if isLogged() %}
     <div >
     	<button class="btn">Créer évenement</button>
     	{% set tabCat = {"nom" : groupe[0].grpname} %}
 		<a class="btn" href="{{ queries('groupes','creerCat', tabCat) }}">Creer catégorie</a>
+		{% set trouve = 0 %}
+		{% for member in membres and trouve == 0 %}
+			{% if member.membid == LOGGED_MEMBER.membid %}
+				{% set trouve = 1 %}
+			{% endif %}
+		{% endfor %}
+		{% if trouve == 0 %}
+			{% set idGroupe = groupe[0].grpid %}
+			<a href= "{{ queries('groupes', 'rejoindre', {'idGroupe':idGroupe}) }}" class="btn">Rejoindre ce groupe</a>		
+		{% endif %}
     </div>
-    <br />
+    {% endif %}
 </div>
 
 <div class="span3">
@@ -65,6 +75,7 @@
 			<div class="span2">
 			{{ membre.membfirstname }} {{ membre.memblastname }}
 			</div>
+			{% if isLogged() %}
 			<div class="span2">
 				<div class="span1">
 					<div class="btn-toolbar">
@@ -80,6 +91,7 @@
 		    		</div>
 	    		</div>
 	    	</div>
+	    	{% endif %}
 	    	</td>
 		</tr>
 	{% endfor %}

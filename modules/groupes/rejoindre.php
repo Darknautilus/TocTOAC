@@ -10,11 +10,12 @@ if (isLogged())
 	$bdd = new BDD();
 	
 	//Le groupe existe-t-il?
-	$idIdGroupValid = $bdd->select("SELECT g.grpid FROM Groups WHERE g.grpid = $idgroup");
-	
+	$idIdGroupValid = $bdd->select("SELECT grpid FROM Groups WHERE grpid = $idgroup");
+		
 	//Si le groupe est trouvé dans la base, on continue
 	if($idIdGroupValid)
 	{
+		
 		//On récupère les infos concernant le groupe pour éventuellement les afficher
 		$groupe = $bdd->select("SELECT g.grpid, g.grpname, g.visibility, g.description
 				FROM Groups AS g
@@ -25,6 +26,7 @@ if (isLogged())
 				FROM Own AS o
 				WHERE o.grp = $idgroup
 				AND o.member = $idmemb");
+				
 		//Si c'est le cas, on ajoute une erreur dans le tableau
 		if($test)
 		{
@@ -34,10 +36,11 @@ if (isLogged())
 		else
 		{
 			//On insère l'utilisateur dans la table own
-			$test2 = $bdd->insert(Own, array("grp" => $idgroup, "member" => $idmemb, "grnt" => 1));
-			//On appelle le template HTML correspondant
-			echo $twig->render("groupes_rejoindre.html", array("groupe" => $groupe, "errors" => $error));
+			$test2 = $bdd->insert("Own", array("grp" => $idgroup, "member" => $idmemb, "grnt" => 1));
+			var_dump($bdd->getLastError());
 		}
+		//On appelle le template HTML correspondant
+		echo $twig->render("index_show.html", array("groupe" => $groupe, "errors" => $error));
 	}
 	//Si le groupe n'est pas trouvé
 	else 
@@ -46,6 +49,8 @@ if (isLogged())
 		//On appelle la page indew_show.html
 		echo $twig->render("index_show.html", array("groupe" => $groupe, "errors" => $error));
 	}
+	
+	$bdd->close();
 }
 //Si l'utilisateur n'est pas connecté
 else

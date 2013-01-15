@@ -13,7 +13,7 @@ $DEFAULT_ACTION = array(
 	"index" => "show",
 	"membres" => "auth",
 	"test" => "home",
-	"groupes" => "afficher_groupes",
+	"groupes" => "afficher",
 	"base" => "afficher"
 );
 
@@ -38,11 +38,12 @@ $MODULES = array(
 	"groupes" => array(
 		"afficher",
 		"details",
-		"afficher_groupes",
 		"creer",
 		"supprimer_membre",
 		"creerCat",
-		"afficher_membre"
+		"afficher_membre",
+		"rejoindre",
+		"mesgroupes"
 		),
 	"test" => array(
 		"home",
