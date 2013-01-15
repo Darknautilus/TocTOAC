@@ -1,5 +1,5 @@
 <?php
-
+$idmemb = $_SESSION['membid'];
 $error = array();
 $values = array("grpName"=>"","description"=>"");
 
@@ -17,9 +17,15 @@ if( isset($_POST["filled"]) && $_POST["filled"] == "true") {
 		$error[] = "Vous devez entrer une description";
 		
 	if(empty($error)) {
-		$result = $bdd->insert("groups", array( "grpName" => $_POST['nomGroupe'], "visibility" => 1, "description" => $_POST['description']));
+		$result = $bdd->insert("Groups", array( "grpName" => $_POST['nomGroupe'], "visibility" => 1, "description" => $_POST['description']));
 		if(!$result)
 			$error[] = "Erreur création de groupe : ".$bdd->getLastError();
+		
+		$result = $bdd->insert("Own", array("grp" => $result , "member" =>  $idmemb, "grnt" =>  "2"));
+		if(!$result)
+			$error[] = "Erreur création de groupe : ".$bdd->getLastError();
+		
+		header("Location:index.php");
 	}
 	
 	$bdd->close();
