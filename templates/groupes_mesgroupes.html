@@ -22,7 +22,7 @@
 	{% for groupe in listGrps %}
 	{% set tab = {'idGroupe': groupe.grpid} %}
 		<tr>
-			<td><a href = "{{ queries('groupes','afficher',tab) }}">{{ groupe.grpname }}</a></td>
+			<td><a href = "{{ queries('groupes','details',tab) }}">{{ groupe.grpname }}</a></td>
 			<td>{{ groupe.nbmemb }}</td>
 		</tr>
 	{% endfor %}

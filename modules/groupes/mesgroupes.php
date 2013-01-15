@@ -22,7 +22,7 @@ if(isLogged()) {
 	$bdd->close();
 	
 	
-	echo $twig->render("groupes_afficher_groupes.html", array("listGrps" => $groupes, "nbG" => $nbGroupes));
+	echo $twig->render("groupes_mesgroupes.html", array("listGrps" => $groupes, "nbG" => $nbGroupes));
 }
 else {
 	echo $twig->render("index_show.html", array());

@@ -8,7 +8,7 @@
 
 <h3 class="header-page">Bienvenue {{ LOGGED_MEMBER.membfirstname }} {{ LOGGED_MEMBER.memblastname }} !</h3>
 <div class="span">
-<a href="{{ queries('groupes','afficher_groupes',{}) }}" class="btn">Mes groupes</a>
+<a href="{{ queries('groupes','mesgroupes',{}) }}" class="btn">Mes groupes</a>
 {% set tab = {} %}
 <a class="btn" href="{{ queries('groupes','creer', tab) }}">Créer un groupe</a>
 

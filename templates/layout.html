@@ -47,8 +47,9 @@
   		<div class="nav-collapse collapse">
     		<ul class="nav">
       			<li><a href="{{ queries('','',{}) }}">Accueil</a></li>
+      			<li><a href="{{ queries('groupes','afficher',{}) }}">Les groupes</a></li>
       		{% if isLogged() %}
-      			<li><a  href="{{ queries('groupes','afficher_groupes',{}) }}">Mes groupes</a></li>
+      			<li><a  href="{{ queries('groupes','mesgroupes',{}) }}">Mes groupes</a></li>
       		{% endif %}	
     		</ul>
     		<ul class="nav pull-right">
