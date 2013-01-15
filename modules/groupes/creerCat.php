@@ -1,11 +1,11 @@
 <?php
 $error = array();
 
-if(isLogged()) {
+if(isLogged() && isset($_GET["id"]) && isset($_GET["nom"])) {
 	
 	
 	$nom = $_GET["nom"];
-	$values = array("Libelle"=>"", "nom" => $nom);
+	$values = array("Libelle"=>"", "nom" => $nom, "grpid"=>$_GET["id"], "grpname"=>$_GET["nom"]);
 	
 	
 	
@@ -19,12 +19,12 @@ if(isLogged()) {
 			$error[] = "Vous devez donner un nom à votre catégorie...";
 	
 		if(empty($error)) {
-			//Insertion de la nouvelle catégorie dans la table categorie
-			$result = $bdd->insert("categories", array("catLabel" => $_POST["libelle"]));
+			//Insertion de la nouvelle catégorie dans la table Categories
+			$result = $bdd->insert("Categories", array("catlabel" => $_POST["libelle"], "grp" => $_GET["id"] ));
 			if(!$result)
 				$error[] = "Erreur insertion : ".$bdd->getLastError();
 		}
-		
+ 		//header("Location:index.php?module=groupes&action=afficher_groupes");
 		$bdd->close();
 	}
 	

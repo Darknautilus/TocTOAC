@@ -4,17 +4,27 @@
 
 {% block content %}
 
+{% if errors is not empty %}
+<div class="alert">
+	<h4>Erreur !</h4>
+	<ul>
+		{% for error in errors %}
+		<li>{{ error }}</li>
+		{% endfor %}
+	</ul>
+</div>
+{% elseif values.libelle is not empty %}
+<div class="alert alert-success">
+	<p>La catégorie <strong>{{ values.libelle }}</strong> a bien été ajoutée</p>
+</div>
+{% endif %}
+
 <h1 class="page-header">{{ values.nom }}</h1>
 
-<form class="form-horizontal" method="post" action="{{ queries('groupes', 'creerCat', tab) }}">
+<form class="form-horizontal" method="post" action="{{ queries('groupes', 'creerCat', {"id":values.grpid,"nom":values.grpname} ) }}">
 	<div class="control-group">
 		<label class="control-label" for="libelle">Nom de la catégorie</label>
-		<div class="controls" id="cadre" style="width:200px">
-		<form id="frm" action="">
-			<input type="text" id="libelle" name="libelle" placeholder="libelle" value="{{ values.libelle }}" required/>
-			<input type="button" value="+" onclick="plus()" />
-			<input type="button" style="display:none" id="sup" value="-" onclick="moins()" /> 
-		</form>
+		<input type="text" id="libelle" name="libelle" placeholder="libelle" value="{{ values.libelle }}" required/>
 	</div>
 
 	<div class="control-group">
