@@ -46,6 +46,11 @@
     	<button class="btn">Créer évenement</button>
     	{% set tabCat = {"nom" : groupe[0].grpname} %}
 		<a class="btn" href="{{ queries('groupes','creerCat', tabCat) }}">Creer catégorie</a>
+		{% for member in mem %}
+			{% if member.membid == LOGGED_MEMBER.membid %}
+				<a href= "{{ queries('groupes', 'rejoindre', tab) }}" class="btn">Rejoindre ce groupe</a>
+			{% endif %}
+		{% endfor %}
     </div>
     <br />
 </div>
