@@ -166,11 +166,11 @@ INSERT INTO `Test` VALUES(1, 'Test', '2012-12-05 14:37:24');
 INSERT INTO Visibilities VALUES (1, 'public');
 INSERT INTO Visibilities VALUES (2, 'private');
 
-INSERT INTO Members VALUES (1, 'root', 'Admin', 'TocTOAC', 'root', TRUE);
+INSERT INTO Members VALUES (1, 'root@toctoac.fr', 'Admin', 'TocTOAC', 'edf860a9ce16682da1dda81980aae107a6f5f4ed045d0c9d1b81109f8867d9dd11b8f2fe99eac74b1196a9a216d5598f32ba6bd0dcbb6f26e80b95d73db9b275', TRUE);
 INSERT INTO Members VALUES (2, 'aurelienbertron@gmail.com', 'Aurélien', 'Bertron', '4505ee828371383ed2b43fc023ddcbe44bb249f047ce3ba2ca350f5c58d1bb99c0ef8727843dc785221dc3e5e1b74534acf2a054a067e485fa4a79093f0cb290', FALSE);
-INSERT INTO Members VALUES (3, 'pandre.lemoine@gmail.com', 'Pierre-André', 'Lemoine', 'root', FALSE);
+INSERT INTO Members VALUES (3, 'pandre.lemoine@gmail.com', 'Pierre-André', 'Lemoine', '0b6439343264bebc4020cbe4107027da59e67e594d446f526304d21304ca5e0968503041c62298f8114d9afffe6a96be8d1a23244f37eb1c30161caea0ce6b8d', FALSE);
 INSERT INTO Members VALUES (4, 'sebastien.navech@hotmail.fr', 'Sébastien', 'Navech', '6f8569c6fa999984760abeb38583a23e61068c2ce2569015aa2039830202956e468784f91ffdd21b8e2916218988612c7d976e673c71640c93c39546c4a82626', FALSE);
-INSERT INTO Members VALUES (4, 'v.iungmann@gmail.fr', 'Victor', 'Iungmann','a0f865f28b41d7dc529fbf4f2f56b0d93001b50481e5f8fb78a850086fa1841a6298826810d700317500c703756a2fe3a91f9423f880e855f270af9a3dbe582a', FALSE);
+INSERT INTO Members VALUES (5, 'v.iungmann@gmail.fr', 'Victor', 'Iungmann','a0f865f28b41d7dc529fbf4f2f56b0d93001b50481e5f8fb78a850086fa1841a6298826810d700317500c703756a2fe3a91f9423f880e855f270af9a3dbe582a', FALSE);
 
 INSERT INTO Grants VALUES (1, 'membre');
 INSERT INTO Grants VALUES (2, 'membreplus');
@@ -185,6 +185,7 @@ INSERT INTO Events VALUES (1, 'Rando en montagne', 1, 1, 1, NOW(), now());
 
 INSERT INTO Participate VALUES (1, 2);
 
+INSERT INTO Own VALUES (1,1,2);
 INSERT INTO Own VALUES (1,2,2);
 INSERT INTO Own VALUES (1,3,1);
 
