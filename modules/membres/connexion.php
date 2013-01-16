@@ -21,7 +21,7 @@ if(isset($_POST["filled"]) && !isLogged()) {
 		// On teste la présence de l'email dans la base
 		$bdd = new BDD();
 		$membre = $bdd->select("SELECT membid, membmail, membfirstname, memblastname,membpasswd,admin FROM Members WHERE membmail='".$_POST["email"]."';");
-		$bdd->close();
+
 		if(!$membre) {
 				$errors[] = "Le mail spécifié n'existe pas";
 		}
@@ -39,9 +39,17 @@ if(isset($_POST["filled"]) && !isLogged()) {
 		}
 		$_SESSION["logged"] = true;
 		
+		// On charge les groupes dont le membre est membre
+		majGrpMb();
+		
+		// On charge les groupes dont le membre est membre+
+		majGrpMbPlus();
+		
 		// On redirige
 		header("Location:".queries("", "", array()));
 	}
 }
+
+$bdd->close();
 
 echo $twig->render("membres_connexion.html", array("values" => $values, "errors" =>  $errors));

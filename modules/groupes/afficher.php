@@ -5,8 +5,7 @@ $groupes = null;
 
 $bdd = new BDD();
 
-$groupes = $bdd->select("select g.grpid,g.grpname,g.visibility,g.description,g.nbmemb,c.catlabel from Groups g,Categories c
-						where c.grp = g.grpid;");
+$groupes = $bdd->select("select g.grpid,g.grpname,g.visibility,g.description,g.nbmemb from Groups g;");
 
 if(!groupes)
 	$errors[] = "Il n'y a rien à afficher";

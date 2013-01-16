@@ -29,6 +29,7 @@ include_once("./queries.php");
 	Inclusion des modèles cruciaux
 */
 include_once (PATH_MODELES."/bdd.class.php");
+include_once ("./global_functions.php");
 
 /*
 	Initialisation du moteur de templates

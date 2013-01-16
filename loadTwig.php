@@ -58,8 +58,25 @@
 				"mail" => $_SESSION["membmail"],
 				"membfirstname" => $_SESSION["membfirstname"],
 				"memblastname" => $_SESSION["memblastname"],
-				"membpasswd" => $_SESSION["membpasswd"]
+				"membpasswd" => $_SESSION["membpasswd"],
+				"mesgroupes" => $_SESSION["grpMb"]
 				);
+	}
+	function isMb($_grpid) {
+		$isMb = false;
+		foreach($_SESSION["grpMb"] as $grpid) {
+			if($grpid == $_grpid)
+				$isMb = true;
+		}
+		return $isMb;
+	}
+	function isMbPlus($_grpid) {
+		$isMbPlus = false;
+		foreach($_SESSION["grpMbPlus"] as $grpid) {
+			if($grpid == $_grpid)
+				$isMbPlus = true;
+		}
+		return $isMbPlus;
 	}
 	
 	function modal( $id, $titre, $question, $rep, $action){
@@ -101,3 +118,5 @@
 	$twig->addFunction("isAdmin", new Twig_Function_Function("isAdmin"));
 	$twig->addFunction("loggedMember", new Twig_Function_Function("loggedMember"));
 	$twig->addFunction("modal", new Twig_Function_Function("modal"));
+	$twig->addFunction("isMbPlus", new Twig_Function_Function("isMbPlus"));
+	$twig->addFunction("isMb", new Twig_Function_Function("isMb"));

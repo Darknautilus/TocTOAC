@@ -4,6 +4,8 @@ $id= $_GET['idGroupe'];
 
 $bdd=new BDD();
 
+//print_r($_SESSION);
+
 // Informations groupe
 $groupe = $bdd->select("Select grpid, grpname, visibility, description from Groups
 						where grpid = $id ;");	
