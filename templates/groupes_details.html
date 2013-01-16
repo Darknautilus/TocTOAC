@@ -28,7 +28,7 @@
 	{% for event in events %}
 		<tr>
 			{% set tab = { 'idEvent' : event.eventid} %}
-			<td><a href="{{ queries('events','event_detail',tab) }}">{{ event.eventname }}</a></td>
+			<td>{{ event.eventname }}</td>
 			<td>{{ event.membfirstname }} {{ event.memblastname }}</td>
 			<td>{{ event.date }}</td>
 			<td>{{ event.time }}</td>
@@ -46,7 +46,7 @@
 		{% if isMb(groupe[0].grpid) %}
 			{% if isMbPlus(groupe[0].grpid) %}
    			{% set tabCat = {"nom" : groupe[0].grpname} %}
-			<a class="btn" href="{{ queries('groupes','creerCat', tabCat) }}">Creer catégorie</a>
+			<!-- <a class="btn" href="{{ queries('groupes','creerCat', tabCat) }}">Creer catégorie</a>-->
 			{% endif %}
 			<button class="btn">Créer évenement</button>
 		{% else %}

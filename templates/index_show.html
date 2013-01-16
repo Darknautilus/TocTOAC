@@ -18,7 +18,7 @@
 
 
 
-
+{% if not PROD_MODE() %}
 <div class="row span5">
 
 <div id="myCarousel" class="carousel slide">
@@ -68,6 +68,12 @@
 
 
 </div>
+{% else %}
+<div class="hero-unit">
+	<h2>TocTOAC</h2>
+	<p>Social networking, Events following</p>
+</div>
+{% endif %}
 
 {% endif %}
 
