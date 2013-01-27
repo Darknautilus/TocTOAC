@@ -33,7 +33,8 @@ $MODULES = array(
 		"deconnexion",
 		"desinscription",
 		"inscription",
-		"auth"
+		"auth",
+	  "details"
 		),
 	"groupes" => array(
 		"afficher",

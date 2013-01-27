@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+<h3 class="header-page">Profil de ...</h3>
+
+{% if membid == LOGGED_MEMBER.id %}
+<div class="row">
+  <div class="span6 alert alert-block">
+    <h4>Zone dangereuse</h4>
+    <p>Les actions effectuées ici peuvent avoir des conséquences irréparables pour votre compte</p>
+    <a href="{{ queries('membres','desinscription',{}) }}" class="btn btn-block btn-danger">Supprimer mon compte</a>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

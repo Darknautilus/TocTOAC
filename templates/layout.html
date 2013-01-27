@@ -54,6 +54,7 @@
     		</ul>
     		<ul class="nav pull-right">
     		{% if isLogged() %}
+    		  <li><a href="{{ queries('membres','details',{'membid':LOGGED_MEMBER.id}) }}">{{ LOGGED_MEMBER.membfirstname }} {{ LOGGED_MEMBER.memblastname }}</a></li>
     			<li><a href="{{ queries('membres','deconnexion',{}) }}">Se déconnecter</a></li>
     		{% else %}
     			{% include "membres_form_connexion_inPopover.html" %}
