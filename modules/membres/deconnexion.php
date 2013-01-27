@@ -24,6 +24,8 @@ if(isset($GLOBALS["logged"])) {
 	// Finalement, on détruit la session.
 	session_destroy();
 	
+	majGlobals();
+	
 	echo $twig->render("membres_deconnexion.html", array());
 }
 else {

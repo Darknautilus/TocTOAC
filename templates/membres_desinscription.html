@@ -4,4 +4,59 @@
 
 {% block content %}
 
-{% endblock %}
+{% if valid == true %}
+
+<div class="hero-unit">
+  <h1>Ce n'est qu'un au-revoir</h1>
+  <p>Merci d'avoir passé du temps sur TocTOAC.</p>
+  <a class="btn btn-large" href="{{ queries ('','',{}) }}">Revenir à l'accueil</a>
+</div>
+
+{% else %}
+
+<div class="row">
+  <h1 class="header-page">Désinscription</h1>
+</div>
+
+{% if grpToCheck is not empty %}
+<div class="row">
+  <h4>Des gens comptent sur vous !</h4>
+  <p>Vous êtes le seul Membre+ de ce(s) groupe(s), choisissez un membre pour vous succéder</p>
+</div>
+{% for groupe in grpToCheck %}
+<div class="row">
+  <div class="span6 well">
+	  <div class="span2">
+	    <h5>{{ groupe.grpname }}</h5>
+	    <p><em>{{ groupe.description }}</em></p>
+	    <p>Visibilité : {{ groupe.visibility }}</p>
+	  </div>
+	  <div class="span2">
+	    <ul>
+	      <li>{{ groupe.nbmemb }} membre(s)</li>
+	      <li>{{ groupe.nbcat }} catégorie(s)</li>
+	    </ul>
+	    <a href="{{ queries('groupes','details',{'idGroupe':groupe.grpid}) }}" class="btn">Détails</a>
+	  </div>
+  </div>
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="row">
+  <h4>Attention ! Cette opération est définitive. Etes-vous sûr de vouloir vous désinscrire ?</h4>
+  <div class="well span3 offset4">
+	  <form method="post" action="{{ queries('membres','desinscription',{}) }}">
+	    <label for="confirm" class="checkbox">
+	      <input type="checkbox" id="confirm" name="confirm" value="true" /> Oui, je veux quitter TocTOAC
+	    </label>
+	    <input type="submit" class="visible-phone btn btn-large btn-primary btn-block" value="Valider" />
+	    <input type="submit" class="hidden-phone btn btn-large btn-primary span3" value="Valider" />
+	    <input type="hidden" id="filled" name="filled" value="true" />
+	  </form>
+  </div>
+</div>
+
+{% endif %}
+
+{%endblock %}
