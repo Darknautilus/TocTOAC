@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_SESSION["logged"])) {
+if(isset($GLOBALS["logged"])) {
 	// Détruit toutes les variables de session
 	$_SESSION = array();
 
