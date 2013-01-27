@@ -5,7 +5,7 @@ $error = array();
 if (isLogged())
 {
 	$idgroup = $_GET['idGroupe'];
-	$idmemb = $_SESSION['membid'];
+	$idmemb = $GLOBALS["membinfos"]['membid'];
 	
 	$bdd = new BDD();
 	

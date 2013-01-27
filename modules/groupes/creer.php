@@ -1,5 +1,5 @@
 <?php
-$idmemb = $_SESSION['membid'];
+$idmemb = $GLOBALS["membinfos"]['membid'];
 $error = array();
 $values = array("grpName"=>"","description"=>"");
 

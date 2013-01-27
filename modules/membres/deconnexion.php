@@ -15,8 +15,15 @@ if(isset($_SESSION["logged"])) {
     	);
 	}
 
+	// On détruit les cookies
+	setcookie("logged", "", time()-3600);
+	setcookie("membinfos", "", time()-3600);
+	setcookie("grpMb", "", time()-3600);
+	setcookie("grpMbPlus", "", time()-3600);
+	
 	// Finalement, on détruit la session.
 	session_destroy();
+	
 	echo $twig->render("membres_deconnexion.html", array());
 }
 else {

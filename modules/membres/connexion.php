@@ -1,5 +1,6 @@
 <?php
 
+$redirect = false;
 $errors = array();
 $values = array();
 
@@ -21,7 +22,8 @@ if(isset($_POST["filled"]) && !isLogged()) {
 		// On teste la présence de l'email dans la base
 		$bdd = new BDD();
 		$membre = $bdd->select("SELECT membid, membmail, membfirstname, memblastname,membpasswd,admin FROM Members WHERE membmail='".$_POST["email"]."';");
-
+		$bdd->close();
+		
 		if(!$membre) {
 				$errors[] = "Le mail spécifié n'existe pas";
 		}
@@ -34,22 +36,29 @@ if(isset($_POST["filled"]) && !isLogged()) {
 	}
 	// On définit les variables de session
 	if(empty($errors)) {
-		foreach($membre[0] as $key => $value) {
-			$_SESSION[$key] = $value;
-		}
+	  
 		$_SESSION["logged"] = true;
+		$_SESSION["membinfos"] = $membre[0];
+		$GLOBALS["membinfos"] = $membre[0];
 		
-		// On charge les groupes dont le membre est membre
+		if(isset($_POST["cookie"])) {
+		  creerCookie("logged", true);
+		  creerCookie("membinfos",$membre[0]);
+		}
+				
+		// On charge les groupes dont le membre est membre		
 		majGrpMb();
 		
 		// On charge les groupes dont le membre est membre+
 		majGrpMbPlus();
 		
 		// On redirige
+		//$redirect = true;
 		header("Location:".queries("", "", array()));
 	}
 }
 
-$bdd->close();
-
-echo $twig->render("membres_connexion.html", array("values" => $values, "errors" =>  $errors));
+if($redirect)
+  echo $twig->render("index_show.html", array());
+else
+  echo $twig->render("membres_connexion.html", array("values" => $values, "errors" =>  $errors));

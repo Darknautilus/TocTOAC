@@ -47,24 +47,29 @@
 		return APP_MODE_PROD;
 	}
 	function isLogged() {
-		return isset($_SESSION["logged"]);
+		return $GLOBALS["logged"];
 	}
 	function isAdmin() {
-		return (isset($_SESSION["logged"]) && $_SESSION["admin"]);
+		return ($GLOBALS["logged"] && $GLOBALS["membinfos"]["admin"]);
 	}
+	
 	function loggedMember() {
-		return array(
-				"id" => $_SESSION["membid"],
-				"mail" => $_SESSION["membmail"],
-				"membfirstname" => $_SESSION["membfirstname"],
-				"memblastname" => $_SESSION["memblastname"],
-				"membpasswd" => $_SESSION["membpasswd"],
-				"mesgroupes" => $_SESSION["grpMb"]
+	  return array(
+				"id" => $GLOBALS["membinfos"]["membid"],
+				"mail" => $GLOBALS["membinfos"]["membmail"],
+				"membfirstname" => $GLOBALS["membinfos"]["membfirstname"],
+				"memblastname" => $GLOBALS["membinfos"]["memblastname"],
+				"membpasswd" => $GLOBALS["membinfos"]["membpasswd"],
+				"mesgroupes" => $GLOBALS["grpMb"]
 				);
 	}
+	
 	function isMb($_grpid) {
 		$isMb = false;
-		foreach($_SESSION["grpMb"] as $grpid) {
+		
+		$groupes = $GLOBALS["grpMb"];
+		
+		foreach($groupes as $grpid) {
 			if($grpid == $_grpid)
 				$isMb = true;
 		}
@@ -72,7 +77,10 @@
 	}
 	function isMbPlus($_grpid) {
 		$isMbPlus = false;
-		foreach($_SESSION["grpMbPlus"] as $grpid) {
+		
+		$groupes = $GLOBALS["grpMbPlus"];
+		
+		foreach($groupes as $grpid) {
 			if($grpid == $_grpid)
 				$isMbPlus = true;
 		}

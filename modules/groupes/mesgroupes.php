@@ -5,7 +5,7 @@ $bdd = new BDD();
 $error = "";
 
 if(isLogged()) {
-	$memberId = $_SESSION['membid'];
+	$memberId = $GLOBALS["membinfos"]["membid"];
 	
 	$groupes = $bdd->select("select grpid, grpname, nbmemb from Groups as g, Members as m, Own as o
 			where o.grp = g.grpId
