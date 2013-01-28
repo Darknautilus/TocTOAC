@@ -43,15 +43,15 @@
 </table>
 	{% if isLogged() %}
     <div >
-		{% if isMb(groupe[0].grpid) %}
+<!-- 		{% if isMb(groupe[0].grpid) %} -->
 			{% if isMbPlus(groupe[0].grpid) %}
-   			{% set tabCat = {"nom" : groupe[0].grpname} %}
-			<!-- <a class="btn" href="{{ queries('groupes','creerCat', tabCat) }}">Creer catégorie</a>-->
+   			{% set tabCat = {"nom" : groupe[0].grpname, 'idGroupe':groupe[0].grpid } %}
+			<a class="btn" href="{{ queries('groupes','creerCat', tabCat) }}">Creer catégorie</a>
 			{% endif %}
 			<button class="btn">Créer évenement</button>
-		{% else %}
+	{% else %}
 		<a href= "{{ queries('groupes', 'rejoindre', {'idGroupe':groupe[0].grpid}) }}" class="btn">Rejoindre ce groupe</a>
-		{% endif %}
+	{% endif %}
     </div>
     {% endif %}
 </div>
