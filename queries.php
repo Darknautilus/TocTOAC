@@ -42,6 +42,7 @@ $MODULES = array(
 		"creer",
 		"supprimer_membre",
 		"creerCat",
+		"supprimerCat",
 		"afficher_membre",
 		"rejoindre",
 		"mesgroupes"

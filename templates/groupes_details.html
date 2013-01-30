@@ -47,6 +47,7 @@
 			{% if isMbPlus(groupe[0].grpid) %}
    			{% set tabCat = {"nom" : groupe[0].grpname, 'idGroupe':groupe[0].grpid } %}
 			<a class="btn" href="{{ queries('groupes','creerCat', tabCat) }}">Creer catégorie</a>
+			<a class="btn" href="{{ queries('groupes','supprimerCat', tabCat) }}">Supprimer catégorie</a>
 			{% endif %}
 			<button class="btn">Créer évenement</button>
 	{% else %}
