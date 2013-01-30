@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block title %}Supprimer categorie{% endblock %}
+
+{% block content %}
+
+{% if errors is not empty %}
+<h5>{{ errors[0] }}</h5>
+{% else %}
+<form class="form-horizontal" method="post" action="{{ queries('groupes', 'supprimerCat', {'idGroupe': id} ) }}">
+<table class="table table-bordered table-stripped">
+	<tr>
+		<th>Nom</th>
+		<th></th>
+	</tr>
+	{% for cat in categories %}
+
+	<tr>
+		<td>{{ cat.catlabel }}</td>
+		<td>
+			<div class="controls">
+				<button class="btn" type="submit">Supprimer</button>
+				<input type="hidden" name="supr" value="true" />
+				<input type="hidden" name="idcat" value="{{ cat.catid }}" />
+			</div>
+		</td>
+	</tr>
+	{% endfor %}
+
+</table>
+</form>
+	
+{% endif %}
+{% endblock %}
