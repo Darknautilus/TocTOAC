@@ -1,11 +1,11 @@
 <?php
 $error = array();
 
-if(isLogged() && isset($_GET["id"]) && isset($_GET["nom"])) {
+if(isLogged() && isset($_GET["idGroupe"]) && isset($_GET["nom"])) {
 	
 	
 	$nom = $_GET["nom"];
-	$values = array("Libelle"=>"", "nom" => $nom, "grpid"=>$_GET["id"], "grpname"=>$_GET["nom"]);
+	$values = array("Libelle"=>"", "nom" => $nom, "grpid"=>$_GET["idGroupe"], "grpname"=>$_GET["nom"]);
 	
 	
 	
@@ -20,7 +20,7 @@ if(isLogged() && isset($_GET["id"]) && isset($_GET["nom"])) {
 	
 		if(empty($error)) {
 			//Insertion de la nouvelle catégorie dans la table Categories
-			$result = $bdd->insert("Categories", array("catlabel" => $_POST["libelle"], "grp" => $_GET["id"] ));
+			$result = $bdd->insert("Categories", array("catlabel" => $_POST["libelle"], "grp" => $_GET["idGroupe"] ));
 			if(!$result)
 				$error[] = "Erreur insertion : ".$bdd->getLastError();
 		}

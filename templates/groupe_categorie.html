@@ -21,7 +21,7 @@
 
 <h1 class="page-header">{{ values.nom }}</h1>
 
-<form class="form-horizontal" method="post" action="{{ queries('groupes', 'creerCat', {"id":values.grpid,"nom":values.grpname} ) }}">
+<form class="form-horizontal" method="post" action="{{ queries('groupes', 'creerCat', {"idGroupe":values.grpid,"nom":values.grpname} ) }}">
 	<div class="control-group">
 		<label class="control-label" for="libelle">Nom de la catégorie</label>
 		<input type="text" id="libelle" name="libelle" placeholder="libelle" value="{{ values.libelle }}" required/>
