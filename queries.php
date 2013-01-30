@@ -44,7 +44,8 @@ $MODULES = array(
 		"creerCat",
 		"afficher_membre",
 		"rejoindre",
-		"mesgroupes"
+		"mesgroupes",
+		"modifier"
 		),
 	"test" => array(
 		"home",
