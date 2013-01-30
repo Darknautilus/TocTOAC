@@ -42,15 +42,20 @@
 				<div class="controls">
 				    <button type="submit" class="btn">Enregistrer les modifications</button>
 				    <input type="hidden" name="filled" value="true" />
-			    
-				    <button type="submit" class="btn btn-danger">Supprimer le groupe</button>
-				    <input type="hidden" name="supp" value="true" />
-				    
-				    
 			    </div>
-	    </div>
+	   		</div>
 	    
     </form>
+    <div class="row">
+    <form class="form-horizontal" method="post" action="{{ queries('groupes','modifier',{'idGroupe': infosGrp.grpid}) }}" >
+    	<div class="control-group">
+			<div class="controls">
+		    	<button type="submit" class="btn btn-danger">Supprimer le groupe</button>
+				<input type="hidden" name="supp" value="true" />
+			</div>
+		</div>
+	</form>
+	</div>
 </div>
 
 {% endblock %}
