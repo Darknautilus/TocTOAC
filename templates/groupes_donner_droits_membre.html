@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block title %}Droits modifiés{% endblock %}
+
+{% block content %}
+
+<h1>Les droits pour cet utilisateur ont changés</h1>
+
+    <div class="btn-group">
+    	<a class="btn" href="{{ queries('groupes','afficher', { 'idGroupe' : id }) }}">Ok</a>
+    </div>
+
+
+{% endblock %}
