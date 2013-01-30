@@ -7,6 +7,13 @@
 {% if errors is not empty %}
 <h5>{{ errors[0] }}</h5>
 {% else %}
+
+{% if msg is not empty %}
+<div class="alert alert-success">
+	<p>La catégorie a bien été suprimée.</p>
+</div>
+{% endif %}
+
 <table class="table table-bordered table-stripped">
 	<tr>
 		<th>Nom</th>
@@ -28,7 +35,6 @@
 	{% endfor %}
 
 </table>
-
 
 	
 {% endif %}
