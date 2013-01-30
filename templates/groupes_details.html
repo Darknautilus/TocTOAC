@@ -57,6 +57,17 @@
     {% endif %}
 </div>
 
+<!-- Modification des paramètres du groupe -->
+<div class="span3">
+
+	{% if isMbPlus(groupe[0].grpid) %}
+		<div class="btn-group">
+    		<a class="btn btn-block" href = "{{ queries('groupes','modifier',{'idGroupe': groupe[0].grpid}) }}">Modifier les paramètres du groupe</a>
+    	</div>
+    {% endif %}
+	
+</div>
+
 <div class="span3">
 
 <table class="table table-hover table-bordered">
@@ -78,11 +89,12 @@
 					<div class="btn-toolbar">
 						<div class="btn-group">
 			    				<button class="btn-mini"><img src="{{ images() }}/profil.png" /></button>
-			    				<button class="btn-mini"><img src="{{ images() }}/plus.png" /></button>
-			    				{% if isMbPlus(groupe[0].grpid) and membre.membid != loggedMember().id %}
-			    				<button class="btn-mini" href="#delete_confirm{{ membre.membid }}" data-toggle="modal"><img src="{{ images() }}/delete.png" /></button>
-			    				{% import 'modal.html' as showModal %}
-			    				{{ showModal.modal('delete_confirm'~membre.membid, 'Supprimer membre ?', 'Voulez vous vraiment supprimer ce membre?', 'Oui', queries('groupes','supprimer_membre', { 'id' : membre.membid , 'idG' : groupe[0].grpid}), "Non") }}
+			    				{% if membre.membid != loggedMember().id %}
+			    				<button class="btn-mini" href="#grant_confirm" data-toggle="modal"><img src="{{ images() }}/plus.png" /></button>
+								{% import 'modal.html' as showModal %}
+								{{ showModal.modal('grant_confirm', 'Accorder droits au membre?', 'Voulez vous vraiment donner les droits à ce membre?', 'Oui', queries('groupes', 'donner_droits_membre', { 'id' : membre.membid, 'idG' : groupe[0].grpid}), 'Non') }}
+			    				<button class="btn-mini" href="#delete_confirm" data-toggle="modal"><img src="{{ images() }}/delete.png" /></button>
+			    				{{ showModal.modal('delete_confirm', 'Supprimer membre ?', 'Voulez vous vraiment supprimer ce membre?', 'Oui', queries('groupes','supprimer_membre', { 'id' : membre.membid , 'idG' : groupe[0].grpid}), "Non") }}
 			    				{% endif %}
 			    		</div>
 		    		</div>
@@ -95,7 +107,7 @@
 		<tr>
 			<td>
 				<div class="btn-group">
-    				<a class="btn" href = "{{ queries('groupes','afficher_membre',{'idGroupe': groupe[0].grpid}) }}">Afficher tous les membres( {{ nbMembres }} )</a>
+    				<a class="btn btn-block" href = "{{ queries('groupes','afficher_membre',{'idGroupe': groupe[0].grpid}) }}">Afficher tous les membres ({{ nbMembres }})</a>
     			</div>
 		</tr>
 	</tbody>

@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block title %}Groupes{% endblock %}
+
+{% block content %}
+
+<h1 class="page-header">Modification des paramètres du groupe</h1>
+{% if errors is not empty %}
+<div class="row">
+	<div class="span4">
+		<div class="alert alert-box alert-error">
+			<h4>Erreur !</h4>
+			<p>
+				<ul class="unstyled">
+					{% for error in errors %}
+					<li>- {{ error }}</li>
+					{% endfor %}
+				</ul>
+			</p>
+		</div>
+	</div>
+</div>
+
+	
+{% endif %}
+
+<div class="row">
+	<form class="form-horizontal" method="post" action="{{ queries('groupes','modifier',{'idGroupe': infosGrp.grpid}) }}" >
+	    <div class="control-group">
+		    <label class="control-label" for="inputEmail">Nom Groupe</label>
+		    <div class="controls">
+			    <input type="text" class="input-large" placeholder="Nom Groupe" name="nomGroupe" value="{{ infosGrp.grpname }}" />
+			</div>
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="inputPassword">Description</label>
+			<div class="controls">
+					<textarea class="input-xxlarge" name="description" placeholder="Description">{{ infosGrp.description }}</textarea>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+				    <button type="submit" class="btn">Enregistrer les modifications</button>
+				    <input type="hidden" name="filled" value="true" />
+			    </div>
+	   		</div>
+	    
+    </form>
+    <div class="row">
+    <form class="form-horizontal" method="post" action="{{ queries('groupes','modifier',{'idGroupe': infosGrp.grpid}) }}" >
+    	<div class="control-group">
+			<div class="controls">
+		    	<button type="submit" class="btn btn-danger">Supprimer le groupe</button>
+				<input type="hidden" name="supp" value="true" />
+			</div>
+		</div>
+	</form>
+	</div>
+</div>
+
+{% endblock %}
