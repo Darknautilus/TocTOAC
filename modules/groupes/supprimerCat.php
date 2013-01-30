@@ -7,7 +7,7 @@ $grp=$_GET["idGroupe"];
 if(isLogged() && isset($_GET["idGroupe"])) {
 	
 	//Suppression
-	if(isset($_POST["supr"]) && $_POST["supr"] == "true") {		
+	if(isset($_POST["supr"]) && $_POST["supr"] == "true" && !empty($_POST["idcat"])) {		
 		if(empty($error)) {
 
 			//Suppression catégorie dans la table Categories
