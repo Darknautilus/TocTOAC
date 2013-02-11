@@ -6,6 +6,30 @@
 
 <h3 class="header-page">Profil de ...</h3>
 
+<!-- Affichage des évènements auquel ce membre a participé -->
+<div class="row">
+	<table class="table table-striped table-hover table-bordered">
+		<thead>
+			<tr>
+				<th>Nom de l'évènement</th>
+				<th>Groupe</th>
+				<th>Date</th>
+				<th>Heure</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for membevent in membevents %}
+			<tr>
+				<td>{{ membevent.eventname }}</td>
+				<td>{{ membevent.grpname }}</td>
+				<td>{{ membevent.date }}</td>
+				<td>{{ membevent.time }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+
 {% if membid == LOGGED_MEMBER.id %}
 <div class="row">
   <div class="span6 alert alert-block">
@@ -15,5 +39,7 @@
   </div>
 </div>
 {% endif %}
+
+
 
 {% endblock %}

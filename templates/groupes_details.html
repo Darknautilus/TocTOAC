@@ -15,7 +15,7 @@
 
 <br />
 <h2>Evènements créés</h2>
-<table class="table table-hover table-bordered">
+<table class="table table-striped table-hover table-bordered">
 	<thead>
 		<tr>
 			<th>Nom</th>	
@@ -61,16 +61,20 @@
 <div class="span3">
 
 	{% if isMbPlus(groupe[0].grpid) %}
-		<div class="btn-group">
-    		<a class="btn btn-block" href = "{{ queries('groupes','modifier',{'idGroupe': groupe[0].grpid}) }}">Modifier les paramètres du groupe</a>
+		<div class="control-group">
+		<div class="controls">		
+			<div class="btn-group">
+	    		<a class="btn btn-block btn-primary" href = "{{ queries('groupes','modifier',{'idGroupe': groupe[0].grpid}) }}">Modifier les paramètres du groupe</a>
+	    	</div>
     	</div>
+		</div>
     {% endif %}
 	
 </div>
 
 <div class="span3">
 
-<table class="table table-hover table-bordered">
+<table class="table table-striped table-hover table-bordered">
 	<thead>
 	<tr>
 		<th>Membres</th>
