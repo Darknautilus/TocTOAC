@@ -4,10 +4,11 @@
 
 {% block content %}
 
-<h3 class="header-page">Profil de ...</h3>
+<h3 class="header-page">Profil de {{ membre.membfirstname }} {{ membre.memblastname }}</h3>
 
 <!-- Affichage des évènements auquel ce membre a participé -->
 <div class="row">
+  {% if membevents is not empty %}
 	<table class="table table-striped table-hover table-bordered">
 		<thead>
 			<tr>
@@ -28,9 +29,12 @@
 			{% endfor %}
 		</tbody>
 	</table>
+	{% else %}
+	<p>Ce membre ne participe à aucun événement</p>
+	{% endif %}
 </div>
 
-{% if membid == LOGGED_MEMBER.id %}
+{% if membre.membid == LOGGED_MEMBER.id %}
 <div class="row">
   <div class="span6 alert alert-block">
     <h4>Zone dangereuse</h4>
