@@ -49,7 +49,7 @@
 			<a class="btn" href="{{ queries('groupes','creerCat', tabCat) }}">Creer catégorie</a>
 			<a class="btn" href="{{ queries('groupes','supprimerCat', tabCat) }}">Supprimer catégorie</a>
 			{% endif %}
-			<button class="btn">Créer évenement</button>
+			<a class="btn" href="{{ queries('events','creer',{}) }}">Créer évenement</a>
 	{% else %}
 		<a href= "{{ queries('groupes', 'rejoindre', {'idGroupe':groupe[0].grpid}) }}" class="btn">Rejoindre ce groupe</a>
 	{% endif %}

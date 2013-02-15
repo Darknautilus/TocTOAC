@@ -4,10 +4,6 @@
 
 {% block content %}
 
-<script type="text/javascript" src="{{ bootstrap() }}/data_picker/js/bootstrap-datepicker.js" charset="UTF-8"></script>
-
-<script type="text/javascript">$('#datepicker').datepicker();</script>
-
 <h1 class="page-header">Création événement</h1>
 
 <div class="row">
@@ -18,9 +14,9 @@
 			    <input type="text" class="input-large" placeholder="Nom Evénement" name="nomEvent" value="" />
 			</div>
 			 
-  		 	 <div class="input-append date" id="data-picker" date-format="dd-mm-yyyy">
-		   		 <input class="span2" size="16" type="text" value="12-02-2012" />
-		   		 <span class="add-on"><i class="icon-calendar"></i></span>
+  		<div class="input-append date" id="datepickerEventsCreer" date-format="dd-mm-yyyy">
+		    <input class="span2" size="16" type="text" value="12-02-2012" />
+		    <span class="add-on"><i class="icon-calendar"></i></span>
 			</div>   
 
 		</div>
