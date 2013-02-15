@@ -56,7 +56,8 @@ $MODULES = array(
 	"events" => array(
 		"afficher",
 		"event_detail",
-		"creer"
+		"creer",
+		"supprimer"
 		),
 	"base" => array(
 		"afficher",
