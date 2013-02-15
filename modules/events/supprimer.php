@@ -3,8 +3,8 @@
 $datas = new BDD();
 $error = "";
 
-$participate = $datas->delete("participate", array("event"=>$_GET['idEvent'] ));
-$events = $datas->delete("events", array("eventid"=>$_GET['idEvent'] ));
+$participate = $datas->delete("Participate", array("event"=>$_GET['idEvent'] ));
+$events = $datas->delete("Events", array("eventid"=>$_GET['idEvent'] ));
 
 
 if (!$events || !$participate)
