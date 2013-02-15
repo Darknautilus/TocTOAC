@@ -34,7 +34,7 @@ $MODULES = array(
 		"desinscription",
 		"inscription",
 		"auth",
-	  "details"
+	  	"details"
 		),
 	"groupes" => array(
 		"afficher",
@@ -55,7 +55,8 @@ $MODULES = array(
 		),
 	"events" => array(
 		"afficher",
-		"event_detail"
+		"event_detail",
+		"creer"
 		),
 	"base" => array(
 		"afficher",
