@@ -8,10 +8,17 @@
 
 {% if membid == LOGGED_MEMBER.id %}
 <div class="row">
-  <div class="span6 alert alert-block">
-    <h4>Zone dangereuse</h4>
+  <div class="span8 alert alert-block">
+    <h4>Se désinscrire</h4>
     <p>Les actions effectuées ici peuvent avoir des conséquences irréparables pour votre compte</p>
     <a href="{{ queries('membres','desinscription',{}) }}" class="btn btn-block btn-danger">Supprimer mon compte</a>
+  </div>
+</div>
+<div class="row">
+  <div class="span8 alert alert-block">
+    <h4>Modifier mes informations</h4>
+    <p>Une modification à effectuer sur vos informations personnelles ? C'est par ici !</p>
+    <a href="{{ queries('membres','modifier_details',{'membid': infosMemb.membid}) }}" class="btn btn-block">Modifier mes informations</a>
   </div>
 </div>
 {% endif %}

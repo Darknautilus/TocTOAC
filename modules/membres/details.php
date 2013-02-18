@@ -13,9 +13,14 @@ if(isset($_GET["membid"])) {
     $membid = $membre[0]["membid"];
     
     // Récupérer les autres infos du membre ici
+    $membre = $bdd->select("select membid, membmail, membfirstname, memblastname from Members
+    		where membid = $membid;");
+    
+    if(!$membre)
+    	$error[] = $bdd->getLastError();
     
     
-    echo $twig->render("membres_details.html", array("membid" => $membid));
+    echo $twig->render("membres_details.html", array("membid" => $membid, "infosMemb" => $membre[0]));
   }
   $bdd->close();
 }

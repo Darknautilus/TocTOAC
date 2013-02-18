@@ -1,0 +1,78 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+<h3 class="header-page">Modifier son profil</h3>
+
+{% if membid == LOGGED_MEMBER.id %}
+<div class="row">
+<div class="span6">
+	<form class="form-horizontal" method="post" action="{{ queries('membres','modifier_details',{'membid': infosMemb.membid}) }}">
+		<div class="control-group">
+			<label class="control-label" for="prenom">Votre prénom</label>
+			<div class="controls">
+				<input type="text" id="prenom" name="prenom" placeholder="Prénom" value="{{ infosMemb.membfirstname }}" required/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="nom">Votre nom</label>
+			<div class="controls">
+				<input type="text" id="nom" name="nom" placeholder="Nom" value="{{ infosMemb.memblastname }}" required/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="email">Adresse email</label>
+			<div class="controls">
+				<input type="email" id="email" name="email" placeholder="Email" value="{{ infosMemb.membmail }}" required/>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+			
+				<button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+				<input type="hidden" name="filled" value="true" />
+				
+	    		<a class="btn" href = "{{ queries('membres','details',{'membid': infosMemb.membid}) }}">Annuler</a>
+	    		
+			</div>
+		</div>
+	</form>
+</div>
+<div class="span6">
+	<form class="form-horizontal" method="post" action="{{ queries('membres','modifier_details',{'membid': infosMemb.membid}) }}">
+		<div class="control-group">
+			<label class="control-label" for="motDePasse">Ancien mot de passe</label>
+			<div class="controls">
+				<input type="password" id="oldMotDePasse" name="oldMotDePasse" value="" placeholder="Saisir l'ancien mot de passe" required/>
+			</div>		</div>
+		<div class="control-group">
+			<label class="control-label" for="verifMotDePasse">Nouveau mot de passe</label>
+			<div class="controls">
+				<input type="password" id="verifMotDePasse" name="newMotDePasse" placeholder="Nouveau mot de passe" required/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="verifMotDePasse">Confirmation</label>
+			<div class="controls">
+				<input type="password" id="verifMotDePasse" name="verifNewMotDePasse" placeholder="Nouveau mot de passe" required/>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+			
+				<button type="submit" class="btn btn-primary">Changer mot de passe</button>
+				<input type="hidden" name="filled2" value="true" />
+				
+	    		<a class="btn" href = "{{ queries('membres','details',{'membid': infosMemb.membid}) }}">Annuler</a>
+	    		
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+
+{% endif %}
+
+{% endblock %}
