@@ -57,7 +57,7 @@ if(isset($_GET["membid"])) {
 					$errors[] = "Erreur update des informations du membre : ".$bdd->getLastError();
 				}
 				else {
-					header("Location:index.php");
+					header("Location:".queries("membres", "details", array("membid" => $membid)));
 				}
 			}
 		}
@@ -91,7 +91,7 @@ if(isset($_GET["membid"])) {
 					$errors[] = "Erreur update des informations du membre : ".$bdd->getLastError();
 				}
 				else {
-					header("Location:index.php");
+					header("Location:".queries("membres", "details", array("membid" => $membid)));
 				}
 			}
 		}
