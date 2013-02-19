@@ -35,7 +35,8 @@ $MODULES = array(
 		"desinscription",
 		"inscription",
 		"auth",
-	  	"details"
+	  	"details",
+		"modifier_details"
 		),
 	"groupes" => array(
 		"afficher",
