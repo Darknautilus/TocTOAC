@@ -78,7 +78,7 @@
     		{% else %}
     			{% include "membres_form_connexion_inPopover.html" %}
     			<li><a href="#" class="html-popover-trigger" html-popover-content="#formConnect" data-placement="bottom" title="Connecter">Se connecter</a></li>
-      			<li><a  href="{{ queries('membres','inscription',{}) }}">S'inscrire</a></li>
+      		<li><a  href="{{ queries('membres','inscription',{}) }}">S'inscrire</a></li>
     		{% endif %}
     		</ul>
 		</div>
@@ -113,6 +113,8 @@
 
 <script src="{{ templates() }}/js/jquery.js"></script>
 <script src="{{ templates() }}/js/bootstrap.min.js"></script>
+<script src="{{ bootstrap() }}/datepicker/js/bootstrap-datepicker.js"></script>
+<script src="{{ bootstrap() }}/datepicker/js/locales/bootstrap-datepicker.fr.js"></script>
 <script src="{{ templates() }}/js/bootstrap-overlay.js"></script>
 <script src="{{ templates() }}/js/btnPlus.js"></script>
 

@@ -95,5 +95,5 @@ function setAccordionBody(content, tableName) {
 /* **************************************************************************************** */
 
 $(document).ready(function() {
-	$("[id^='datepicker']").datepicker();
+	$("[id^='datepicker']").datepicker({startDate:new Date(), language:'fr', autoclose:true, keyboardNavigation:true});
 });

@@ -10,4 +10,4 @@ if (!$events)
 
 $datas->close();
 
-echo $twig->render("event_detail.html", array("events" => $events));
+echo $twig->render("events_details.html", array("events" => $events));
