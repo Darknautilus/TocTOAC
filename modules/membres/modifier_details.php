@@ -1,8 +1,9 @@
 <?php
 
 $errors = array();
-
 if(isset($_GET["membid"])) {
+	$membid = $_GET["membid"];
+	
 	$bdd = new BDD();
 	$membre = $bdd->select("select membid from Members where membid = ".$_GET["membid"].";");
 	if(!$membre) {
@@ -10,7 +11,6 @@ if(isset($_GET["membid"])) {
 	}
 
 	if(empty($errors)) {
-		$membid = $membre[0]["membid"];
 
 		// Récupérer les autres infos du membre ici
 		$membre = $bdd->select("select membid, membmail, membfirstname, memblastname, membpasswd from Members
@@ -96,14 +96,14 @@ if(isset($_GET["membid"])) {
 			}
 		}
 	$bdd->close();
-	echo $twig->render("membres_modifier_details.html", array("membid" => $membid, "infosMemb" => $membre[0]));
+	echo $twig->render("membres_modifier_details.html", array("membre" => $membre[0]));
 	}
 }
 else {
 	$errors[] = "Id non spécifié";
 }
 
-var_dump($membre);
+//var_dump($membre);
 if(!empty($errors)) {
 	echo $twig->render("index_show.html", array("errors" => $errors));
 }
