@@ -37,7 +37,7 @@ if(isLogged()) {
 				$error[] = "Erreur de mise à jour du groupe : ".$bdd->getLastError();
 	
 			//header("Location:".queries('groupes','details', ???));
-			header("Location:index.php");
+			//header("Location:index.php");
 		}
 	}
 	// Suppressions dans la base de données

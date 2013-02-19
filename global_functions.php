@@ -34,7 +34,6 @@ function creerCookie($name, $value) {
   else {
     $cookie = $value;
   }
-  var_dump($cookie);
   setcookie($name, urlencode($cookie), time()+3600*24*365);
 }
 

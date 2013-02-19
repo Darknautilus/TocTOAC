@@ -15,7 +15,7 @@
 
 <br />
 <h2>Evènements créés</h2>
-<table class="table table-hover table-bordered">
+<table class="table table-striped table-hover table-bordered">
 	<thead>
 		<tr>
 			<th>Nom</th>	
@@ -36,6 +36,9 @@
 			    <div class="btn-group">
     				<button class="btn">Participer</button>
     			</div>
+    			<div class="btn-group" onclick="self.location.href='{{ queries('events', 'supprimer', {'idGroupe':groupe[0].grpid, 'idEvent':event.eventid}) }}'">
+    				<button class="btn">Supprimer</button>
+    			</div>
 		</td>
 		</tr>
 	{% endfor %}
@@ -49,7 +52,7 @@
 			<a class="btn" href="{{ queries('groupes','creerCat', tabCat) }}">Creer catégorie</a>
 			<a class="btn" href="{{ queries('groupes','supprimerCat', tabCat) }}">Supprimer catégorie</a>
 			{% endif %}
-			<button class="btn">Créer évenement</button>
+			<a class="btn" href="{{ queries('events','creer',{}) }}">Créer évenement</a>
 	{% else %}
 		<a href= "{{ queries('groupes', 'rejoindre', {'idGroupe':groupe[0].grpid}) }}" class="btn">Rejoindre ce groupe</a>
 	{% endif %}
@@ -61,16 +64,20 @@
 <div class="span3">
 
 	{% if isMbPlus(groupe[0].grpid) %}
-		<div class="btn-group">
-    		<a class="btn btn-block" href = "{{ queries('groupes','modifier',{'idGroupe': groupe[0].grpid}) }}">Modifier les paramètres du groupe</a>
+		<div class="control-group">
+		<div class="controls">		
+			<div class="btn-group">
+	    		<a class="btn btn-block btn-primary" href = "{{ queries('groupes','modifier',{'idGroupe': groupe[0].grpid}) }}">Modifier les paramètres du groupe</a>
+	    	</div>
     	</div>
+		</div>
     {% endif %}
 	
 </div>
 
 <div class="span3">
 
-<table class="table table-hover table-bordered">
+<table class="table table-striped table-hover table-bordered">
 	<thead>
 	<tr>
 		<th>Membres</th>
