@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+{% block title %}Événement{% endblock %}
+
+{% block content %}
+
+<h1 class="page-header">Modification de l'evenement</h1>
+{% if error is not empty %}
+	<div class="row">
+		<div class="span4">
+			<div class="alert alert-box alert-error">
+				<h4>Erreur !</h4>
+				<p>
+					<ul class="unstyled">
+						{% for error in error %}
+						<li>- {{ error }}</li>
+						{% endfor %}
+					</ul>
+				</p>
+			</div>
+		</div>
+	</div>
+{% elseif values.valider is not empty %}
+	<div class="row">
+		<div class="alert alert-success">
+			<p>Les modifications ont bien été prises en compte.</p>
+		</div>
+	</div>
+{% endif %}
+<div class="row">
+	<form class="form-horizontal" method="post" action="{{ queries('events','modifier_detail',{'idevent': values.eventid}) }}" >
+	    <div class="control-group">
+		    <label class="control-label" for="noml">Nom de l'événement</label>
+		    <div class="controls">
+			    <input type="text" class="input-large" placeholder="Nom événement" name="eventname" value="{{ infosEv.eventname }}" />
+			</div>
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="name">Catégorie</label>
+		<div class="controls">
+				<select name="catlabel"   >
+				{% for cat in cat %}
+					<option value="{{cat.catid}}">{{cat.catlabel}}</option>
+				{% endfor %}
+				</select>
+			</div>
+		</div>
+		<div class="control-group">
+		    <label class="control-label" for="date">Date</label>
+		    <div class="controls">
+			    <input type="text" class="input-large" placeholder="Date" name="date" value="{{ infosEv.date }}" />
+			</div>
+		</div>
+		<div class="control-group">
+		    <label class="control-label" for="time">Heure</label>
+		    <div class="controls">
+			    <input type="text" class="input-large" placeholder="Heure" name="time" value="{{ infosEv.time }}" />
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+			    <button type="submit" class="btn">Enregistrer les modifications</button>
+			    <input type="hidden" name="bp_valider" value="true" />
+		    </div>
+   		</div>
+    </form>
+</div>
+
+{% endblock %}
