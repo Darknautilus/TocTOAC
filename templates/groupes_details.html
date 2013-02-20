@@ -67,7 +67,7 @@
 		<div class="control-group">
 		<div class="controls">		
 			<div class="btn-group">
-	    		<a class="btn btn-block btn-primary" href = "{{ queries('groupes','modifier',{'idGroupe': groupe[0].grpid}) }}">Modifier les paramètres du groupe</a>
+	    		<a class="btn btn-primary" href = "{{ queries('groupes','modifier',{'idGroupe': groupe[0].grpid}) }}">Modifier les paramètres du groupe</a>
 	    	</div>
     	</div>
 		</div>
@@ -114,7 +114,7 @@
 		<tr>
 			<td>
 				<div class="btn-group">
-    				<a class="btn btn-block" href = "{{ queries('groupes','afficher_membre',{'idGroupe': groupe[0].grpid}) }}">Afficher tous les membres ({{ nbMembres }})</a>
+    				<a class="btn" href = "{{ queries('groupes','afficher_membre',{'idGroupe': groupe[0].grpid}) }}">Afficher tous les membres ({{ nbMembres }})</a>
     			</div>
 		</tr>
 	</tbody>

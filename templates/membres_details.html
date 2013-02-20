@@ -8,6 +8,7 @@
 
 <!-- Affichage des évènements auquel ce membre a participé -->
 <div class="row">
+<div class="span8">
   {% if membevents is not empty %}
 	<table class="table table-striped table-hover table-bordered">
 		<thead>
@@ -32,6 +33,7 @@
 	{% else %}
 	<p>Ce membre ne participe à aucun événement</p>
 	{% endif %}
+	</div>
 </div>
 
 {% if membre.membid == LOGGED_MEMBER.id %}
