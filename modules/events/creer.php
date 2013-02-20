@@ -33,7 +33,7 @@ if($bdd->exists("Groups", "grpid", $grpid)) {
         list($day, $month, $year) = explode('/', $values["eventdate"]);
         $timestamp = mktime($values["hours"], $values["minutes"], 0, $month, $day, $year);
         // Controle si l'heure donnée n'est pas antérieure à celle actuelle
-        if($timestamp < mktime()) {
+        if($timestamp < time()) {
           $errors[] = "Veuillez entrez une horaire antérieure à l'heure actuelle";
         }
         else {
