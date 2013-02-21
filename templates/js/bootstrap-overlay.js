@@ -89,3 +89,11 @@ function baseRequest(callback, tableName, targetFile) {
 function setAccordionBody(content, tableName) {
 	$("#"+tableName+" div").html(content);
 }
+
+/* **************************************************************************************** */
+/* Mise en place des datepickers															*/
+/* **************************************************************************************** */
+
+$(document).ready(function() {
+	$("[id^='datepicker']").datepicker({startDate:new Date(), language:'fr', autoclose:true, keyboardNavigation:true});
+});

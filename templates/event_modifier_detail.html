@@ -20,7 +20,7 @@
 			</div>
 		</div>
 	</div>
-{% elseif values.valider is not empty %}
+{% elseif success %}
 	<div class="row">
 		<div class="alert alert-success">
 			<p>Les modifications ont bien été prises en compte.</p>
@@ -34,28 +34,39 @@
 		    <div class="controls">
 			    <input type="text" class="input-large" placeholder="Nom événement" name="eventname" value="{{ infosEv.eventname }}" />
 			</div>
-		</div>
+		</div>		
 		<div class="control-group">
-		<label class="control-label" for="name">Catégorie</label>
-		<div class="controls">
-				<select name="catlabel"   >
-				{% for cat in cat %}
-					<option value="{{cat.catid}}">{{cat.catlabel}}</option>
-				{% endfor %}
-				</select>
+			<label class="control-label" for="category">Catégorie</label>
+			<div class="controls">
+				<select id="category" name="category">
+			     {% for category in categories %}
+			    	 <option value="{{ category.catid }}" {% if category.catid == values.category %}selected="selected"{% endif %}>{{ category.catlabel }}</option>			     	
+			     {% endfor %}
+			  	</select>
 			</div>
 		</div>
 		<div class="control-group">
-		    <label class="control-label" for="date">Date</label>
+		    <label class="control-label" for="datepickerEventsCreer">Date</label>
 		    <div class="controls">
-			    <input type="text" class="input-large" placeholder="Date" name="date" value="{{ infosEv.date }}" />
-			</div>
+			    <input readonly="" value="{{ infosEv.date }}" data-date-format="dd/mm/yy" id="datepickerEventsCreer" name="eventdate" type="text">
+		    </div>
 		</div>
+		
 		<div class="control-group">
-		    <label class="control-label" for="time">Heure</label>
-		    <div class="controls">
-			    <input type="text" class="input-large" placeholder="Heure" name="time" value="{{ infosEv.time }}" />
-			</div>
+			 <label class="control-label" for="hours">Heure</label>
+			 <div class="controls">
+			   <select class="span1" id="hours" name="hours">
+			    {% for i in 0..23 %}
+			     	<option value="{{ i }}" {% if i == values.heure %}selected="selected"{% endif %}>{{ i }}</option>
+			    {% endfor %}
+			   </select>
+			   <span>H</span>
+			   <select class="span1" name="minutes">
+			    {% for i in [0,15,30,45] %}
+           			<option value="{{ i }}" {% if i == values.minutes %}selected="selected"{% endif %}>{{ i }}</option>
+           		{% endfor %}
+			   </select>
+			 </div>
 		</div>
 		<div class="control-group">
 			<div class="controls">

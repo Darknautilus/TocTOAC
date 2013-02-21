@@ -35,8 +35,11 @@
 			<td>
 			    <div class="btn-group">
     				<button class="btn">Participer</button>
-    				<a class="btn" href = "{{ queries('events','modifier_detail',{'idevent': events[0].eventid}) }}">Modifier l'evenement</a>
+    				<a class="btn" href = "{{ queries('events','modifier_detail',{'idevent': event.eventid}) }}">Modifier l'evenement</a>
     				
+    			</div>
+    			<div class="btn-group" onclick="self.location.href='{{ queries('events', 'supprimer', {'idGroupe':groupe[0].grpid, 'idEvent':event.eventid}) }}'">
+    				<button class="btn">Supprimer</button>
     			</div>
 		</td>
 		</tr>
@@ -51,7 +54,7 @@
 			<a class="btn" href="{{ queries('groupes','creerCat', tabCat) }}">Creer catégorie</a>
 			<a class="btn" href="{{ queries('groupes','supprimerCat', tabCat) }}">Supprimer catégorie</a>
 			{% endif %}
-			<button class="btn">Créer évenement</button>
+			<a class="btn" href="{{ queries('events','creer',{'grpid':groupe[0].grpid}) }}">Créer évenement</a>
 	{% else %}
 		<a href= "{{ queries('groupes', 'rejoindre', {'idGroupe':groupe[0].grpid}) }}" class="btn">Rejoindre ce groupe</a>
 	{% endif %}
@@ -66,7 +69,7 @@
 		<div class="control-group">
 		<div class="controls">		
 			<div class="btn-group">
-	    		<a class="btn btn-block btn-primary" href = "{{ queries('groupes','modifier',{'idGroupe': groupe[0].grpid}) }}">Modifier les paramètres du groupe</a>
+	    		<a class="btn btn-primary" href = "{{ queries('groupes','modifier',{'idGroupe': groupe[0].grpid}) }}">Modifier les paramètres du groupe</a>
 	    	</div>
     	</div>
 		</div>
@@ -113,7 +116,7 @@
 		<tr>
 			<td>
 				<div class="btn-group">
-    				<a class="btn btn-block" href = "{{ queries('groupes','afficher_membre',{'idGroupe': groupe[0].grpid}) }}">Afficher tous les membres ({{ nbMembres }})</a>
+    				<a class="btn" href = "{{ queries('groupes','afficher_membre',{'idGroupe': groupe[0].grpid}) }}">Afficher tous les membres ({{ nbMembres }})</a>
     			</div>
 		</tr>
 	</tbody>
