@@ -9,19 +9,19 @@
 	  {% if isLogged() and isMbPlus(groupe[0].grpid) %}<a class="btn btn-small" href = "{{ queries('groupes','modifier',{'idGroupe': groupe[0].grpid}) }}"><i class="icon-white icon-wrench"></i> Modifier</a>{% endif %}
 	</div>
 	<div>
-	 <h1 class="page-header">{{ groupe[0].grpname }}</h1>
+	 <h3 class="page-header">{{ groupe[0].grpname }}</h3>
 	</div>
 </div>
 <div class="row">
 <div class="span9">
 
-<h2>Description</h2>
+<h4>Description</h4>
 <p align="justify"> 
 {{ groupe[0].description }}
 </p>
 
 <br />
-<h2>Evènements créés</h2>
+<h4>Evènements créés</h4>
 <table class="table table-striped table-hover table-bordered">
 	<thead>
 		<tr>

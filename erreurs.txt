@@ -25,8 +25,6 @@ Problieme nom cat�gorie (possibilit� de mettre le meme nom dans le groupe)
 Supprimer cat�gorie
 	a travailler
 
-Tout titre en h3
-
 Icones :
 	<i class="icon-remove icon-white"></i>
 	<i class="icon-plus icon-white"></i>
