@@ -103,7 +103,7 @@ else {
 	$errors[] = "Id non spécifié";
 }
 
-//var_dump($membre);
+var_dump($errors);
 if(!empty($errors)) {
 	echo $twig->render("index_show.html", array("errors" => $errors));
 }

@@ -74,7 +74,7 @@
 <table class="table table-striped table-hover table-bordered">
 	<thead>
 	<tr>
-		<th>Membres</th>
+		<th>Membres  {% if isLogged() and isMbPlus(groupe[0].grpid) %}<a class="btn pull-right" href = "{{ queries('groupes','inviter_membre',{'idGroupe': groupe[0].grpid}) }}"><i class="icon-group icon-white"></i> Inviter</a>{% endif %}</th>
 		</tr>
 	</thead>
 	<tbody>
