@@ -16,27 +16,22 @@ if(isset($_GET['idGroupe'])) {
 		
 		// Vérification saisie e-mail
 		if(isset($_POST["email"]) && !empty($_POST["email"])) {
-			$mail["email"] = $_POST["email"];
-			// Objet du mail.
-			$subject = 'Invitation au groupe : '.$groupe[0][grpname].'.';
-			//var_dump($subject);
+			$adresseDest = $_POST["email"];
 			
-			// Headers
-			$headers = 'From: TocTOAC <messagerie@toctoac.com>'."\n";
-			$headers .= 'Content-Type: text/html;'."\n";
-			$headers .= "\n";
-			//var_dump($headers);
+			// Objet du mail.
+			$objet = 'Invitation au groupe : '.$groupe[0]['grpname'].'.';
+			// var_dump($objet);
 			
 			// Message HTML
 			
-			$msg = '<p>Bonjour,<br /><br />
-				   Vous êtes invité à rejoindre le groupe '.$groupe[0][grpname].'.<br />
+			$message = '<p>Bonjour,<br /><br />
+				   Vous êtes invité à rejoindre le groupe '.$groupe[0]['grpname'].'.<br />
 				   Vous pouvez accéder au site <a href="toctoac">TocTOAC</a><br /><br />
 				   Bonne Journée <br /></p>'."\n";
-			//var_dump($msg);
+			// var_dump($message);
 			
 			// Envoi
-			mail($mail["email"], $subject, $msg, $headers);
+			envoyerMail($adresseDest,$objet,$message);
 		}
 		else {
 			$errors[] = "Vous devez saisir une adresse mail.";
