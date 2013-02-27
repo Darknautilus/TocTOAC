@@ -1,6 +1,3 @@
-Mes Groupes :
-	nombre de membres
-
 Detail groupe
 	boutons
 	supprimer alors que non admin
@@ -23,9 +20,9 @@ Inviter
 Creer categorie
 	tout faire
 
-Problieme nom catégorie (possibilité de mettre le meme nom dans le groupe)
+Problieme nom catï¿½gorie (possibilitï¿½ de mettre le meme nom dans le groupe)
 
-Supprimer catégorie
+Supprimer catï¿½gorie
 	a travailler
 
 Tout titre en h3
