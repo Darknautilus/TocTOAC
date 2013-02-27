@@ -42,6 +42,8 @@
 			<td>
 			    <div class="btn-group">
     				<button class="btn">Participer</button>
+    				<a class="btn" href = "{{ queries('events','modifier_detail',{'idevent': event.eventid}) }}">Modifier l'evenement</a>
+    				
     			</div>
     			<div class="btn-group" onclick="self.location.href='{{ queries('events', 'supprimer', {'idGroupe':groupe[0].grpid, 'idEvent':event.eventid}) }}'">
     				<button class="btn">Supprimer</button>

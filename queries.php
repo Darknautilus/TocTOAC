@@ -58,10 +58,10 @@ $MODULES = array(
 		),
 	"events" => array(
 		"afficher",
+		"modifier_detail",
 		"details",
 		"creer",
-		"supprimer"
-		),
+		"supprimer"),
 	"base" => array(
 		"afficher",
 		"raz",

@@ -10,6 +10,13 @@
 -- Events(_eventid_, eventname, #grp, #creator, #category, date, time)
 -- Participate(_#event, #member_)
 -- Own(_#group, #member_, #grnt)
+-- Search(_table,elem_,mot,nbocc)
+
+-- Codes tables :
+--  Members : m
+--  Groups : g
+--  Categories : c
+--  Events : e
 
 -- Séquences : AUTO_INCREMENT
 
@@ -40,7 +47,7 @@ DROP TABLE IF EXISTS Groups;
 DROP TABLE IF EXISTS Grants;
 DROP TABLE IF EXISTS Members;
 DROP TABLE IF EXISTS Visibilities;
-DROP TABLE IF EXISTS test;
+DROP TABLE IF EXISTS Search;
 
 CREATE TABLE Visibilities (
 	visibid 	int AUTO_INCREMENT,
@@ -129,6 +136,14 @@ CREATE TABLE Own (
 	CONSTRAINT fk_own_grp FOREIGN KEY (grp) REFERENCES Groups(grpid),
 	CONSTRAINT fk_own_memb FOREIGN KEY (member) REFERENCES Members(membid),
 	CONSTRAINT fk_own_grant FOREIGN KEY (grnt) REFERENCES Grants(grantid)
+)ENGINE=InnoDB CHARSET=UTF8;
+
+CREATE TABLE Search (
+  table char,
+  id int,
+  mot varchar(30),
+  nbocc int,
+  CONSTRAINT pk_search PRIMARY KEY (table,id)
 )ENGINE=InnoDB CHARSET=UTF8;
 
 delimiter //
