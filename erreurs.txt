@@ -1,0 +1,36 @@
+Mes Groupes :
+	nombre de membres
+
+Detail groupe
+	boutons
+	supprimer alors que non admin
+	de meme pour modifier
+
+Modifier evenement / creer evenement
+	icone + bouton annuler
+	2 zero pour minutes
+	retour sur bouton enregistrer vers page groupe
+
+Afficher membres
+	retour sur bouton enregistrer vers page groupe
+
+Faire page profil
+	ajouter les liens vers profil
+
+Inviter
+	bouton retour
+
+Creer categorie
+	tout faire
+
+Problieme nom catégorie (possibilité de mettre le meme nom dans le groupe)
+
+Supprimer catégorie
+	a travailler
+
+Tout titre en h3
+
+Icones :
+	<i class="icon-remove icon-white"></i>
+	<i class="icon-plus icon-white"></i>
+	<i class="icon-user icon-white"></i>
