@@ -76,8 +76,8 @@ CREATE TABLE Groups (
 	grpname	varchar(30),
 	visibility	int,
 	description	text,
-	nbmemb	int,
-	nbcat	int,
+	nbmemb	int NOT NULL,
+	nbcat	int NOT NULL,
 	CONSTRAINT pk_grp PRIMARY KEY (grpid),
 	CONSTRAINT fk_grp_visib FOREIGN KEY (visibility) REFERENCES Visibilities(visibid)
 )ENGINE=InnoDB CHARSET=UTF8;
@@ -139,11 +139,11 @@ CREATE TABLE Own (
 )ENGINE=InnoDB CHARSET=UTF8;
 
 CREATE TABLE Search (
-  table char,
-  id int,
+  tablename char,
+  idelem int,
   mot varchar(30),
   nbocc int,
-  CONSTRAINT pk_search PRIMARY KEY (table,id)
+  CONSTRAINT pk_search PRIMARY KEY (tablename,idelem)
 )ENGINE=InnoDB CHARSET=UTF8;
 
 delimiter //
