@@ -37,7 +37,7 @@
 			{% set tab = { 'idEvent' : event.eventid} %}
 			<td>{{ event.eventname }}</td>
 			<td>{{ event.membfirstname }} {{ event.memblastname }}</td>
-			<td>{{ event.date }}</td>
+			<td>{{ sqlDatetimeToFrench(event.date,'DATE') }}</td>
 			<td>{{ event.time }}</td>
 			<td>
 			    <div class="btn-group">

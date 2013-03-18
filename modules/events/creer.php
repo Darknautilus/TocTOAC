@@ -60,7 +60,7 @@ if($bdd->exists("Groups", "grpid", $grpid)) {
             $bdd->select("ROLLBACK;");
           }
           else {
-            header("Location:".queries("events", "details", array("idEvent" => $eventid)));
+            header("Location:".queries("events", "details", array("eventid" => $eventid)));
           }
         }
       }

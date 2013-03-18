@@ -26,6 +26,12 @@
   <![endif]-->
     
   <link rel="stylesheet" href="{{ bootstrap() }}/css/bootstrap.min.css" />
+  <style type="text/css">
+    .main {
+      padding-top: 60px;
+      padding-bottom: 40px;
+    }
+  </style>
   
   <!-- Ajoute la compatibilité avec les téléphones -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,12 +44,6 @@
    <link rel="stylesheet" href="{{ css() }}/font-awesome-ie7.min.css" />
   <![endif] -->
   
-  <style type="text/css">
-    .main {
-      padding-top: 60px;
-      padding-bottom: 40px;
-    }
-  </style>
 	 
 	<title>{% block title %}{% endblock %} - Toc-TOAC</title>
 </head>
@@ -64,7 +64,7 @@
   		<a class="brand" href="{{ queries('','',{}) }}">TocTOAC</a>
   		
   		{% if isLogged() %}
-  		<ul class="nav">
+  		<ul class="nav hidden-desktop">
   		  <li><a href="{{ queries('membres','details',{'membid':LOGGED_MEMBER.id}) }}">{{ LOGGED_MEMBER.membfirstname }} {{ LOGGED_MEMBER.memblastname }}</a></li>
   		</ul>
   		{% endif %}
@@ -79,6 +79,7 @@
     		</ul>
     		<ul class="nav pull-right">
     		{% if isLogged() %}
+    		  <li class="visible-desktop"><a href="{{ queries('membres','details',{'membid':LOGGED_MEMBER.id}) }}">{{ LOGGED_MEMBER.membfirstname }} {{ LOGGED_MEMBER.memblastname }}</a></li>
     			<li><a href="{{ queries('membres','deconnexion',{}) }}">Se déconnecter</a></li>
     		{% else %}
     			{% include "membres_form_connexion_inPopover.html" %}

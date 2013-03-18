@@ -4,12 +4,9 @@
 
 {% block content %}
 
-{% if error != '' %}
-<h2>Erreur</h2>
-
+{% if errors is not empty %}
+<h3>Erreur</h3>
 <p>L'événement spécifié n'existe pas</p>
-
-<p class="alert">{{ error }}</p>
 
 {% else %}
 
@@ -25,19 +22,15 @@
 		<th>Catégorie</th>
 		<th>Date</th>
 		<th></th>
-
 	</tr>
-{% for event in events %}
-	{% set tab = {} %}
-	<tr >
+	<tr>
 		<td>{{ event.eventname }}</td>
 		<td>{{ event.grp }}</td>
-		<td>{{ event.membfirstname }}</td>
+		<td>{{ event.membfirstname }} {{ event.memblastname }}</td>
 		<td>{{ event.category }}</td>
-		<td>{{ event.date }}</td>
+		<td>{{ sqlDatetimeToFrench(event.date, 'DATE') }}</td>
 		<td><button class="btn" onclick="window.location.href='{{ queries('index', 'show', tab) }}'">Rejoindre</button></td>
 	</tr>
-{% endfor %}
 </table>
 
 

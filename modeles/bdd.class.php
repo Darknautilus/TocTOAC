@@ -11,6 +11,7 @@ private $errors = array();
 private $bdd = NULL;
 private $lastError;
 private $tables;
+private $lastReq;
 
 /*
  * Constructeur de la classe :
@@ -50,6 +51,10 @@ function getTables() {
   return $this->tables;
 }
 
+function getLastReq() {
+  return $this->lastReq;
+}
+
 /*
  * Ferme la connexion et retourne les éventuelles erreurs survenues
  */
@@ -67,6 +72,7 @@ function close() {
  */
 function select ($requete) {
 	try {
+	  $this->lastReq = $requete;
 		$result = $this->bdd->query($requete);
 		if(!$result) {
 			$err = "Empty SELECT";
@@ -124,9 +130,9 @@ function update ($table, $colonnes, $conditions) {
 	$sql = "UPDATE $table SET " ;
 	$sql .= join(', ', $colonnes_) ;
 	$sql .= ' WHERE ' . join(' AND ', $conditions_) ;
-	
-	
  
+	$this->lastReq = $sql;
+	
 	try {
 		$resultat = $this->bdd->exec($sql);
 		return true;
@@ -156,8 +162,8 @@ function delete ($table, $conditions) {
 	}
  
 	$sql = "DELETE FROM $table WHERE " . join(' AND ', $conditions_) ;
-	
-	//var_dump($sql);
+
+	$this->lastReq = $sql;
 	
 	try {
 		$resultat = $this->bdd->exec($sql) ;
@@ -199,7 +205,9 @@ function insert ($table, $valeurs) {
 	$sql .= ') VALUES (' ;
 	$sql .= join(', ', $valeurs_) ;
 	$sql .= ');' ;
- 
+	
+	$this->lastReq = $sql;
+	
 	try {
 		$lines = $this->bdd->exec($sql);
 		if($lines > 0) {

@@ -1,13 +1,20 @@
 <?php
-$id = $_GET['idEvent'];
-$datas = new BDD();
-$error = "";
 
-$events = $datas->select("SELECT e.eventname, e.grp, e.creator, e.category, e.date, e.time, m.membfirstname FROM Events e, members m where e.creator=m.membid AND e.eventid=".$id.";");
+$errors = array();
+if(isset($_GET['eventid'])) {
+  $id = $_GET['eventid'];
+}
+else {
+  $errors[] = "Identifiant d'event incorrect";
+}
+$bdd = new BDD();
 
-if (!$events)
-	$error .= $datas->getLastError();
+$event = $bdd->select("SELECT e.eventname, e.grp, e.creator, e.category, e.date, e.time, m.membfirstname, m.memblastname FROM Events e, Members m where e.creator=m.membid AND e.eventid=".$id.";");
+if(!$event)
+	$errors[] = $bdd->getLastError();
+else
+  $event = $event[0];
+ 
+$bdd->close();
 
-$datas->close();
-
-echo $twig->render("events_details.html", array("events" => $events));
+echo $twig->render("events_details.html", array("event" => $event, "errors" => $errors));

@@ -112,6 +112,50 @@
     </div>";
 	}
 	
+	/*
+	 * @param $datetime La donnée datetime de la base
+	* @param $ret ALL : date et heure, DATE : seulement date, TIME : seulement heure
+	* @param $dateformat défaut : Séparateur de la date, MO_LETTERS : le mois en lettres
+	* @param $timeformat Séparateur de l'heure
+	*/
+	function sqlDatetimeToFrench($datetime, $ret = "ALL", $dateformat = "/", $timeformat = ":") {
+	
+	  $months = array("janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre");
+	
+	  $date = "";
+	  $time = "";
+	  if(strpos($datetime, " ")) {
+	    list($date,$time) = explode(" ", $datetime);
+	  }
+	  else {
+	    if(strpos($datetime, "-"))
+	      $date = $datetime;
+	    else if(strpos($datetime, ":"))
+	      $time = $datetime;
+	  }
+	  if(!empty($date))
+	    list($year,$month,$day) = explode("-", $date);
+	  if(!empty($time))
+	    list($hour,$minute,$second) = explode(":", $time);
+	
+	  if($dateformat == "MO_LETTERS")
+	    $date = $day." ".$months[(int)$month]." ".$year;
+	  else
+	    $date = $day.$dateformat.$month.$dateformat.$year;
+	
+	  if($ret != "DATE")
+	    $time = $hour.$timeformat.$minute.$timeformat.$second;
+	
+	  if($ret == "ALL")
+	    return array($date,$time);
+	  else if($ret == "DATE")
+	    return $date;
+	  else if($ret == "TIME")
+	    return $time;
+	  else
+	    return false;
+	}
+	
 	
 	Twig_Autoloader::register();
 
@@ -137,3 +181,4 @@
 	$twig->addFunction("modal", new Twig_Function_Function("modal"));
 	$twig->addFunction("isMbPlus", new Twig_Function_Function("isMbPlus"));
 	$twig->addFunction("isMb", new Twig_Function_Function("isMb"));
+	$twig->addFunction("sqlDatetimeToFrench", new Twig_Function_Function("sqlDatetimeToFrench"));
