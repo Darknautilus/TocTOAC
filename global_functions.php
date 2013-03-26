@@ -34,7 +34,6 @@ function creerCookie($name, $value) {
   else {
     $cookie = $value;
   }
-  var_dump($cookie);
   setcookie($name, urlencode($cookie), time()+3600*24*365);
 }
 
@@ -87,3 +86,13 @@ function majGrpMbPlus() {
 
 	$bdd->close();
 }
+
+function envoyerMail($adresseDest,$objet,$message)
+{
+  $headers  = 'MIME-Version: 1.0' . "\r\n";
+  $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+  $headers .= 'From: Admin TocTOAC <moi@mail.fr>' . "\r\n";
+
+  mail($adresseDest, "[TocTOAC]".$objet, $message, $headers);
+}
+

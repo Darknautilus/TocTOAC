@@ -14,7 +14,8 @@ $DEFAULT_ACTION = array(
 	"membres" => "auth",
 	"test" => "home",
 	"groupes" => "afficher",
-	"base" => "afficher"
+	"base" => "afficher",
+  	"events" => "afficher"
 );
 
 $GLOBALS["DEFAULT_ACTION"] = $DEFAULT_ACTION;
@@ -34,7 +35,8 @@ $MODULES = array(
 		"desinscription",
 		"inscription",
 		"auth",
-	  "details"
+	  	"details",
+		"modifier_details"
 		),
 	"groupes" => array(
 		"afficher",
@@ -46,7 +48,8 @@ $MODULES = array(
 		"afficher_membre",
 		"rejoindre",
 		"mesgroupes",
-		"modifier"
+		"modifier",
+		"inviter_membre"
 		),
 	"test" => array(
 		"home",
@@ -55,8 +58,10 @@ $MODULES = array(
 		),
 	"events" => array(
 		"afficher",
-		"event_detail"
-		),
+		"modifier_detail",
+		"details",
+		"creer",
+		"supprimer"),
 	"base" => array(
 		"afficher",
 		"raz",

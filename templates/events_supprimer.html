@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block title %}Evénement supprimé{% endblock %}
+
+{% block content %}
+
+<h3>Evénement Supprimé</h3>
+
+    <div class="btn-group">
+    	<a class="btn" href="{{ queries('groupes','afficher', { 'idGroupe' : id }) }}">Ok</a>
+    </div>
+
+
+{% endblock %}

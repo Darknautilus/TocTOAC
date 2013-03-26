@@ -5,6 +5,7 @@ $idGroup = $_GET['idGroupe'];
 $bdd = new BDD();
 
 $error = array();
+$successes = array();
 
 // Si l'utilisateur est connecté on affiche la page de modification des informations du groupe
 if(isLogged()) {
@@ -22,12 +23,18 @@ if(isLogged()) {
 		
 	
 		if(isset($_POST["nomGroupe"]) && !empty($_POST["nomGroupe"]))
+		{
 			$values["grpName"] = $_POST["nomGroupe"];
+			$successes[] = "Nom ok";
+		}
 		else
 			$error[] = "Vous devez entrer un nom de groupe";
 	
 		if(isset($_POST["description"]) && !empty($_POST["description"]))
+		{
 			$values["description"] = $_POST["description"];
+			$successes[] = "Description ok";
+		}
 		else
 			$error[] = "Vous devez entrer une description";
 	
@@ -68,7 +75,7 @@ if(isLogged()) {
 	
 	$bdd->close();
 
-	echo $twig->render("groupe_modifier.html", array("infosGrp" => $groupe[0]));
+	echo $twig->render("groupe_modifier.html", array("infosGrp" => $groupe[0], "errors" => $error, "success" => $successes));
 }
 else {
 	echo $twig->render("index_show.html", array());
