@@ -20,6 +20,14 @@ if(isset($_GET["membid"])) {
     	$error[] = $bdd->getLastError();
     
     //Requête permettant de récupérer les évènents du membre
+<<<<<<< HEAD
+    $bdd2 = new BDD();
+    $membevents = $bdd2->select("select p.event, p.member, e.eventid, e.eventname, e.grp, e.date, e.time, g.grpname, m.membid, m.membfirstname, m.memblastname
+    							from participate as p, events as e, groups as g, members as m
+    							where p.event = e.eventid
+    							and e.grp = g.grpid
+    							and p.member = m.membid;");
+=======
     $membevents = $bdd->select("select p.event, p.member, e.eventid, e.eventname, e.grp, e.date, e.time, g.grpname 
     							from Participate as p, Events as e, Groups as g
     							where p.event = e.eventid
@@ -28,6 +36,7 @@ if(isset($_GET["membid"])) {
     
     if(!$membevents)
       $membevents = array();
+>>>>>>> 2504556db620577b538b27aa3a8b18a101619af7
     
   }
   $bdd->close();
