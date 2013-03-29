@@ -17,7 +17,7 @@ $mem = $bdd->select("SELECT m.membid, m.membfirstname, m.memblastname
 						AND o.grp = g.grpid
 						AND o.member = m.membid");
 
-if( !$mem )
+if(!$mem)
 {
 	$error = $bdd->getLastError();
 	$nbMemb=0;
@@ -34,4 +34,4 @@ $event = $bdd->select("Select e.eventid, e.eventname, e.date, e.time,  m.membfir
 						Where grp= $id
 						And e.creator = m.membid;");
 
-echo $twig->render("groupes_details.html", array("groupe" => $groupe,  "membres" => $mem, "nbMembres" => $nbMemb  , "events" => $event));
+echo $twig->render("groupes_details.html", array("groupe" => $groupe[0],  "membres" => $mem, "nbMembres" => $nbMemb  , "events" => $event));

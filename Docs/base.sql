@@ -187,7 +187,7 @@ INSERT INTO Members VALUES (3, 'pandre.lemoine@gmail.com', 'Pierre-André', 'Lem
 INSERT INTO Members VALUES (4, 'sebastien.navech@hotmail.fr', 'Sébastien', 'Navech', '6f8569c6fa999984760abeb38583a23e61068c2ce2569015aa2039830202956e468784f91ffdd21b8e2916218988612c7d976e673c71640c93c39546c4a82626', FALSE);
 INSERT INTO Members VALUES (5, 'v.iungmann@gmail.fr', 'Victor', 'Iungmann','a0f865f28b41d7dc529fbf4f2f56b0d93001b50481e5f8fb78a850086fa1841a6298826810d700317500c703756a2fe3a91f9423f880e855f270af9a3dbe582a', FALSE);
 INSERT INTO Members VALUES (6, 'thomas.bille625@gmail.com', 'Thomas', 'Bille','6efc38d3d5661489de81f2cb5362286cb5eeb693c53b643713f97c1adbc04fa97e6df4628465a313c52ff9d8c396ac883e120c7b9ac9cf3ac4fda01173144957', FALSE);
-
+INSERT INTO Members VALUES (7, 'aure_bertron@hotmail.com', 'Test', 'Bot', '8db327797ee96e293ee41640b1fdfbf681a500f64d9b3374affdf11db493b74352047ee7244241d5460c72d96f71e6e8aa2de914bea1e0392a896c7a5c23c44f', FALSE);
 
 
 INSERT INTO Grants VALUES (1, 'membre');

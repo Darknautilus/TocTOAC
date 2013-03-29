@@ -71,25 +71,52 @@
 				);
 	}
 	
-	function isMb($_grpid) {
+	function isMb($_grpid, $_membid = null) {
 		$isMb = false;
-		
-		$groupes = $GLOBALS["grpMb"];
-		
-		foreach($groupes as $grpid) {
-			if($grpid == $_grpid)
-				$isMb = true;
+		if($_membid == null) {
+  		$groupes = $GLOBALS["grpMb"];
+  		foreach($groupes as $grpid) {
+  			if($grpid == $_grpid)
+  				$isMb = true;
+  		}
+		}
+		else {
+		  $bdd = new BDD();
+		  if($bdd->exists("Members","membid",$_membid)) {
+		    $groupes = $bdd->select("select grp from Own where member = ".$_membid.";");
+		    if($groupes) {
+		      foreach($groupes as $groupe) {
+		        if($groupe["grp"] == $_grpid)
+		          $isMb = true;
+		      }
+		    }
+		  }
+		  $bdd->close();
 		}
 		return $isMb;
 	}
-	function isMbPlus($_grpid) {
+	
+	function isMbPlus($_grpid, $_membid = null) {
 		$isMbPlus = false;
-		
-		$groupes = $GLOBALS["grpMbPlus"];
-		
-		foreach($groupes as $grpid) {
-			if($grpid == $_grpid)
-				$isMbPlus = true;
+		if($_membid == null) {
+  		$groupes = $GLOBALS["grpMbPlus"];
+  		foreach($groupes as $grpid) {
+  			if($grpid == $_grpid)
+  				$isMbPlus = true;
+  		}
+		}
+		else {
+		  $bdd = new BDD();
+		  if($bdd->exists("Members","membid",$_membid)) {
+		    $groupes = $bdd->select("select o.grp from Own o,Grants g where member = ".$_membid." and g.grantlabel = 'membreplus' and o.grnt = g.grantid;");
+		    if($groupes) {
+		      foreach($groupes as $groupe) {
+		        if($groupe["grp"] == $_grpid)
+		          $isMbPlus = true;
+		      }
+		    }
+		  }
+		  $bdd->close();
 		}
 		return $isMbPlus;
 	}
