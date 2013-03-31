@@ -158,6 +158,17 @@
 		return $isMbPlus;
 	}
 	
+	function getMbPlus($_grp) {
+	  $mbplus = array();
+	  $bdd = new BDD();
+	  if($bdd->exists("Groups", "grpid", $_grp)) {
+	    $mbplus = $bdd->select("select member from Own where grp = ".$_grp." and grnt = 2;");
+	    if(!$mbplus)
+	      $mbplus = array();
+	  }
+	  return $mbplus;
+	}
+	
 	function modal( $id, $titre, $question, $rep, $action){
 		return "
 	<div class=\"modal hide fade\" id=\"$id\">

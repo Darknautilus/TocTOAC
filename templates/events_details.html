@@ -11,10 +11,12 @@
 {% else %}
 
 <div class="row">
+{% if isLogged() %}
 {% if participate(event.eventid) %}
   <a href="{{ queries('events','quitter',{'idevent':event.eventid}) }}"><span class="badge badge-important">Ne plus participer</span></a>
 {% else %}
   <a href="{{ queries('events','participer',{'idevent':event.eventid}) }}"><span class="badge badge-success">Participer</span></a>
+{% endif %}
 {% endif %}
 <h3 class="page-header">{{ event.eventname }} <small>organisé par <a class="unstyled" href="{{ queries('membres','details',{'membid':event.creator}) }}">{{ event.membfirstname }} {{ event.memblastname }}</a>{% if event.grp is not empty %} dans le groupe <a class="unstyled" href="{{ queries('groupes','details',{'idGroupe':event.grp}) }}">{{ event.grpname }}</a>{% endif %}.</small></h3>
 

@@ -9,6 +9,13 @@
 	  {% if isLogged() and isMbPlus(groupe.grpid) %}<a class="btn btn-small" href="{{ queries('groupes','modifier',{'idGroupe': groupe.grpid}) }}"><i class=" icon-wrench"></i> Modifier</a>{% endif %}
 	</div>
 	<div>
+	{% if isLogged() %}
+	 {% if isMb(groupe.grpid) %}
+     <a href="{{ queries('groupes','quitter',{'grpid':groupe.grpid}) }}"><span class="badge badge-important">Quitter</span></a>
+   {% else %}
+     <a href="{{ queries('groupes','rejoindre',{'idGroupe':groupe.grpid}) }}"><span class="badge badge-success">Rejoindre</span></a>
+   {% endif %}
+  {% endif %}
 	 <h3 class="page-header">{{ groupe.grpname }}</h3>
 	</div>
 </div>

@@ -49,7 +49,8 @@ $MODULES = array(
 		"rejoindre",
 		"mesgroupes",
 		"modifier",
-		"inviter_membre"
+		"inviter_membre",
+	  "quitter"
 		),
 	"test" => array(
 		"home",
