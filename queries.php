@@ -50,7 +50,8 @@ $MODULES = array(
 		"mesgroupes",
 		"modifier",
 		"inviter_membre",
-	  "quitter"
+	  "quitter",
+	  "donner_droits_membre"
 		),
 	"test" => array(
 		"home",

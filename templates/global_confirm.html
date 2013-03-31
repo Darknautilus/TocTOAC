@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}Confirmation{% endblock %}
+
+{% block content %}
+
+<div class="row">
+  <div class="span5 offset3 alert alert-block alert-info">
+    <h3>{{ titre }}</h3>
+    <div>
+      <button class="btn btn-block btn-primary" onclick="history.back()">{{ reponseN }}</button>
+      <a class="btn btn-block" href="{{ urlP }}">{{ reponseP }}</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
