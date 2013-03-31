@@ -24,4 +24,4 @@ if( !$mem )
 $nbMemb = count($mem);
 
 
-echo $twig->render("groupes_afficher_membre.html", array("groupe" => $groupe,  "membres" => $mem, "nbMembres" => $nbMemb));
+echo $twig->render("groupes_afficher_membre.html", array("groupe" => $groupe[0],  "membres" => $mem, "nbMembres" => $nbMemb));

@@ -1,10 +1,10 @@
 {% extends 'layout.html' %}
 
-{% block title %}Membre supprimé{% endblock %}
+{% block title %}Membres de {{ groupe.grpname }}{% endblock %}
 
 {% block content %}
 
-<h3 class="page-header">Membres du groupe {{ groupe[0].grpname }}</h3>
+<h3 class="page-header">Membres du groupe {{ groupe.grpname }}</h3>
 
 <div class="span3">
 <table class="table table-striped table-hover table-bordered">
@@ -26,11 +26,15 @@
 						<div class="btn-group">
 			    				<button class="btn"><i class="icon-user icon-white"></i></button>
 			    				{% if membre.membid != loggedMember().id %}
-			    				<button class="btn" href="#grant_confirm" data-toggle="modal"><i class="icon-plus icon-white"></i></button>
-								{% import 'modal.html' as showModal %}
-								{{ showModal.modal('grant_confirm', 'Accorder droits au membre?', 'Voulez vous vraiment donner les droits à ce membre?', 'Oui', queries('groupes', 'donner_droits_membre', { 'id' : membre.membid, 'idG' : groupe[0].grpid}), 'Non') }}
-			    				<button class="btn" href="#delete_confirm" data-toggle="modal"><i class="icon-remove icon-white"></i></button>
-			    				{{ showModal.modal('delete_confirm', 'Supprimer membre ?', 'Voulez vous vraiment supprimer ce membre?', 'Oui', queries('groupes','supprimer_membre', { 'id' : membre.membid , 'idG' : groupe[0].grpid}), "Non") }}
+			    				 {% if isMbPlus(groupe.grpid) %}
+			    				   {% if not isMbPlus(groupe.grpid, membre.membid) %}
+			    				     <button class="btn" href="#grant_confirm" data-toggle="modal"><i class="icon-plus icon-white"></i></button>
+								        {% import 'modal.html' as showModal %}
+								        {{ showModal.modal('grant_confirm', 'Accorder droits au membre?', 'Voulez vous vraiment donner les droits à ce membre?', 'Oui', queries('groupes', 'donner_droits_membre', { 'id' : membre.membid, 'idG' : groupe[0].grpid}), 'Non') }}
+			    				   {% endif %}
+			    				   <button class="btn" href="#delete_confirm" data-toggle="modal"><i class="icon-remove icon-white"></i></button>
+			    				   {{ showModal.modal('delete_confirm', 'Supprimer membre ?', 'Voulez vous vraiment supprimer ce membre?', 'Oui', queries('groupes','supprimer_membre', { 'id' : membre.membid , 'idG' : groupe[0].grpid}), "Non") }}
+			    				 {% endif %}
 			    				{% endif %}
 			    		</div>
 		    		</div>
