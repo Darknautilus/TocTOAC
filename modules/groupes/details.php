@@ -1,10 +1,11 @@
 <?php
 
+$bdd= new BDD();
+$errors = array();
+
+if(isset($_GET['idGroupe']) && $bdd->exists("Groups", "grpid", $_GET['idGroupe'])) {
+
 $id= $_GET['idGroupe'];
-
-$bdd=new BDD();
-
-//print_r($_SESSION);
 
 // Informations groupe
 $groupe = $bdd->select("Select grpid, grpname, visibility, description from Groups
@@ -17,21 +18,43 @@ $mem = $bdd->select("SELECT m.membid, m.membfirstname, m.memblastname
 						AND o.grp = g.grpid
 						AND o.member = m.membid");
 
-if(!$mem)
-{
+// Nombre de membres
+if(!$mem) {
 	$error = $bdd->getLastError();
 	$nbMemb=0;
 }
-else{
-// Nombre de membres
-$nbMemb = count($mem);
+else {
+  $nbMemb = count($mem);
+}
+
+// Construction du tableau des events classés par catégorie
+// Récupération des catégories
+$categories = $bdd->select("select catid, catlabel from Categories where grp = ".$id.";");
+if(!$categories) {
+  $errors[] = "Erreur récupération catégories";
+  header("Location:".queries("","",array()));
+}
+else {
+  // Récupération des events pour chaque catégorie
+  foreach($categories as &$category) {
+    $events = $bdd->select("select e.eventid, e.eventname, e.date, e.time,  m.membfirstname, m.memblastname
+						from Events as e, Members as m
+						where e.grp= ".$id."
+						and e.creator = m.membid
+            and e.category = ".$category["catid"].";");
+    $category["events"] = $events;
+  }
+  // Récupération des events sans catégorie
+  $eventsSC = $bdd->select("select e.eventid, e.eventname, e.date, e.time,  m.membfirstname, m.memblastname
+						from Events as e, Members as m
+						where e.grp= ".$id." and e.creator = m.membid and e.category is null");
+  // Et ajout dans le tableau
+  $categories[] = array("catid" => "all", "catlabel" => "Sans catégorie", "events" => $eventsSC);
+  echo $twig->render("groupes_details.html", array("groupe" => $groupe[0], "nbMembres" => $nbMemb  , "categories" => $categories));
 }
 
 
-// On récupère tous les events liés au groupe
-$event = $bdd->select("Select e.eventid, e.eventname, e.date, e.time,  m.membfirstname, m.memblastname
-						From Events as e, Members as m
-						Where grp= $id
-						And e.creator = m.membid;");
-
-echo $twig->render("groupes_details.html", array("groupe" => $groupe[0],  "membres" => $mem, "nbMembres" => $nbMemb  , "events" => $event));
+}
+else {
+  header("Location:".queries("","",array()));
+}

@@ -5,8 +5,13 @@
 {% block content %}
 
 <div class="row">
-	<div class="pull-right">
-	  {% if isLogged() and isMbPlus(groupe.grpid) %}<a class="btn btn-small" href="{{ queries('groupes','modifier',{'idGroupe': groupe.grpid}) }}"><i class=" icon-wrench"></i> Modifier</a>{% endif %}
+	<div class="btn-group pull-right">
+	  {% if isLogged() and isMb(groupe.grpid) %}
+	   {% if isMbPlus(groupe.grpid) %}
+	     <a class="btn btn-small" href="{{ queries('groupes','modifier',{'idGroupe': groupe.grpid}) }}"><i class=" icon-wrench"></i> Modifier</a>
+	   {% endif %}
+	   <a class="btn btn-small" href="{{ queries('events','creer',{'grpid':groupe.grpid}) }}"><i class="icon-bookmark"></i> Créer évenement</a>
+	  {% endif %}
 	</div>
 	<div>
 	{% if isLogged() %}
@@ -19,82 +24,41 @@
 	 <h3 class="page-header">{{ groupe.grpname }}</h3>
 	</div>
 </div>
+
 <div class="row">
-<div class="span9">
-
-<p class="well "align="justify"> 
-{{ groupe.description }}
-</p>
-
-<br/>
-<h4>Evènements créés</h4>
-<table class="table table-striped table-hover table-bordered">
-	<thead>
-		<tr>
-			<th>Nom</th>	
-			<th>Organisateur</th>
-			<th>Date</th>
-			<th>Heure</th>
-			{% if isLogged() and isMb(groupe.grpid) %}
-			<th></th>
-			{% endif %}
-		</tr>
-	<tbody>
-	{% for event in events %}
-		<tr>
-			{% set tab = {'idEvent':event.eventid} %}
-			<td>{{ event.eventname }}</td>
-			<td>{{ event.membfirstname }} {{ event.memblastname }}</td>
-			<td>{{ sqlDatetimeToFrench(event.date,'DATE') }}</td>
-			<td>{{ event.time }}</td>
-			{% if isLogged() and isMb(groupe.grpid) %}
-			<td>
-			    <div class="btn-group">
-			        <a class="btn" href="{{ queries('events','details',{'eventid':event.eventid}) }}"><i class="icon-plus"></i></a>
-    				  {% if not participate(event.eventid) %}
-    				  <a class="btn" href="{{ queries('events','participer',{'idevent':event.eventid}) }}">Participer</a>
-    				  {% elseif isCreator(event.eventid) %}
-      				<a class="btn" href = "{{ queries('events','modifier_detail',{'idevent': event.eventid}) }}">Modifier l'evenement</a>
-      			  {% endif %}
-    			</div>
-		  </td>
-    	{% endif %}
-		</tr>
-	{% endfor %}
-	</tbody>
-</table>
-  <div >
-	 {% if isLogged() %}
-	   {% if isMb(groupe.grpid) %}
-	     {% if isMbPlus(groupe.grpid) %}
-       {% set tabCat = {"nom" : groupe.grpname, 'idGroupe':groupe.grpid } %}
-	     <a class="btn" href="{{ queries('groupes','creerCat', tabCat) }}">Creer catégorie</a>
-	     <a class="btn" href="{{ queries('groupes','supprimerCat', tabCat) }}">Supprimer catégorie</a>
-	     {% endif %}
-	     <a class="btn" href="{{ queries('events','creer',{'grpid':groupe.grpid}) }}">Créer évenement</a>
-	   {% else %}
-	   <a href= "{{ queries('groupes', 'rejoindre', {'idGroupe':groupe.grpid}) }}" class="btn">Rejoindre ce groupe</a>
-     {% endif %}
-   {% endif %}
-  </div>
+	<p class="well" align="center"> 
+	{{ groupe.description }}
+	</p>
 </div>
 
-<div class="span3">
+<div class="row">
 
-<table class="table table-striped table-hover table-bordered">
-	<thead>
-	<tr>
-		<th>Membres  {% if isLogged() and isMbPlus(groupe.grpid) %}<a class="btn pull-right" href = "{{ queries('groupes','inviter_membre',{'grpid': groupe.grpid}) }}"><i class="icon-globe"></i> Inviter</a>{% endif %}</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>
-    		<a class="btn btn-block" href = "{{ queries('groupes','afficher_membre',{'idGroupe': groupe.grpid}) }}">Afficher tous les membres ({{ nbMembres }})</a>
-		  </td>
-		</tr>
-	</tbody>
-</table>
+<div class="span5">
+	<h4>Evénements du groupe par catégorie</h4>
+	<div class="accordion" id="accordion2">
+	  {% for category in categories %}
+	  <div class="accordion-group">
+	    <div class="accordion-heading">
+	      <a class="accordion-toggle btn" data-toggle="collapse" data-target="#{{ category.catid }}">{{ category.catlabel }}</a>
+	    </div>
+	    <div id="{{ category.catid }}" class="accordion-body collapse">
+	      <table class="table table-bordered table-striped table-hover">
+	        {% for event in category.events %}
+	        <tr><td>
+	          <a class="btn pull-right" href="{{ queries('events','details',{'eventid':event.eventid}) }}" title="Détails"><i class="icon-info-sign"></i></a>
+	          <strong>{{ event.eventname }}</strong> ({{ sqlDatetimeToFrench(event.date,'DATE') }} à {{ sqlDatetimeToFrench(event.time,'TIME') }})
+	        </td></tr>
+	        {% endfor %}
+	      </table>
+	    </div>
+	  </div>
+	  {% endfor %}
+	</div>
 </div>
+<div class="span3 offset4">
+  <h4>Qui est dans ce groupe ?</h4>
+  <a class="btn btn-large btn-block" href="{{ queries('groupes','afficher_membre',{'idGroupe':groupe.grpid}) }}"><i class="icon-user"></i> {{ nbMembres }} membres</a>
+</div>
+
 </div>
 {% endblock %}

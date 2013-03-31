@@ -221,7 +221,7 @@
   	}
 	
 	  if($ret != "DATE")
-	    $time = $hour.$timeformat.$minute.$timeformat.$second;
+	    $time = $hour.$timeformat.$minute;
 	
 	  if($ret == "ALL")
 	    return array($date,$time);
