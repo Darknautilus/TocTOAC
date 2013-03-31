@@ -4,41 +4,55 @@
 
 {% block content %}
 
-{% if errors is not empty %}
-<h3>Erreur</h3>
-<p>L'événement spécifié n'existe pas</p>
-
-{% else %}
-
+<div class="row">
+  <div>
+    <a class="btn" href="{{ queries('groupes','details',{'idGroupe':event.grp}) }}"><i class="icon-arrow-left"></i></a><span> retour vers {{ event.grpname }}</span>
+  </div>
+</div>
+<hr/>
 <div class="row">
 {% if isLogged() %}
-{% if participate(event.eventid) %}
-  <a href="{{ queries('events','quitter',{'idevent':event.eventid}) }}"><span class="badge badge-important">Ne plus participer</span></a>
-{% else %}
-  <a href="{{ queries('events','participer',{'idevent':event.eventid}) }}"><span class="badge badge-success">Participer</span></a>
+  {% if isCreator(event.eventid) %}
+    <div class="btn-group pull-right">
+      <a class="btn btn-small" href="{{ queries('events','modifier_detail',{'idevent':event.eventid}) }}">Modifier</a>
+    </div>
+  {% endif %}
+  <div>
+    {% if participate(event.eventid) %}
+    <a href="{{ queries('events','quitter',{'idevent':event.eventid}) }}"><span class="badge badge-important">Ne plus participer</span></a>
+    {% else %}
+    <a href="{{ queries('events','participer',{'idevent':event.eventid}) }}"><span class="badge badge-success">Participer</span></a>
+    {% endif %}
+  </div>
 {% endif %}
-{% endif %}
-<h3 class="page-header">{{ event.eventname }} <small>organisé par <a class="unstyled" href="{{ queries('membres','details',{'membid':event.creator}) }}">{{ event.membfirstname }} {{ event.memblastname }}</a>{% if event.grp is not empty %} dans le groupe <a class="unstyled" href="{{ queries('groupes','details',{'idGroupe':event.grp}) }}">{{ event.grpname }}</a>{% endif %}.</small></h3>
 
-<div class="span8">
-  <div class="well lead text-center">Le {{ sqlDatetimeToFrench(event.date, 'DATE', 'MO_LETTERS') }} à {{ sqlDatetimeToFrench(event.time, 'TIME') }}</div>
+<h3 class="page-header">{{ event.eventname }}<br/>
+  <small>organisé par <a class="unstyled" href="{{ queries('membres','details',{'membid':event.creator}) }}">{{ event.membfirstname }} {{ event.memblastname }}</a>
+  {% if event.grp is not empty %} dans le groupe <a class="unstyled" href="{{ queries('groupes','details',{'idGroupe':event.grp}) }}">{{ event.grpname }}</a>{% endif %}.<br/>
+  {% if event.category is not empty %}<em>Catégorie : {{ event.catlabel }}</em>{% endif %}
+  </small>
+</h3>
+</div>
+<div class="row">
+<div class="span5 offset3">
+  <div class="well lead text-center">
+    Le {{ sqlDatetimeToFrench(event.date, 'DATE', 'MO_LETTERS') }} à {{ sqlDatetimeToFrench(event.time, 'TIME') }}
+  </div>
+
+<h4>Participants</h4>
+{% if members is not empty %}
 <table class="table table-striped table-hover table-bordered">
-	<tr>
-		<th>Groupe</th>
-		<th>Createur</th>
-		<th>Catégorie</th>
-		<th>Date</th>
-	</tr>
-	<tr>
-		<td>{{ event.grp }}</td>
-		<td>{{ event.membfirstname }} {{ event.memblastname }}</td>
-		<td>{{ event.category }}</td>
-		<td>{{ sqlDatetimeToFrench(event.date, 'DATE') }}</td>
-	</tr>
+{% for member in members %}
+	<tr><td>
+	 {{ member.membfirstname }} {{ member.memblastname }}
+	</td></tr>
+{% endfor %}
 </table>
-
-
-</div>
-</div>
+{% else %}
+  <em>Il n'y a aucun participant pour le moment</em>
 {% endif %}
+
+
+</div>
+</div>
 {% endblock %}

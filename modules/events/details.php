@@ -17,6 +17,12 @@ if(!$event)
 	$errors[] = $bdd->getLastError();
 else
   $event = $event[0];
+
+// S'il y a une catégorie, on ajoute son label
+if($event["category"]) {
+  $cat = $bdd->select("select catlabel from Categories where catid = ".$event["category"].";");
+  $event["catlabel"] = $cat[0]["catlabel"];
+}
  
 $bdd->close();
 
