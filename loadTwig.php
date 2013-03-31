@@ -202,10 +202,12 @@
 	  if(!empty($time))
 	    list($hour,$minute,$second) = explode(":", $time);
 	
-	  if($dateformat == "MO_LETTERS")
-	    $date = $day." ".$months[(int)$month]." ".$year;
-	  else
-	    $date = $day.$dateformat.$month.$dateformat.$year;
+	  if($ret != "TIME") {
+  	  if($dateformat == "MO_LETTERS")
+  	    $date = $day." ".$months[(int)$month]." ".$year;
+  	  else
+  	    $date = $day.$dateformat.$month.$dateformat.$year;
+  	}
 	
 	  if($ret != "DATE")
 	    $time = $hour.$timeformat.$minute.$timeformat.$second;

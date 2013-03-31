@@ -11,7 +11,8 @@ else {
   header("Location:".queries("","",array()));
 }
 
-$event = $bdd->select("SELECT e.eventid, e.eventname, e.grp, e.creator, e.category, e.date, e.time, e.creator, m.membfirstname, m.memblastname FROM Events e, Members m where e.creator=m.membid AND e.eventid=".$id.";");
+$event = $bdd->select("SELECT e.eventid, e.eventname, e.grp, g.grpname, e.creator, e.category, e.date, e.time, e.creator, m.membfirstname, m.memblastname FROM Events e, Members m, Groups g  where g.grpid = e.grp AND e.creator=m.membid AND e.eventid=".$id.";");
+$members = $bdd->select("select membid,membfirstname, memblastname from Members m, Participate p where m.membid = p.member and p.event = ".$id.";");
 if(!$event)
 	$errors[] = $bdd->getLastError();
 else
@@ -19,4 +20,4 @@ else
  
 $bdd->close();
 
-echo $twig->render("events_details.html", array("event" => $event, "errors" => $errors));
+echo $twig->render("events_details.html", array("event" => $event, "members" => $members, "errors" => $errors));
