@@ -4,39 +4,32 @@
 
 {% block content %}
 
+<button class="btn" onclick="history.back()"><i class="icon-arrow-left"></i></button><span> retour vers {{ groupe.grpname }}</span>
+
 <h3 class="page-header">Membres du groupe {{ groupe.grpname }}</h3>
 
 <div class="span5 offset3">
-<table class="table table-striped table-hover table-bordered">
-	<thead>
-	<tr>
-		<th>Membres</th>
-		</tr>
-	</thead>
-	<tbody>
-	{% for membre in membres %}
-		<tr>
-			<td class="row">
-			 <div>
-			 {{ membre.membfirstname }} {{ membre.memblastname }}
-			 </div>
-			 <div>
-					<div class="btn-group">
-			     <a class="btn" href="{{ queries('membres','details',{'membid':membre.membid}) }}"><i class="icon-user"></i></a>
-			       {% if membre.membid != loggedMember().id %}
-			    	  {% if isMbPlus(groupe.grpid) %}
-			    		 {% if not isMbPlus(groupe.grpid, membre.membid) %}
-			    		 <a class="btn" href="{{ queries('groupes','donner_droits_membre',{'id':membre.membid,'idG':groupe.grpid}) }}"><i class="icon-plus"></i></a>
-			    		 {% endif %}
-			    		 <a class="btn" href="{{ queries('groupes','supprimer_membre',{'id':membre.membid,'idG':groupe.grpid}) }}"><i class="icon-remove"></i></a>
-			    		{% endif %}
+<table class="table table-bordered table-hover">
+  {% for membre in membres %}
+  <tr><td>
+    <div class="pull-left">
+      {% if isMbPlus(groupe.grpid, membre.membid) %}<span class="badge badge-success" title="Ce membre a des droits supplémentaires sur ce groupe"><i class="icon-plus"></i></span>{% endif %} {{ membre.membfirstname }} {{ membre.memblastname }}
+    </div>
+    <div class="pull-right">
+      <div class="btn-group">
+        {% if membre.membid != loggedMember().id %}
+          {% if isMbPlus(groupe.grpid) %}
+            {% if not isMbPlus(groupe.grpid, membre.membid) %}
+			    	  <a class="btn" href="{{ queries('groupes','donner_droits_membre',{'id':membre.membid,'idG':groupe.grpid}) }}" title="Donner droits Membre+"><i class="icon-plus"></i></a>
 			    	{% endif %}
-		    	</div>
-	    	</div>
-	    </td>
-		</tr>
-	{% endfor %}
-	</tbody>
+			    	  <a class="btn" href="{{ queries('groupes','supprimer_membre',{'id':membre.membid,'idG':groupe.grpid}) }}" title="Supprimer ce membre"><i class="icon-remove"></i></a>
+			    	{% endif %}
+			    {% endif %}
+        <a class="btn" href="{{ queries('membres','details',{'membid':membre.membid}) }}" title="Voir le profil"><i class="icon-user"></i></a>
+      </div>
+    </div>
+	</td></tr>
+  {% endfor %}
 </table>
 </div>
 {% endblock %}
