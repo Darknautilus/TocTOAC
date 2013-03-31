@@ -6,7 +6,7 @@
 
 <div class="row">
 	<div class="pull-right">
-	  {% if isLogged() and isMbPlus(groupe.grpid) %}<a class="btn btn-small" href="{{ queries('groupes','modifier',{'idGroupe': groupe.grpid}) }}"><i class="icon-white icon-wrench"></i> Modifier</a>{% endif %}
+	  {% if isLogged() and isMbPlus(groupe.grpid) %}<a class="btn btn-small" href="{{ queries('groupes','modifier',{'idGroupe': groupe.grpid}) }}"><i class=" icon-wrench"></i> Modifier</a>{% endif %}
 	</div>
 	<div>
 	 <h3 class="page-header">{{ groupe.grpname }}</h3>
@@ -44,7 +44,7 @@
 			{% if isLogged() and isMb(groupe.grpid) %}
 			<td>
 			    <div class="btn-group">
-			        <a class="btn" href="{{ queries('events','details',{'eventid':event.eventid}) }}">+</a>
+			        <a class="btn" href="{{ queries('events','details',{'eventid':event.eventid}) }}"><i class="icon-plus"></i></a>
     				  {% if not participate(event.eventid) %}
     				  <a class="btn" href="{{ queries('events','participer',{'idevent':event.eventid}) }}">Participer</a>
     				  {% elseif isCreator(event.eventid) %}
@@ -78,7 +78,7 @@
 <table class="table table-striped table-hover table-bordered">
 	<thead>
 	<tr>
-		<th>Membres  {% if isLogged() and isMbPlus(groupe.grpid) %}<a class="btn pull-right" href = "{{ queries('groupes','inviter_membre',{'grpid': groupe.grpid}) }}"><i class="icon-group icon-white"></i> Inviter</a>{% endif %}</th>
+		<th>Membres  {% if isLogged() and isMbPlus(groupe.grpid) %}<a class="btn pull-right" href = "{{ queries('groupes','inviter_membre',{'grpid': groupe.grpid}) }}"><i class="icon-globe"></i> Inviter</a>{% endif %}</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -93,15 +93,15 @@
 				<div class="span1">
 					<div class="btn-toolbar">
 						<div class="btn-group">
-			    				<a class="btn" href="{{ queries('membres','details',{'membid':membre.membid}) }}"><i class="icon-user icon-white"></i></a>
+			    				<a class="btn" href="{{ queries('membres','details',{'membid':membre.membid}) }}"><i class="icon-user"></i></a>
 			    				{% if isMb(groupe.grpid) and membre.membid != loggedMember().id %}
 			    				 {% if isMbPlus(groupe.grpid) %}
 			    				   {% if not isMbPlus(groupe.grpid,membre.membid) %}
-			    				     <button class="btn" href="#grant_confirm" data-toggle="modal"><i class="icon-plus icon-white"></i></button>
+			    				     <button class="btn" href="#grant_confirm" data-toggle="modal"><i class="icon-plus"></i></button>
 								       {% import 'modal.html' as showModal %}
 								       {{ showModal.modal('grant_confirm', 'Accorder droits au membre?', 'Voulez vous vraiment donner les droits à ce membre?', 'Oui', queries('groupes', 'donner_droits_membre', { 'id' : membre.membid, 'idG' : groupe.grpid}), 'Non') }}
 			    				   {% endif %}
-			    				   <button class="btn" href="#delete_confirm" data-toggle="modal"><i class="icon-remove icon-white"></i></button>
+			    				   <button class="btn" href="#delete_confirm" data-toggle="modal"><i class="icon-remove"></i></button>
 			    				   {{ showModal.modal('delete_confirm', 'Supprimer membre ?', 'Voulez vous vraiment supprimer ce membre?', 'Oui', queries('groupes','supprimer_membre', { 'id' : membre.membid , 'idG' : groupe.grpid}), "Non") }}
 			    				 {% endif %}
 			    				{% endif %}
