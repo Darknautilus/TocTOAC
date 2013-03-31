@@ -29,7 +29,7 @@
 			<th>Organisateur</th>
 			<th>Date</th>
 			<th>Heure</th>
-			{% if isLogged() %}
+			{% if isLogged() and isMb(groupe.grpid) %}
 			<th></th>
 			{% endif %}
 		</tr>
@@ -41,19 +41,16 @@
 			<td>{{ event.membfirstname }} {{ event.memblastname }}</td>
 			<td>{{ sqlDatetimeToFrench(event.date,'DATE') }}</td>
 			<td>{{ event.time }}</td>
-			{% if isLogged() %}
+			{% if isLogged() and isMb(groupe.grpid) %}
 			<td>
 			    <div class="btn-group">
-    				<button class="btn">Participer</button>
-    				{% if isMb(groupe.grpid) %}
-    				<a class="btn" href = "{{ queries('events','modifier_detail',{'idevent': event.eventid}) }}">Modifier l'evenement</a>
-    			  {% endif %}
+			        <a class="btn" href="{{ queries('events','details',{'eventid':event.eventid}) }}">+</a>
+    				  {% if not participate(event.eventid) %}
+    				  <a class="btn" href="{{ queries('events','participer',{'idevent':event.eventid}) }}">Participer</a>
+    				  {% elseif isCreator(event.eventid) %}
+      				<a class="btn" href = "{{ queries('events','modifier_detail',{'idevent': event.eventid}) }}">Modifier l'evenement</a>
+      			  {% endif %}
     			</div>
-    			{% if isMbPlus(groupe.grpid) %}
-    			<div class="btn-group" onclick="self.location.href='{{ queries('events', 'supprimer', {'idGroupe':groupe.grpid, 'idEvent':event.eventid}) }}'">
-    				<button class="btn">Supprimer</button>
-    			</div>
-    			{% endif %}
 		  </td>
     	{% endif %}
 		</tr>

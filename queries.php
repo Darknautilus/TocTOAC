@@ -62,7 +62,9 @@ $MODULES = array(
 		"modifier_detail",
 		"details",
 		"creer",
-		"supprimer"),
+		"supprimer",
+	  "participer"
+	  ),
 	"base" => array(
 		"afficher",
 		"raz",

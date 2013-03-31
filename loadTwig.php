@@ -71,6 +71,42 @@
 				);
 	}
 	
+	function participate($_event, $_member = null) {
+	  $particip = false;
+	  if($_member == null) {
+	    $member = loggedMember();
+	    $member = $member["id"];
+	  }
+	  else {
+	    $member = $_member;
+	  }
+	  $bdd = new BDD();
+	  if($bdd->exists("Members", "membid", $member) && $bdd->exists("Events", "eventid", $_event)) {
+	    $part = $bdd->select("select event from Participate where event = ".$_event." and member = ".$member.";");
+	    $particip = ($part != false);
+	  }
+	  $bdd->close();
+	  return $particip;
+	}
+	
+	function isCreator($_event, $_member = null) {
+	  $creator = false;
+	  if($_member == null) {
+	    $member = loggedMember();
+	    $member = $member["id"];
+	  }
+	  else {
+	    $member = $_member;
+	  }
+	  $bdd = new BDD();
+	  if($bdd->exists("Members", "membid", $member) && $bdd->exists("Events", "eventid", $_event)) {
+	    $crea = $bdd->select("select creator from Events where eventid = ".$_event.";");
+	    $creator = ($crea[0]["creator"] == $member);
+	  }
+	  $bdd->close();
+	  return $creator;
+	}
+	
 	function isMb($_grpid, $_membid = null) {
 		$isMb = false;
 		if($_membid == null) {
@@ -206,6 +242,8 @@
 	$twig->addFunction("isAdmin", new Twig_Function_Function("isAdmin"));
 	$twig->addFunction("loggedMember", new Twig_Function_Function("loggedMember"));
 	$twig->addFunction("modal", new Twig_Function_Function("modal"));
+	$twig->addFunction("participate", new Twig_Function_Function("participate"));
+	$twig->addFunction("isCreator", new Twig_Function_Function("isCreator"));
 	$twig->addFunction("isMbPlus", new Twig_Function_Function("isMbPlus"));
 	$twig->addFunction("isMb", new Twig_Function_Function("isMb"));
 	$twig->addFunction("sqlDatetimeToFrench", new Twig_Function_Function("sqlDatetimeToFrench"));
