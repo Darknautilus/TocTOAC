@@ -17,7 +17,7 @@
     </div>
     <div class="pull-right">
       <div class="btn-group">
-        {% if membre.membid != loggedMember().id %}
+        {% if isLogged() and membre.membid != loggedMember().id %}
           {% if isMbPlus(groupe.grpid) %}
             {% if not isMbPlus(groupe.grpid, membre.membid) %}
 			    	  <a class="btn" href="{{ queries('groupes','donner_droits_membre',{'id':membre.membid,'idG':groupe.grpid}) }}" title="Donner droits Membre+"><i class="icon-plus"></i></a>
