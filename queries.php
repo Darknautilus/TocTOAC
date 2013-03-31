@@ -63,7 +63,8 @@ $MODULES = array(
 		"details",
 		"creer",
 		"supprimer",
-	  "participer"
+	  "participer",
+	  "quitter"
 	  ),
 	"base" => array(
 		"afficher",

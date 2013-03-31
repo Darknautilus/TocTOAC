@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}{{ event.eventname }}{% endblock %}
 
 {% block content %}
 
@@ -11,7 +11,12 @@
 {% else %}
 
 <div class="row">
-<h3 class="page-header">Detail de l'événement</h3>
+{% if participate(event.eventid) %}
+  <a href="{{ queries('events','quitter',{'idevent':event.eventid}) }}"><span class="badge badge-important">Ne plus participer</span></a>
+{% else %}
+  <a href="{{ queries('events','participer',{'idevent':event.eventid}) }}"><span class="badge badge-success">Participer</span></a>
+{% endif %}
+<h3 class="page-header">{{ event.eventname }} <small>par <a class="unstyled" href="{{ queries('membres','details',{'membid':event.creator}) }}">{{ event.membfirstname }} {{ event.memblastname }}</a></small></h3>
 
 <div class="span8">
 <table class="table table-striped table-hover table-bordered">

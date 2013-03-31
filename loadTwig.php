@@ -83,7 +83,8 @@
 	  $bdd = new BDD();
 	  if($bdd->exists("Members", "membid", $member) && $bdd->exists("Events", "eventid", $_event)) {
 	    $part = $bdd->select("select event from Participate where event = ".$_event." and member = ".$member.";");
-	    $particip = ($part != false);
+	    if($part)
+	      $particip = true;
 	  }
 	  $bdd->close();
 	  return $particip;

@@ -3,6 +3,11 @@ body
 
 }
 
+a.unstyled {
+	color:inherit;
+	text-decoration:none;
+}
+
 header
 {
 	

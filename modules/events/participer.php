@@ -4,7 +4,7 @@ $bdd = new BDD();
 $errors = array();
 
 // Vérification de l'existence de l'event
-if(isLogged() && $bdd->exists("Events", "eventid", $_GET["idevent"])) {
+if(isset($_GET["idevent"]) && isLogged() && $bdd->exists("Events", "eventid", $_GET["idevent"])) {
   $event = $bdd->select("select eventid,grp from Events where eventid = ".$_GET["idevent"].";");
   $event = $event[0];
   
