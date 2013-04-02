@@ -4,61 +4,52 @@
 
 {% block content %}
 
-<h3 class="header-page">Profil de {{ membre.membfirstname }} {{ membre.memblastname }}</h3>
+<h3 class="page-header">{{ membre.membfirstname }} {{ membre.memblastname }}</h3>
 
 <!-- Affichage des évènements auquel ce membre a participé -->
-<h4>Evenements</h4>
 <div class="row">
-<div class="span8">
-  {% if membevents is not empty %}
-	<table class="table table-striped table-hover table-bordered">
-		<thead>
-			<tr>
-				<th>Nom de l'évènement</th>
-				<th>Groupe</th>
-				<th>Date</th>
-				<th>Heure</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for membevent in membevents %}
-			<tr>
-				<td>{{ membevent.eventname }}</td>
-				<td>{{ membevent.grpname }}</td>
-				<td>{{ membevent.date }}</td>
-				<td>{{ membevent.time }}</td>
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-	{% else %}
-	<p>Ce membre ne participe à aucun événement</p>
-	{% endif %}
+	<div class="span5">
+    <h4>Evenements</h4>
+	  {% if membevents is not empty %}
+		<table class="table table-striped table-hover table-bordered">
+				{% for membevent in membevents %}
+				<tr><td>
+				  <a class="btn pull-right" href="{{ queries('events','details',{'eventid':membevent.eventid}) }}" title="Détails"><i class="icon-info-sign"></i></a>
+	        <strong>{{ membevent.eventname }}</strong> ({{ sqlDatetimeToFrench(membevent.date,'DATE','MO_LETTERS') }} à {{ sqlDatetimeToFrench(membevent.time,'TIME') }})<br/>
+	        {% if membevent.grpid is not empty %}
+	         <small><em>groupe <a class="unstyled" href="{{ queries('groupes','details',{'idGroupe':membevent.grpid}) }}">{{ membevent.grpname }}</a></em></small>
+	        {% endif %}
+				</td></tr>
+				{% endfor %}
+		</table>
+		{% else %}
+		<p>Ce membre ne participe à aucun événement</p>
+		{% endif %}
 	</div>
+	{% if membre.membid == LOGGED_MEMBER.id %}
+	<div class="span4 offset3">
+		 <div class="alert alert-block">
+		 	<ul class="unstyled">
+		 		<li>
+			    <h4>Se désinscrire</h4>
+			    <p>Les actions effectuées ici peuvent avoir des conséquences irréparables pour votre compte</p>
+			    <a href="{{ queries('membres','desinscription',{}) }}" class="btn btn-block btn-danger">Supprimer mon compte</a>
+		  		</li>
+		  	</ul>
+		 </div>	
+		 <div class="alert alert-block">
+		   <ul class="unstyled">
+		   	<li>
+			    <h4>Modifier mes informations</h4>
+			    <p>Une modification à effectuer sur vos informations personnelles ? C'est par ici !</p>
+			    <a href="{{ queries('membres','modifier_details',{'membid': membre.membid}) }}" class="btn btn-block">Modifier mes informations</a>
+		   	</li>
+		   </ul>
+		 </div>
+  </div>
+	{% endif %}
 </div>
 
-{% if membre.membid == LOGGED_MEMBER.id %}
-<div class="row">
-  <div class="span4 alert alert-block">
-  	<ul class="unstyled">
-  		<li>
-		    <h4>Se désinscrire</h4>
-		    <p>Les actions effectuées ici peuvent avoir des conséquences irréparables pour votre compte</p>
-		    <a href="{{ queries('membres','desinscription',{}) }}" class="btn btn-block btn-danger">Supprimer mon compte</a>
-   		</li>
-   	</ul>
-  </div>	
-  <div class="span4 alert alert-block">
-    <ul class="unstyled">
-    	<li>
-		    <h4>Modifier mes informations</h4>
-		    <p>Une modification à effectuer sur vos informations personnelles ? C'est par ici !</p>
-		    <a href="{{ queries('membres','modifier_details',{'membid': membre.membid}) }}" class="btn btn-block">Modifier mes informations</a>
-    	</li>
-    </ul>
-  </div>
-</div>
-{% endif %}
 
 
 

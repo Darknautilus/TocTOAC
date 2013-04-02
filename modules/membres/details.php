@@ -1,42 +1,32 @@
 <?php
 
 $errors = array();
+$bdd = new BDD();
 
-if(isset($_GET["membid"])) {
-  $bdd = new BDD();
-  $membre = $bdd->select("select membid, membfirstname, memblastname from Members where membid = ".$_GET["membid"].";");
-  if(!$membre) {
-    $errors[] = "Id inconnu";
-  }
+if(isset($_GET["membid"]) && $bdd->exists("Members","membid",$_GET["membid"])) {
+  $membid = $_GET["membid"];
+    
+  // Récupérer les autres infos du membre ici
+  $membre = $bdd->select("select membid, membmail, membfirstname, memblastname from Members
+  		where membid = $membid;");
   
-  if(empty($errors)) {
-    $membid = $membre[0]["membid"];
+  if(!$membre)
+  	$error[] = $bdd->getLastError();
+  
+  //Requête permettant de récupérer les évènents du membre
+  $membevents = $bdd->select("select e.eventid, e.eventname, e.date, e.time, g.grpid, g.grpname 
+                              from Events as e, Participate as p, Groups as g 
+                              where p.member = ".$membid." and 
+                                e.eventid = p.event and 
+                                g.grpid = e.grp 
+                              order by e.date DESC;");
+  if(!$membevents)
+    $membevents = array();
     
-    // Récupérer les autres infos du membre ici
-    $membre = $bdd->select("select membid, membmail, membfirstname, memblastname from Members
-    		where membid = $membid;");
-    
-    if(!$membre)
-    	$error[] = $bdd->getLastError();
-    
-    //Requête permettant de récupérer les évènents du membre
-    $bdd2 = new BDD();
-    $membevents = $bdd2->select("select p.event, p.member, e.eventid, e.eventname, e.grp, e.date, e.time, g.grpname, m.membid, m.membfirstname, m.memblastname
-    							from participate as p, events as e, groups as g, members as m
-    							where p.event = e.eventid
-    							and e.grp = g.grpid
-    							and p.member = m.membid;");
-    if(!$membevents)
-      $membevents = array();
-    
-  }
   $bdd->close();
+  echo $twig->render("membres_details.html", array("membre" => $membre[0], "membevents" => $membevents));
 }
 else {
-  $errors[] = "Id non spécifié";
+  $bdd->close();
+  header("Location:".queries("", "", array()));
 }
-
-if(empty($errors))
-  echo $twig->render("membres_details.html", array("membre" => $membre[0], "membevents" => $membevents));
-else
-  header("Location:".queries("membres","",array("errors" => $errors)));
