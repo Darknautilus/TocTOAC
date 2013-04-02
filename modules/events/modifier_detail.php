@@ -16,7 +16,7 @@ else
 	$success = false;
 
 //Recuperation des informations de l'evenement
-$event =  $bdd->select("SELECT eventname, date, time, grp, category from Events where eventid='".$_GET['idevent']."'");
+$event =  $bdd->select("SELECT eventid, eventname, date, time, grp, category from Events where eventid='".$_GET['idevent']."'");
 if(!$event)
 	$error[] = $bdd->getLastError();
 

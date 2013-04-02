@@ -4,6 +4,9 @@
 
 {% block content %}
 
+<div class="row">
+  <a class="btn" href="{{ queries('groupes','details',{'idGroupe':grpid}) }}"><i class="icon-arrow-left"></i></a> retour vers {{ grpname }}
+</div>
 <h3 class="page-header">Création événement</h3>
 
 {% if errors is not empty %}

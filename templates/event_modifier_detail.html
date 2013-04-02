@@ -4,6 +4,9 @@
 
 {% block content %}
 
+<div class="row">
+  <a class="btn" href="{{ queries('events','details',{'eventid':values.eventid}) }}"><i class="icon-arrow-left"></i></a> retour vers {{ infosEv.eventname }}
+</div>
 <h3 class="page-header">Modification de l'evenement</h3>
 {% if error is not empty %}
 	<div class="row">

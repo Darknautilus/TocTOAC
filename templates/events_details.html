@@ -14,7 +14,8 @@
 {% if isLogged() %}
   {% if isCreator(event.eventid) %}
     <div class="btn-group pull-right">
-      <a class="btn btn-small" href="{{ queries('events','modifier_detail',{'idevent':event.eventid}) }}">Modifier</a>
+      <a class="btn btn-small" href="{{ queries('events','modifier_detail',{'idevent':event.eventid}) }}"><i class="icon-pencil"></i> Modifier</a>
+      <a class="btn btn-small" href="{{ queries('events','supprimer',{'eventid':event.eventid}) }}"><i class="icon-remove"></i> Supprimer</a>
     </div>
   {% endif %}
   <div>

@@ -10,6 +10,9 @@ else
   $grpid = null;
 
 if($bdd->exists("Groups", "grpid", $grpid)) {
+  $group = $bdd->select("select grpid,grpname from Groups where grpid = ".$grpid.";");
+  $group = $group[0];
+  
   if(isLogged() && isMb($grpid)) {
     
     if(isset($_POST["filled"])) {
@@ -77,7 +80,7 @@ if($bdd->exists("Groups", "grpid", $grpid)) {
       $categories = array();
     array_unshift($categories, array("catid" => 0, "catlabel" => "Aucune catégorie"));
     
-    echo $twig->render("events_creer.html", array("values" => $values, "errors" => $errors, "grpid" => $grpid, "categories" => $categories));
+    echo $twig->render("events_creer.html", array("values" => $values, "errors" => $errors, "grpid" => $grpid, "grpname" => $group["grpname"], "categories" => $categories));
       
   }
   else {
