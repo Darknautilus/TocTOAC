@@ -245,6 +245,7 @@
 	
 	// Fonctions de construction d'URL
 	$twig->addFunction("root", new Twig_Function_Function("root"));
+	$twig->addFunction("tronque", new Twig_Function_Function("tronque"));
 	$twig->addFunction("templates", new Twig_Function_Function("templates"));
 	$twig->addFunction("css", new Twig_Function_Function("css"));
 	$twig->addFunction("images", new Twig_Function_Function("images"));

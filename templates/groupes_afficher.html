@@ -4,30 +4,31 @@
 
 {% block content %}
 
-<h3 class="page_header">Les groupes</h3>
-<p>Parcourez les groupes pour trouver des événements qui vous conviennent.</p>
-
-{% if errors is not empty %}
-<h5>{{ errors[0] }}</h5>
-{% else %}
-<table class="table table-striped table-hover table-bordered">
-	<tr>
-		<th>Nom</th>
-		<th>Description</th>
-		<th>Nombre de membres</th>
-		<th>Détails</th>
-	</tr>
-	{% for groupe in groupes %}
-	{% if groupe.visibility == 1 %}
-	<tr>
-		<td>{{ groupe.grpname }}</td>
-		<td>{{ groupe.description }}</td>
-		<td>{{ groupe.nbmemb }}</td>
-		<td><a href="{{ queries('groupes','details',{'idGroupe':groupe.grpid}) }}" class="btn btn-link">Détails</a></td>
-	</tr>
+<div class="row">
+  <a class="btn" href="{{ queries('','',{}) }}"><i class="icon-arrow-left"></i></a><small> retour à l'accueil</small>
+</div>
+<div class="row">
+  <div class="btn-group pull-right">
+    <a href="{{ queries('groupes','creer', {}) }}" class="btn btn-small"><i class="icon-edit"></i> Nouveau</a>
+  </div>
+  <h3 class="page-header">Groupes</h3>
+</div>
+<div class="row">
+	{% if groupes is not empty %}
+	<table class="table table-hover table-bordered">
+		{% for groupe in groupes %}
+			{% if groupe.visibility == 1 %}
+			<tr><td>
+			  <a class="btn pull-right" href="{{ queries('groupes','details',{'idGroupe':groupe.grpid}) }}"><i class="icon-info-sign"></i></a>
+				<strong>{{ groupe.grpname }}</strong><br/>
+				<p><em>{{ tronque(groupe.description, 30) }}</em></p>
+			</td></tr>
+			{% endif %}
+		{% endfor %}
+	</table>
+	{% else %}
+	<p><em>Il n'y a aucun groupe à afficher</em></p>
 	{% endif %}
-	{% endfor %}
-</table>
-{% endif %}
+</div>
 
 {% endblock %}

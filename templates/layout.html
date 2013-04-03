@@ -42,12 +42,6 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
   	<div class="container">
-  	
-  		<!-- <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        	<span class="icon-bar"></span>
-        	<span class="icon-bar"></span>
-        	<span class="icon-bar"></span>
-      	</a> -->
       
   		<a class="visible-desktop brand" href="{{ queries('','',{}) }}" title="Accueil">TocTOAC</a>
   		<a class="hidden-desktop brand" href="{{ queries('','',{}) }}" title="Accueil"><i class="icon-home"></i></a>
@@ -58,32 +52,30 @@
   		  <li><a href="{{ queries('groupes','afficher',{}) }}" title="Groupes"><i class="icon-group"></i></a></li>
   		</ul>
   		
-  		<!-- <div class="nav-collapse collapse"> -->
-    		<ul class="nav">
-      	 <li class="visible-desktop"><a href="{{ queries('events','afficher',{}) }}" title="Evénements"><i class="icon-calendar"></i> Evénements</a></li>
-      	 <li class="visible-desktop"><a href="{{ queries('groupes','afficher',{}) }}" title="Groupes"><i class="icon-group"></i> Groupes</a></li>
-    		</ul>
-    		<ul class="nav pull-right">
-    		{% if isLogged() %}
-    		  <li class="dropdown">
-    		    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-    		      {{ LOGGED_MEMBER.membfirstname }} {{ LOGGED_MEMBER.memblastname }}
-    		    <b class="caret"></b>
-    		    </a>
-    		    <ul class="dropdown-menu">
-    		      <li><a href="{{ queries('membres','details',{'membid':LOGGED_MEMBER.id}) }}">Profil</a></li>
-    		      <li><a href="{{ queries('groupes','mesgroupes',{}) }}">Mes groupes</a></li>
-    		      <li class="divider"></li>
-    		      <li><a href="{{ queries('membres','deconnexion',{}) }}">Déconnexion</a></li>
-    		    </ul>
-    		  </li>
-    		{% else %}
-    			{% include "membres_form_connexion_inPopover.html" %}
-    			<li><a href="#" class="html-popover-trigger" html-popover-content="#formConnect" data-placement="bottom" title="Connecter">Se connecter</a></li>
-      		<li><a  href="{{ queries('membres','inscription',{}) }}">S'inscrire</a></li>
-    		{% endif %}
-    		</ul>
-		<!-- </div> -->
+   		<ul class="nav">
+     	 <li class="visible-desktop"><a href="{{ queries('events','afficher',{}) }}" title="Evénements"><i class="icon-calendar"></i> Evénements</a></li>
+     	 <li class="visible-desktop"><a href="{{ queries('groupes','afficher',{}) }}" title="Groupes"><i class="icon-group"></i> Groupes</a></li>
+   		</ul>
+   		<ul class="nav pull-right">
+   		  {% if isLogged() %}
+   		  <li class="dropdown">
+   		    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+   		      {{ LOGGED_MEMBER.membfirstname }} {{ LOGGED_MEMBER.memblastname }}
+   		    <b class="caret"></b>
+   		    </a>
+   		    <ul class="dropdown-menu">
+   		      <li><a href="{{ queries('membres','details',{'membid':LOGGED_MEMBER.id}) }}">Profil</a></li>
+   		      <li><a href="{{ queries('groupes','mesgroupes',{}) }}">Mes groupes</a></li>
+   		      <li class="divider"></li>
+   		      <li><a href="{{ queries('membres','deconnexion',{}) }}">Déconnexion</a></li>
+   		    </ul>
+   		  </li>
+   		  {% else %}
+   			{% include "membres_form_connexion_inPopover.html" %}
+   			<li><a href="#" class="html-popover-trigger" html-popover-content="#formConnect" data-placement="bottom" title="Connecter">Se connecter</a></li>
+     		<li><a  href="{{ queries('membres','inscription',{}) }}">S'inscrire</a></li>
+   		  {% endif %}
+   		</ul>
     </div>
   </div>
 </div>

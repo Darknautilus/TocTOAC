@@ -2,28 +2,20 @@
 
 $bdd = new BDD();
 
-$error = "";
-
 if(isLogged()) {
-	$memberId = $GLOBALS["membinfos"]["membid"];
+	$member = loggedMember();
 	
-	$groupes = $bdd->select("select grpid, grpname, nbmemb from Groups as g, Members as m, Own as o
-			where o.grp = g.grpId
-			and o.member = $memberId
-			and m.membid = $memberId;");
+	$groupes = $bdd->select("select g.grpid, g.grpname, g.description, g.visibility from Groups as g, Members as m, Own as o
+			where o.grp = g.grpid
+			and o.member = ".$member["id"]."
+			and m.membid = ".$member["id"].";");
 	if(!$groupes)
-		$error .= $bdd->getLastError();
-	
-	/* logged = true si loggé */
-	
-	
-	$nbGroupes = count($groupes);
+		$groupes = array();
 	
 	$bdd->close();
-	
-	
-	echo $twig->render("groupes_mesgroupes.html", array("listGrps" => $groupes, "nbG" => $nbGroupes));
+	echo $twig->render("groupes_mesgroupes.html", array("groupes" => $groupes));
 }
 else {
-	echo $twig->render("index_show.html", array());
+  $bdd->close();
+	header("Location:".queries("", "", array()));
 }
