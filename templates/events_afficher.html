@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block title %}Liste des événements{% endblock %}
+
+{% block content %}
+
+<div class="row">
+  <a class="btn" href="{{ queries('','',{}) }}"><i class="icon-arrow-left"></i></a><small> retour à l'accueil</small>
+</div>
+<div class="row">
+  <h3 class="page-header">Evénements</h3>
+</div>
+<div class="row">
+  {% if events is not empty %}
+  <div class="span5 offset3">
+  <table class="table table-bordered table-hover">
+    {% for event in events %}
+    <tr><td>
+      <a class="btn pull-right" href="{{ queries('events','details',{'eventid':event.eventid}) }}"><i class="icon-info-sign"></i></a>
+      <strong>{{ event.eventname }}</strong><br/>
+      {% if event.grpid is not empty %}
+      <small><em>groupe <a class="unstyled" href="{{ queries('groupes','details',{'idGroupe':event.grpid}) }}">{{ event.grpname }}</a></em></small>
+      {% endif %}
+    </td></tr>
+    {% endfor %}
+  </table>
+  </div>
+  {% else %}
+  <p><em>Il n'y a aucun événement à afficher</em></p>
+  {% endif %}
+</div>
+
+{% endblock %}
