@@ -4,7 +4,11 @@
 
 {% block content %}
 
-<h3 class="page-header">Modification des paramètres du groupe</h3>
+<div class="row">
+  <a class="btn" href="{{ queries('groupes','details',{'idGroupe':infosGrp.grpid}) }}"><i class="icon-arrow-left"></i></a> <small>retour à {{ infosGrp.grpname }}</small>
+</div>
+
+<h3 class="page-header">Paramètres du groupe</h3>
 {% if errors is not empty %}
 	<div class="row">
 		<div class="span5 offset1">
@@ -31,44 +35,35 @@
 {% endif %}
 
 <div class="row">
-	<form class="form-horizontal" method="post" action="{{ queries('groupes','modifier',{'idGroupe': infosGrp.grpid}) }}" >
-	    <div class="control-group">
-		    <label class="control-label" for="inputEmail">Nom Groupe</label>
-		    <div class="controls">
-			    <input type="text" class="input-large" placeholder="Nom Groupe" name="nomGroupe" value="{{ infosGrp.grpname }}" />
+	<div class="span5">
+		<form class="form-horizontal" method="post" action="{{ queries('groupes','modifier',{'idGroupe': infosGrp.grpid}) }}" >
+		  <div class="control-group">
+			 <label class="control-label" for="inputEmail">Nom Groupe</label>
+			 <div class="controls">
+			   <input type="text" placeholder="Nom Groupe" name="nomGroupe" value="{{ infosGrp.grpname }}" />
+			 </div>
 			</div>
-		</div>
-		<div class="control-group">
-		<label class="control-label" for="inputPassword">Description</label>
-			<div class="controls">
-					<textarea class="input-xxlarge" name="description" placeholder="Description">{{ infosGrp.description }}</textarea>
+			<div class="control-group">
+			 <label class="control-label" for="inputPassword">Description</label>
+				<div class="controls">
+				  <textarea name="description" placeholder="Description">{{ infosGrp.description }}</textarea>
+				</div>
 			</div>
-		</div>
-		<div class="control-group">
-			<div class="controls">
-			    <button type="submit" class="btn"><i class="icon-save"></i> Enregistrer</button>
-			    <input type="hidden" name="filled" value="true" />
-		    </div>
-   		</div>
-    </form>
-</div>
-<div class="row">
-    <form class="form-horizontal" method="post" action="{{ queries('groupes','modifier',{'idGroupe': infosGrp.grpid}) }}" >
-    	<div class="control-group">
-			<div class="controls">
-		    	<button type="submit" class="btn btn-danger"><i class="icon-remove"></i> Supprimer</button>
-				<input type="hidden" name="supp" value="true" />
-			</div>
-		</div>
-	</form>
-	<form class="form-horizontal" method="post" action="{{ queries('groupes','details',{'idGroupe': infosGrp.grpid}) }}" >
-		<div class="control-group">
-			<div class="controls">
-				<button type="submit" class="btn"><i class="icon-reply"></i> Annuler</button>
-				<input type="hidden" name="retour" value="true" />
-			</div>
-		</div>
-	</form>
+			<div class="control-group">
+				<div class="controls">
+				  <button type="submit" class="btn btn-primary"><i class="icon-save"></i> Enregistrer</button>
+				  <input type="hidden" name="filled" value="true" />
+			  </div>
+	    </div>
+	  </form>
+	</div>
+	<div class="span4 offset2 well">
+	 <h4>Catégories du groupe</h4>
+	 <a class="btn btn-block" href="{{ queries('groupes','creerCat',{}) }}">Nouvelle</a>
+	 <a class="btn btn-block" href="{{ queries('groupes','supprimerCat',{}) }}">Supprimer</a>
+	 <h4>Autres paramètres</h4>
+	 <a class="btn btn-block btn-danger" href="{{ queries('groupes','modifier',{'idGroupe': infosGrp.grpid}) }}"><i class="icon-remove"></i> Supprimer le groupe</a>
+	</div>
 </div>
 
 {% endblock %}
