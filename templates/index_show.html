@@ -6,103 +6,22 @@
 
 {% if isLogged() %}
 
-<h3 class="header-page">Bienvenue {{ LOGGED_MEMBER.membfirstname }} {{ LOGGED_MEMBER.memblastname }} !</h3>
 <div class="row">
-  <div class="span3">
-  	<ul class="unstyled">
-  		<li>
-    		<h4>Voir mes groupes</h4>
-    		<p>Cliquez ici pour afficher tous vos groupes !</p>
-    		<a href="{{ queries('groupes','mesgroupes',{}) }}" class="btn btn-block">Mes groupes</a>
-    	</li>
-    </ul>
+  <h3 class="page-header">Que faire ?</h3>
+  <div class="span5 offset3">
+    <a class="btn btn-block" href="{{ queries('events','afficher',{}) }}">Les événements</a>
+    <a class="btn btn-block" href="{{ queries('groupes','afficher',{}) }}">Les groupes</a>
+  	<a class="btn btn-block" href="{{ queries('groupes','mesgroupes',{}) }}">Mes groupes</a>
   </div>
 </div>
-<div class="row">
-<div class="span3">
-	<ul class="unstyled">
-		<li>
-		    <h4>Créer un groupe</h4>
-		    <p>Cliquez ici pour créer votre groupe !</p>
-		    {% set tab = {} %}
-		    <a href="{{ queries('groupes','creer', tab) }}" class="btn btn-block">Créer un groupe</a>
-    	</li>
-  	</ul>
-  </div>
-</div>
-<!--  
-<div class="span">
-	<a href="{{ queries('groupes','mesgroupes',{}) }}" class="btn">Mes groupes</a>
-	{% set tab = {} %}
-	<a class="btn" href="{{ queries('groupes','creer', tab) }}">Créer un groupe</a>
-	
-</div>
--->
+
 {% else %}
 
-
-
-{% if not PROD_MODE() %}
-<div class="row span5">
-
-<div id="myCarousel" class="carousel slide">
-    <!-- Carousel items -->
-    <div class="carousel-inner">
-	    <div class="active item">
-	    	<img alt="" src="{{ images() }}/aurelien.png" />            
-	    	<div class="carousel-caption">
-                <h4>Mr le patron</h4>
-            </div>
-        </div>
-
-	    <div class="item">
-	    	<img alt="" src="{{ images() }}/pa.png" />            
-	    	<div class="carousel-caption">
-                <h4>SQL guy</h4>
-            </div>
-        </div>
-	    
-	    <div class="item">
-	    	<img alt="" src="{{ images() }}/totor.png" />            
-	    	<div class="carousel-caption">
-                <h4>Le programmeur de la nuit</h4>
-            </div>
-	    </div>
-	    
-	    <div class="item">
-	    	<img alt="" src="{{ images() }}/seb.png" />            
-	    	<div class="carousel-caption">
-                <h4>xXx-~=~-Le beau gosse du 31-~=~-xXx</h4>
-            </div>
-	    </div>
-	            
-	    <div class="item">
-	    	<img alt="" src="{{ images() }}/thomas.png" />            
-	    	<div class="carousel-caption">
-                <h4>Secteur communication</h4>
-            </div>
-        </div>
-	    
-    </div>
-    <!-- Carousel nav -->
-    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-</div>
-
-
-
-</div>
-{% else %}
 <div class="hero-unit span6 offset2">
 	<h2>TocTOAC</h2>
 	<p>Social networking, Events following</p>
-	<a class="btn btn-block btn-primary" href="{{ queries('membres','auth',{}) }}">Connexion</a>
+	<a class="btn btn-block btn-primary" href="{{ queries('membres','connexion',{}) }}">Connexion</a>
 </div>
 {% endif %}
-
-{% endif %}
-
-</div>
-
 
 {% endblock %}
