@@ -6,10 +6,9 @@
 
 <h3 class="header-page">Modifier son profil</h3>
 
-{% if membre.membid == LOGGED_MEMBER.id %}
 <div class="row">
-<div class="span6">
-	<form class="form-horizontal" method="post" action="{{ queries('membres','modifier_details',{'membid': membre.membid}) }}">
+<div class="span4">
+	<form class="form-horizontal" method="post" action="{{ queries('membres','modifier_details',{'membid': membre.id}) }}">
 		<div class="control-group">
 			<label class="control-label" for="prenom">Votre prénom</label>
 			<div class="controls">
@@ -25,23 +24,20 @@
 		<div class="control-group">
 			<label class="control-label" for="email">Adresse email</label>
 			<div class="controls">
-				<input type="email" id="email" name="email" placeholder="Email" value="{{ membre.membmail }}" required/>
+				<input type="email" id="email" name="email" placeholder="Email" value="{{ membre.mail }}" required/>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
-			
-				<button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
 				<input type="hidden" name="filled" value="true" />
-				
-	    		<a class="btn" href = "{{ queries('membres','details',{'membid': membre.membid}) }}">Annuler</a>
-	    		
+				  <button type="submit" class="btn btn-primary btn-block">Enregistrer les modifications</button>
+	    		<a class="btn btn-block" href = "{{ queries('membres','details',{'membid': membre.id}) }}">Annuler</a>
 			</div>
 		</div>
 	</form>
 </div>
-<div class="span6">
-	<form class="form-horizontal" method="post" action="{{ queries('membres','modifier_details',{'membid': membre.membid}) }}">
+<div class="span4 offset2">
+	<form class="form-horizontal" method="post" action="{{ queries('membres','modifier_details',{'membid': membre.id}) }}">
 		<div class="control-group">
 			<label class="control-label" for="motDePasse">Ancien mot de passe</label>
 			<div class="controls">
@@ -61,18 +57,13 @@
 		</div>
 		<div class="control-group">
 			<div class="controls">
-			
-				<button type="submit" class="btn btn-primary">Changer mot de passe</button>
 				<input type="hidden" name="filled2" value="true" />
-				
-	    		<a class="btn" href = "{{ queries('membres','details',{'membid': membre.membid}) }}">Annuler</a>
-	    		
+				  <button type="submit" class="btn btn-primary btn-block">Changer mot de passe</button>
+	    		<a class="btn btn-block" href = "{{ queries('membres','details',{'membid': membre.id}) }}">Annuler</a>
 			</div>
 		</div>
 	</form>
 </div>
 </div>
-
-{% endif %}
 
 {% endblock %}

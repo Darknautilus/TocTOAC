@@ -15,7 +15,7 @@
 {% else %}
 
 <div class="row">
-  <h3 class="header-page">Désinscription</h3>
+  <h3 class="page-header">Désinscription</h3>
 </div>
 
 {% if grpToCheck is not empty %}
@@ -44,14 +44,16 @@
 {% endif %}
 
 <div class="row">
-  <h4>Attention ! Cette opération est définitive. Etes-vous sûr de vouloir vous désinscrire ?</h4>
+  <div class="alert alert-danger text-center">
+    <strong>Attention ! Cette opération est définitive. Etes-vous sûr de vouloir vous désinscrire ?</strong>
+  </div>
   <div class="well span3 offset4">
 	  <form method="post" action="{{ queries('membres','desinscription',{}) }}">
 	    <label for="confirm" class="checkbox">
 	      <input type="checkbox" id="confirm" name="confirm" value="true" /> Oui, je veux quitter TocTOAC
 	    </label>
-	    <input type="submit" class="visible-phone btn btn-large btn-primary btn-block" value="Valider" />
-	    <input type="submit" class="hidden-phone btn btn-large btn-primary span3" value="Valider" />
+	    <input type="submit" class="btn btn-large btn-primary btn-block" value="Valider" />
+	    <a class="btn btn-block" href="{{ queries('membres','details',{'membid':LOGGED_MEMBER.id}) }}">Annuler</a> 
 	    <input type="hidden" id="filled" name="filled" value="true" />
 	  </form>
   </div>
