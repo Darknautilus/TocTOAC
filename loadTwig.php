@@ -25,7 +25,7 @@
 
 	// Fonctions de construction d'URL
 	function root() {
-		return "http://".$_SERVER['SERVER_NAME'];
+		return "http://".$_SERVER['SERVER_NAME'].PATH_SITE_DIR;
 	}
 	function templates() {
 		return root()."/templates";
