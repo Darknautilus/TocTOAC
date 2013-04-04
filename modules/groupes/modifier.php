@@ -1,26 +1,25 @@
 <?php
 
-$idGroup = $_GET['idGroupe'];
-
 $bdd = new BDD();
-
 $error = array();
 $successes = array();
 
 // Si l'utilisateur est connecté on affiche la page de modification des informations du groupe
-if(isLogged()) {
-	$memberId = $GLOBALS["membinfos"]["membid"];
+if(isLogged() && $bdd->exists("Groups","grpid",$_GET['idGroupe'])) {
+	$member = loggedMember();
 	
 	// Récupération des informations existantes du groupe
 	$groupe = $bdd->select("select grpid, grpname, description, nbmemb, nbcat from Groups
-			where grpid = $idGroup;");
+			where grpid = ".$_GET['idGroupe'].";");
+	$groupe = $groupe[0];
 	
-	if(!$groupe)
-		$error[] = $bdd->getLastError();
+	//Récupération des catégories
+	$cat = $bdd->select("select catid, catlabel, grp from Categories where grp='".$groupe["grpid"]."';");
+	if(!$cat)
+	  $cat = array();
 
 	// Enregistrement des modifications
 	if( isset($_POST["filled"]) && $_POST["filled"] == "true") {
-		
 	
 		if(isset($_POST["nomGroupe"]) && !empty($_POST["nomGroupe"]))
 		{
@@ -39,44 +38,16 @@ if(isLogged()) {
 			$error[] = "Vous devez entrer une description";
 	
 		if(empty($error)) {
-			$result = $bdd->update("Groups", array( "grpname" => $_POST['nomGroupe'], "visibility" => 1, "description" => $_POST['description']), array( "grpid" => $idGroup));
+			$result = $bdd->update("Groups", array( "grpname" => $_POST['nomGroupe'], "description" => $_POST['description']), array( "grpid" => $groupe["grpid"]));
 			if(!$result)
 				$error[] = "Erreur de mise à jour du groupe : ".$bdd->getLastError();
-	
-			//header("Location:".queries('groupes','details', ???));
-			//header("Location:index.php");
 		}
 	}
-	// Suppressions dans la base de données
-	if( isset($_POST["supp"]) && $_POST["supp"] == "true") {
-		
-		if(empty($error)) {
-			// Suppression des évènements liés au groupe
-			$result = $bdd->delete("Events", array( "grp" => $idGroup));
-			if(!$result)
-				$error[] = "Erreur de suppression du groupe : ".$bdd->getLastError();
-			// Suppression des catégories liés au groupe
-			$result = $bdd->delete("Categories", array( "grp" => $idGroup));
-			if(!$result)
-				$error[] = "Erreur de suppression du groupe : ".$bdd->getLastError();
-			// Suppression de l'appartenance au goupe
-			$result = $bdd->delete("Own", array( "grp" => $idGroup));
-			if(!$result)
-				$error[] = "Erreur de suppression du groupe : ".$bdd->getLastError();
-			// Suppression du groupe
-			$result = $bdd->delete("Groups", array( "grpid" => $idGroup));
-			if(!$result)
-				$error[] = "Erreur de suppression du groupe : ".$bdd->getLastError();
-
-			header("Location:index.php");
-		}
-	}
-	
 	
 	$bdd->close();
-
-	echo $twig->render("groupe_modifier.html", array("infosGrp" => $groupe[0], "errors" => $error, "success" => $successes));
+	echo $twig->render("groupe_modifier.html", array("infosGrp" => $groupe, "categories" => $cat, "errors" => $error, "success" => $successes));
 }
 else {
-	echo $twig->render("index_show.html", array());
+  $bdd->close();
+	header("Location:".queries("","",array()));
 }

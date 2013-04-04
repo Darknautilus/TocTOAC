@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="row">
-  <a class="btn" href="{{ queries('groupes','details',{'idGroupe':infosGrp.grpid}) }}"><i class="icon-arrow-left"></i></a> <small>retour à {{ infosGrp.grpname }}</small>
+  <a class="btn" href="{{ queries('groupes','details',{'idGroupe':infosGrp.grpid}) }}"><i class="icon-arrow-left"></i></a> <small>retour vers {{ infosGrp.grpname }}</small>
 </div>
 
 <h3 class="page-header">Paramètres du groupe</h3>
@@ -58,11 +58,22 @@
 	  </form>
 	</div>
 	<div class="span4 offset2 well">
+	 <a class="btn btn-small btn-info pull-right" href="{{ queries('groupes','creerCat',{'grpid':infosGrp.grpid}) }}"><i class="icon-plus"></i></a>
 	 <h4>Catégories du groupe</h4>
-	 <a class="btn btn-block" href="{{ queries('groupes','creerCat',{}) }}">Nouvelle</a>
-	 <a class="btn btn-block" href="{{ queries('groupes','supprimerCat',{}) }}">Supprimer</a>
+	 {% if categories is not empty %}
+	   <table class="table table-bordered table-hover">
+	     {% for cat in categories %}
+	     <tr><td>
+	       <a class="btn btn-small btn-warning pull-right" href="{{ queries('groupes','supprimerCat',{'catid':cat.catid}) }}"><i class="icon-minus-sign"></i></a>
+	       <strong>{{ cat.catlabel }}</strong>
+	     </td></tr>
+	     {% endfor %}
+	   </table>
+	 {% else %}
+	 <p><em>Aucune catégorie</em></p>
+	 {% endif %}
 	 <h4>Autres paramètres</h4>
-	 <a class="btn btn-block btn-danger" href="{{ queries('groupes','modifier',{'idGroupe': infosGrp.grpid}) }}"><i class="icon-remove"></i> Supprimer le groupe</a>
+	 <a class="btn btn-block btn-danger" href="{{ queries('groupes','supprimer',{'grpid': infosGrp.grpid}) }}"><i class="icon-remove"></i> Supprimer le groupe</a>
 	</div>
 </div>
 

@@ -17,9 +17,12 @@ if( isset($_POST["filled"]) && $_POST["filled"] == "true") {
 		$error[] = "Vous devez entrer une description";
 		
 	if(empty($error)) {
+	  $idGroupe = null;
 		$result = $bdd->insert("Groups", array( "grpName" => $_POST['nomGroupe'], "visibility" => 1, "description" => $_POST['description'], "nbmemb" => 0, "nbcat" => 0));
 		if(!$result)
 			$error[] = "Erreur création de groupe : ".$bdd->getLastError();
+		else
+		  $idGroupe = $result;
 		
 		$result = $bdd->insert("Own", array("grp" => $result , "member" =>  $idmemb, "grnt" =>  "2"));
 		if(!$result)
@@ -31,7 +34,7 @@ if( isset($_POST["filled"]) && $_POST["filled"] == "true") {
 			majGrpMbPlus();
 		}
 		
-		header("Location:index.php");
+		header("Location:".queries("groupes","details",array("idGroupe" => $idGroupe)));
 	}
 	
 	$bdd->close();

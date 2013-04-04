@@ -51,7 +51,8 @@ $MODULES = array(
 		"modifier",
 		"inviter_membre",
 	  "quitter",
-	  "donner_droits_membre"
+	  "donner_droits_membre",
+	  "supprimer"
 		),
 	"test" => array(
 		"home",

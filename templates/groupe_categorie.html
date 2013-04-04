@@ -4,29 +4,38 @@
 
 {% block content %}
 
-{% if errors is not empty %}
-<div class="alert">
-	<h4>Erreur !</h4>
-	<ul>
-		{% for error in errors %}
-		<li>{{ error }}</li>
-		{% endfor %}
-	</ul>
+<div class="row">
+  <a class="btn" href="{{ queries('groupes','modifier',{'idGroupe':groupe.grpid}) }}"><i class="icon-arrow-left"></i></a> <small>retour</small>
 </div>
-{% elseif values.libelle is not empty %}
-<div class="alert alert-success">
-	<p>La catégorie <strong>{{ values.libelle }}</strong> a bien été ajoutée</p>
+
+<div class="row">
+  <div class="span5 offset3">
+    {% if errors is not empty %}
+		<div class="alert">
+			<h4>Erreur !</h4>
+			<ul class="unstyled">
+				{% for error in errors %}
+				<li>- {{ error }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+    {% elseif values.libelle is not empty %}
+		<div class="alert alert-success">
+			<p>La catégorie <strong>{{ values.libelle }}</strong> a bien été ajoutée</p>
+		</div>
+    {% endif %}
+	</div>
 </div>
-{% endif %}
 
-<h3 class="page-header">{{ values.nom }}</h3>
+<h3 class="page-header">Nouvelle catégorie</h3>
 
-<form class="form-horizontal" method="post" action="{{ queries('groupes', 'creerCat', {"idGroupe":values.grpid,"nom":values.grpname} ) }}">
+<form class="form-horizontal" method="post" action="{{ queries('groupes', 'creerCat', {'grpid':groupe.grpid}) }}">
 	<div class="control-group">
 		<label class="control-label" for="libelle">Nom de la catégorie : </label>
-		<input type="text" id="libelle" name="libelle" placeholder="libelle" value="{{ values.libelle }}" required/>
+		<div class="controls">
+		  <input type="text" id="libelle" name="libelle" placeholder="libelle" value="{{ values.libelle }}" required/>
+	  </div>
 	</div>
-
 	<div class="control-group">
 		<div class="controls">
 			<button class="btn" type="submit">Creer</button>

@@ -1,17 +1,15 @@
 <?php
-$error = array();
 
-if(isLogged() && isset($_GET["idGroupe"]) && isset($_GET["nom"])) {
-	
-	
-	$nom = $_GET["nom"];
-	$values = array("Libelle"=>"", "nom" => $nom, "grpid"=>$_GET["idGroupe"], "grpname"=>$_GET["nom"]);
-	
-	
-	
+$bdd = new BDD();
+$error = array();
+$values = array();
+
+if(isLogged() && isset($_GET["grpid"]) && $bdd->exists("Groups", "grpid", $_GET["grpid"]) && isMbPlus($_GET["grpid"])) {
+	$grpid = $_GET["grpid"];
+	$groupe = $bdd->select("select grpid, grpname from Groups where grpid = ".$grpid.";");
+	$groupe = $groupe[0];
+  
 	if(isset($_POST["filled"]) && $_POST["filled"] == "true") {
-	
-		$bdd = new BDD();
 	
 		if(isset($_POST["libelle"]) && !empty($_POST["libelle"]))
 			$values["libelle"] = $_POST["libelle"];
@@ -20,19 +18,18 @@ if(isLogged() && isset($_GET["idGroupe"]) && isset($_GET["nom"])) {
 	
 		if(empty($error)) {
 			//Insertion de la nouvelle catégorie dans la table Categories
-			$result = $bdd->insert("Categories", array("catlabel" => $_POST["libelle"], "grp" => $_GET["idGroupe"] ));
+			$result = $bdd->insert("Categories", array("catlabel" => $_POST["libelle"], "grp" => $grpid ));
 			if(!$result)
 				$error[] = "Erreur insertion : ".$bdd->getLastError();
 		}
- 		//header("Location:index.php?module=groupes&action=afficher_groupes");
 		$bdd->close();
 	}
 	
-	
-	echo $twig->render("groupe_categorie.html", array("errors" => $error, "values" => $values));
+	echo $twig->render("groupe_categorie.html", array("errors" => $error, "values" => $values, "groupe" => $groupe));
 }
 else
 {
-	echo $twig->render("index_show.html", array());
+	$bdd->close();
+	header("Location:".queries("","",array()));
 }
 

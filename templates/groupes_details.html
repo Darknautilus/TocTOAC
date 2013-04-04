@@ -43,12 +43,18 @@
 	    </div>
 	    <div id="{{ category.catid }}" class="accordion-body collapse">
 	      <table class="table table-bordered table-striped table-hover">
-	        {% for event in category.events %}
-	        <tr><td>
-	          <a class="btn pull-right" href="{{ queries('events','details',{'eventid':event.eventid}) }}" title="Détails"><i class="icon-info-sign"></i></a>
-	          <strong>{{ event.eventname }}</strong> ({{ sqlDatetimeToFrench(event.date,'DATE') }} à {{ sqlDatetimeToFrench(event.time,'TIME') }})
-	        </td></tr>
-	        {% endfor %}
+	        {% if category.events is not empty %}
+		        {% for event in category.events %}
+		        <tr><td>
+		          <a class="btn pull-right" href="{{ queries('events','details',{'eventid':event.eventid}) }}" title="Détails"><i class="icon-info-sign"></i></a>
+		          <strong>{{ event.eventname }}</strong> ({{ sqlDatetimeToFrench(event.date,'DATE') }} à {{ sqlDatetimeToFrench(event.time,'TIME') }})
+		        </td></tr>
+		        {% endfor %}
+		      {% else %}
+		        <tr><td>
+		          <p><em>Aucun événement dans cette catégorie</em></p>
+		        </td></tr>
+	        {% endif %}
 	      </table>
 	    </div>
 	  </div>
@@ -57,7 +63,7 @@
 </div>
 <div class="span3 offset4">
   <h4>Qui est dans ce groupe ?</h4>
-  <a class="btn btn-large btn-block" href="{{ queries('groupes','afficher_membre',{'idGroupe':groupe.grpid}) }}"><i class="icon-user"></i> {{ nbMembres }} membres</a>
+  <a class="btn btn-large btn-block" href="{{ queries('groupes','afficher_membre',{'idGroupe':groupe.grpid}) }}"><i class="icon-user"></i> {{ nbMembres }} membre{% if nbMembres > 1 %}s{% endif %}</a>
 </div>
 
 </div>

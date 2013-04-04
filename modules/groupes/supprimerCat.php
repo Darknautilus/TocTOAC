@@ -1,31 +1,31 @@
 <?php
 $error = array();
 $bdd = new BDD();
-$categories = null;
-$grp=$_GET["idGroupe"];
-$msg = null;
 
-if(isLogged() && isset($_GET["idGroupe"])) {
-	
-	//Suppression
-	if(isset($_POST["supr"]) && $_POST["supr"] == "true" && !empty($_POST["idcat"])) {		
-		if(empty($error)) {
-			$msg = true;
-			
-			//Suppression catégorie dans la table Categories
-			$result = $bdd->delete("Categories", array( "catid" => $_POST["idcat"]  ));
-			if(!$result)
-				$error[] = "Erreur insertion : ".$bdd->getLastError();
-		}
-		//header("Location:index.php?module=groupes&action=afficher_groupes");
-		
-	}
+if(!isset($_GET["confirm"])) {
+  echo $twig->render("global_confirm.html",
+      array("titre" => "Etes-vous sûr de vouloir supprimer cette catégorie ?", "reponseN" => "Non", "reponseP" => "Oui",
+          "urlP" => queries("groupes", "supprimerCat", array("confirm" => true, "catid" => $_GET["catid"]))));
+}
+else {
+  if(isLogged() && isset($_GET["catid"]) && $bdd->exists("Categories","catid",$_GET["catid"])) {
+  	
+    $cat = $bdd->select("select catid, grp from Categories where catid = ".$_GET["catid"].";");
+    $cat = $cat[0];
+    
+    // Modification de la catégorie des événements concernés
+    $bdd->update("Events", array("category" => 0), array("category" => $cat["catid"]));
 
-	//Affichage des catégories
-	$categories = $bdd->select("select c.catid, c.catlabel, c.grp from Categories c where c.grp='".$grp."';");
-	if(!$categories)
-		$errors[] = "Il n'y a rien à afficher";
-	
-	$bdd->close();
-	echo $twig->render("groupes_modifier_supprimerCat.html", array("id" => $grp, "categories" => $categories, "msg" => $msg));
+    //Suppression catégorie dans la table Categories
+  	$result = $bdd->delete("Categories", array( "catid" => $cat["catid"]));
+  	if(!$result)
+  		$error[] = "Erreur suppression : ".$bdd->getLastError();
+  	
+  	$bdd->close();
+  	header("Location:".queries("groupes","modifier",array("idGroupe" => $cat["grp"])));
+  }
+  else {
+    $bdd->close();
+    header("Location:".queries("","",array()));
+  }
 }

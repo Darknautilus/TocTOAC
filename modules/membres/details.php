@@ -19,7 +19,7 @@ if(isset($_GET["membid"]) && $bdd->exists("Members","membid",$_GET["membid"])) {
                               where p.member = ".$membid." and 
                                 e.eventid = p.event and 
                                 g.grpid = e.grp 
-                              order by e.date DESC;");
+                              order by e.date ASC;");
   if(!$membevents)
     $membevents = array();
     
