@@ -197,10 +197,10 @@ INSERT INTO Groups VALUES (1, 'groupe3B', 1,
 "Groupe dans lequel se trouvent les grands créateurs de ce merveilleux site !!", 0, 0
 );
 
-INSERT INTO Categories VALUES (0, '',NULL);
-INSERT INTO Categories VALUES (1, 'Marche à pied', 1);
+INSERT INTO Categories VALUES (1, '',NULL);
+INSERT INTO Categories VALUES (2, 'Marche à pied', 1);
 
-INSERT INTO Events VALUES (1, 'Rando en montagne', 1, 1, 1, NOW(), now());
+INSERT INTO Events VALUES (1, 'Rando en montagne', 1, 1, 2, NOW(), now());
 
 INSERT INTO Participate VALUES (1, 2);
 

@@ -34,7 +34,7 @@ if(!isLogged()) {
   	
   	if(empty($error)){
   		$email=$_POST['email'];
-  		$exist=$bdd->select("Select membid From Members where membmail=\"$email\";");
+  		$exist=$bdd->select("Select membid From Members where membmail='".$email."';");
   
   		if($exist)
   			$error[] = "Ce mail est déjà utilisé";
@@ -49,7 +49,7 @@ if(!isLogged()) {
   			$error[] = "Erreur insertion : ".$bdd->getLastError();
   		}
   		else {
-  			header("Location:index.php");
+  			header("Location:".queries("","",array()));
   		}
   	}
   
@@ -59,5 +59,5 @@ if(!isLogged()) {
   echo $twig->render("membres_inscription.html", array("errors" => $error, "values" => $values));
 }
 else {
-  echo $twig->render("index_show.html", array());
+  header("Location:".queries("","",array()));
 }

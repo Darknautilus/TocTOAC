@@ -46,7 +46,7 @@ if(isset($_GET['idGroupe']) && $bdd->exists("Groups", "grpid", $_GET['idGroupe']
   // Récupération des events sans catégorie
   $eventsSC = $bdd->select("select e.eventid, e.eventname, e.date, e.time,  m.membfirstname, m.memblastname
   					from Events as e, Members as m
-  					where e.grp= ".$id." and e.creator = m.membid and e.category = 0");
+  					where e.grp= ".$id." and e.creator = m.membid and e.category = 1");
   // Et ajout dans le tableau
   $categories[] = array("catid" => "all", "catlabel" => "Sans catégorie", "events" => $eventsSC);
   echo $twig->render("groupes_details.html", array("groupe" => $groupe[0], "nbMembres" => $nbMemb  , "categories" => $categories));

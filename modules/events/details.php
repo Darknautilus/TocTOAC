@@ -19,7 +19,7 @@ else
   $event = $event[0];
 
 // S'il y a une catégorie, on ajoute son label
-if($event["category"]) {
+if($event["category"] != 1) {
   $cat = $bdd->select("select catlabel from Categories where catid = ".$event["category"].";");
   $event["catlabel"] = $cat[0]["catlabel"];
 }

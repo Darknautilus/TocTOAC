@@ -30,7 +30,7 @@
 <h3 class="page-header">{{ event.eventname }}<br/>
   <small>organisé par <a class="unstyled" href="{{ queries('membres','details',{'membid':event.creator}) }}">{{ event.membfirstname }} {{ event.memblastname }}</a>
   {% if event.grp is not empty %} dans le groupe <a class="unstyled" href="{{ queries('groupes','details',{'idGroupe':event.grp}) }}">{{ event.grpname }}</a>{% endif %}.<br/>
-  {% if event.category is not empty %}<em>Catégorie : {{ event.catlabel }}</em>{% endif %}
+  {% if event.category > 1 %}<em>Catégorie : {{ event.catlabel }}</em>{% endif %}
   </small>
 </h3>
 </div>

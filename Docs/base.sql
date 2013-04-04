@@ -185,4 +185,4 @@ INSERT INTO Grants VALUES (1, 'membre');
 INSERT INTO Grants VALUES (2, 'membreplus');
 
 -- Catégorie nulle
-INSERT INTO Categories VALUES (0, '',NULL);
+INSERT INTO Categories VALUES (1, '',NULL);

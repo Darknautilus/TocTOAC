@@ -14,7 +14,7 @@ else {
     $cat = $cat[0];
     
     // Modification de la catégorie des événements concernés
-    $bdd->update("Events", array("category" => 0), array("category" => $cat["catid"]));
+    $bdd->update("Events", array("category" => 1), array("category" => $cat["catid"]));
 
     //Suppression catégorie dans la table Categories
   	$result = $bdd->delete("Categories", array( "catid" => $cat["catid"]));

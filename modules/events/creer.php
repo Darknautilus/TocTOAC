@@ -78,7 +78,7 @@ if($bdd->exists("Groups", "grpid", $grpid)) {
     $categories = $bdd->select("select catid, catlabel from Categories where grp = ".$grpid.";");
     if(!$categories)
       $categories = array();
-    array_unshift($categories, array("catid" => 0, "catlabel" => "Aucune catégorie"));
+    array_unshift($categories, array("catid" => 1, "catlabel" => "Aucune catégorie"));
     
     echo $twig->render("events_creer.html", array("values" => $values, "errors" => $errors, "grpid" => $grpid, "grpname" => $group["grpname"], "categories" => $categories));
       
