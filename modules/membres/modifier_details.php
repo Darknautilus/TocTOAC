@@ -39,11 +39,15 @@ if(isset($_GET["membid"]) && isLogged() && $bdd->exists("Members","membid",$_GET
 		if(empty($errors)) {
 			// Update dans la base de donnée
 			$result = $bdd->update("Members", array( "membmail" => $_POST["email"], "membfirstname" => $_POST["prenom"], "memblastname" => $_POST["nom"]), array( "membid" => $membid));
-				
+			majGlobals();
+			
 			if(!$result) {
 				$errors[] = "Erreur update des informations du membre : ".$bdd->getLastError();
 			}
 			else {
+			  $_SESSION["membinfos"]["membmail"] = $_POST["email"];
+			  $_SESSION["membinfos"]["membfirstname"] = $_POST["prenom"];
+			  $_SESSION["membinfos"]["memblastname"] = $_POST["nom"];
 			  $bdd->close();
 				header("Location:".queries("membres", "details", array("membid" => $membid)));
 			}
@@ -56,13 +60,13 @@ if(isset($_GET["membid"]) && isLogged() && $bdd->exists("Members","membid",$_GET
 		if(!empty($_POST["oldMotDePasse"])){
 			$values["oldMotDePasse"] = $_POST["oldMotDePasse"];
 		
-			if(!check_password($values["oldMotDePasse"], $membre[0]["membpasswd"])){
+			if(!check_password($values["oldMotDePasse"], $membre["membpasswd"])){
 				$errors[] = "Le mot de passe saisi ne correspond pas à l'ancien mot de passe.";
 			}
 		
 			// Vérification saisie nouveau mot de passe
 			if(isset($_POST["newMotDePasse"]) && !empty($_POST["newMotDePasse"])) {
-				if(!isset($_POST["verifNewMotDePasse"]) && $_POST["newMotDePasse"] != $_POST["verifNewMotDePasse"])
+				if(!isset($_POST["verifNewMotDePasse"]) || $_POST["newMotDePasse"] != $_POST["verifNewMotDePasse"])
 					$errors[] = "Les mots de passe doivent être identiques";
 			}
 			else {
@@ -79,13 +83,14 @@ if(isset($_GET["membid"]) && isLogged() && $bdd->exists("Members","membid",$_GET
 				$errors[] = "Erreur update des informations du membre : ".$bdd->getLastError();
 			}
 			else {
+			  $_SESSION["membinfos"]["membpasswd"] = $hash;
 			  $bdd->close();
 				header("Location:".queries("membres", "details", array("membid" => $membid)));
 			}
 		}
 	}
 	$bdd->close();
-	echo $twig->render("membres_modifier_details.html", array("membre" => $membre));
+	echo $twig->render("membres_modifier_details.html", array("membre" => $membre, "errors" => $errors));
 
 }
 else {
