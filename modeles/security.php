@@ -2,7 +2,7 @@
 
 function hash_password($password){
 	// 256 bits random string
-	$salt = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+	$salt = bin2hex(generateSalt(32));
 
 	// prepend salt then hash
 	$hash = hash("sha256", $password . $salt);
@@ -24,4 +24,15 @@ function check_password($password, $dbhash)
 
 	// test
 	return $test_hash === $valid_hash;
+}
+
+function generateSalt($max = 15) {
+  $characterList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*?";
+  $i = 0;
+  $salt = "";
+  while ($i < $max) {
+    $salt .= $characterList{mt_rand(0, (strlen($characterList) - 1))};
+    $i++;
+  }
+  return $salt;
 }
